@@ -1,5 +1,5 @@
 import React from 'react';
-import './App.css';
+import './Nav.css'
 
 function Nav() {
 
@@ -14,3 +14,4 @@ function Nav() {
     );
     
 }
+export default Nav;
