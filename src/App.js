@@ -3,7 +3,7 @@ import './App.css';
 import Navbar from './components/navigation/Navbar';
 import CreateClient from './components/clients/CreateClient';
 import ReadClient from './components/clients/ReadClient';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 function App() {
     return (

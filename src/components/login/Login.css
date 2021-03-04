@@ -1,0 +1,50 @@
+.LoginPage{
+    width: auto;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+.LoginPageBox{
+    height: 650px;
+    width: 350px;
+    border-radius: 25px 25px 175px 175px;
+    -webkit-border-radius: 25px 25px 175px 175px;
+    -moz-border-radius: 25px 25px 175px 175px;
+    -ms-border-radius: 25px 25px 175px 175px;
+    -o-border-radius: 25px 25px 175px 175px;
+}
+
+.LogoIco{
+    width: 300px;
+    height: 300px;
+    border-radius: 175px;
+    /*background-image: url('../../assets/img/IcoLogo.png');*/
+    background-color: rgb(243, 244, 246);
+    background-repeat: no-repeat;
+    background-size: contain;
+    border: 5px solid white;
+    margin: auto;
+    margin-bottom: 2vh;
+    -webkit-border-radius: 1750px;
+    -moz-border-radius: 1750px;
+    -ms-border-radius: 1750px;
+    -o-border-radius: 1750px;
+}
+.LogoIcoPicture{
+    height: 225px;
+    transform: translate(40% , 10%);
+    -webkit-transform: translate(40% , 10%);
+    -moz-transform: translate(40% , 10%);
+    -ms-transform: translate(40% , 10%);
+    -o-transform: translate(40% , 10%);
+}
+
+.LoginPageButton{
+    margin: auto;
+    transform: translateY(50%);
+    -webkit-transform: translateY(50%);
+    -moz-transform: translateY(50%);
+    -ms-transform: translateY(50%);
+    -o-transform: translateY(50%);
+}
