@@ -6,8 +6,8 @@ nav{
     background-color: aquamarine;
     color: white;
   }
-  .nav-links{
-    width: 50%;
+.nav-links{
+    width: 40%;
     display: flex;
     justify-content: center;
     align-items: center;

@@ -10,9 +10,11 @@ function App() {
         <Router>
           <div className="App">
             <Nav />
-            <Route patch="/" component={Home}/>
-            <Route patch="/CreateClient" component={CreateClient}/>
-            <Route patch="/ReadClient" component={ReadClient}/>
+            <switch>
+            <Route path="/" component={Home}/>
+            <Route path="/CreateClient" component={CreateClient}/>
+            <Route path="/ReadClient" component={ReadClient}/>
+            </switch>
           </div>
         </Router>
     );
