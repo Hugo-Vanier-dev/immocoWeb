@@ -1,12 +1,16 @@
 import http from "../http-common";
+import GestionRetour from './class/gestionRetour';
+import authHeader from './methode/auth-header';
 
 
-class AppointmentTypeService {
+class AppointmentTypeService extends GestionRetour  {
 
     path = '/appointmentTypes';
+    
 
     getAll() {
-        return http.get(`${this.path}`, { headers: authHeader() });
+        const promise = http.get(`${this.path}`, { headers: authHeader() });
+        return this.getDeleteGestion(promise);
     }
 }
 

@@ -1,12 +1,14 @@
 import http from "../http-common";
+import authHeader from './methode/auth-header';
+import GestionRetour from './class/gestionRetour';
 
-
-class UserTypeService {
+class UserTypeService extends GestionRetour {
 
     path = '/userTypes';
 
     getAll() {
-        return http.get(`${this.path}`, { headers: authHeader() });
+        const promise = http.get(`${this.path}`, { headers: authHeader() });
+        return this.getDeleteGestion(promise);
     }
 }
 

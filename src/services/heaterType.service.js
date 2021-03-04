@@ -1,12 +1,15 @@
 import http from "../http-common";
+import GestionRetour from './class/gestionRetour';
+import authHeader from './methode/auth-header';
 
 
-class HeaterTypeService {
+class HeaterTypeService extends GestionRetour {
 
     path = '/heaterTypes';
 
     getAll() {
-        return http.get(`${this.path}`, { headers: authHeader() });
+        const promise = http.get(`${this.path}`, { headers: authHeader() });
+        return this.getDeleteGestion(promise);
     }
 }
 

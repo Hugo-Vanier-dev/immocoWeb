@@ -1,7 +1,8 @@
 import http from "../http-common";
+import GestionRetour from './class/gestionRetour';
+import authHeader from './methode/auth-header';
 
-
-class ClientService {
+class ClientService extends GestionRetour {
 
     path = '/properties';
 
@@ -15,36 +16,43 @@ class ClientService {
         if(filter != null){
             params.filter = filter
         }
-        return http.get(`${this.path}`,
+        const promise = http.get(`${this.path}`,
             {
                 params: params,
                 headers: authHeader()
             }
         );
+        return this.getDeleteGestion(promise);
     }
 
     get(id) {
-        return http.get(`${this.path}/${id}`, { headers: authHeader() });
+        const promise = http.get(`${this.path}/${id}`, { headers: authHeader() });
+        return this.getDeleteGestion(promise);
     }
 
     getByClient(clientId) {
-        return http.get(`${this.path}/clients/${clientId}`, { headers: authHeader() });
+        const promise = http.get(`${this.path}/clients/${clientId}`, { headers: authHeader() });
+        return this.getDeleteGestion(promise);
     }
 
     getByClientWish(clientWishId) {
-        return http.get(`${this.path}/clientsWishes/${clientWishId}`, { headers: authHeader() });
+        const promise = http.get(`${this.path}/clientsWishes/${clientWishId}`, { headers: authHeader() });
+        return this.getDeleteGestion(promise);
     }
 
     create(data) {
-        return http.post(`${this.path}`, data, { headers: authHeader() });
+        const promise = http.post(`${this.path}`, data, { headers: authHeader() });
+        return this.postGestion(promise);
     }
 
     update(id, data) {
-        return http.put(`${this.path}/${id}`, data, { headers: authHeader() });
+        const promise = http.put(`${this.path}/${id}`, data, { headers: authHeader() });
+        return this.putGestion(promise);
     }
 
     delete(id) {
-        return http.delete(`${this.path}/${id}`, { headers: authHeader() });
+        const promise = http.delete(`${this.path}/${id}`, { headers: authHeader() });
+        return this.getDeleteGestion(promise);
     }
     
 }
