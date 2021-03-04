@@ -3,14 +3,25 @@ import './App.css';
 import Nav from './components/Nav/Nav';
 import CreateClient from './components/Clients/CreateClient';
 import ReadClient from './components/Clients/ReadClient';
-import 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 function App() {
     return (
-        <div className="App">
+        <Router>
+          <div className="App">
             <Nav />
-            <CreateClient />
-            <ReadClient />
-        </div>
+            <Route patch="/" component={Home}/>
+            <Route patch="/CreateClient" component={CreateClient}/>
+            <Route patch="/ReadClient" component={ReadClient}/>
+          </div>
+        </Router>
     );
 }
+
+const Home = () => (
+    <div>
+        <h1>Home Page</h1>
+    </div>
+);
+
+export default App;
