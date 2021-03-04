@@ -1,19 +1,19 @@
 import axios from "axios";
-const dotenv = require('dotenv');
-dotenv.config();
 
+let http;
 if(process.env.NODE_ENV === 'development'){
-    export default axios.create({
-        baseURL: `http://${process.env.HOST}:${process.env.PORT}/${process.env.PREFIX_API}`,
+    http = axios.create({
+        baseURL: `http://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/${process.env.REACT_APP_PREFIX_API}`,
         headers: {
             "Content-type": "application/json"
         }
     });
 }else{
-    export default axios.create({
-        baseURL: `https://${process.env.HOST}:${process.env.PORT}/${process.env.PREFIX_API}`,
+    http = axios.create({
+        baseURL: `https://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/${process.env.REACT_APP_PREFIX_API}`,
         headers: {
             "Content-type": "application/json"
         }
     });
 }
+export default http;

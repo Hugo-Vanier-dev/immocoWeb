@@ -1,32 +1,39 @@
 import http from "../http-common";
+import GestionRetour from './class/gestionRetour';
+import authHeader from './methode/auth-header';
 
-
-class ClientService {
+class ClientService extends GestionRetour  {
 
     path = '/clients';
 
     getAll() {
-        return http.get(`${this.path}`, { headers: authHeader() });
+        const promise = http.get(`${this.path}`, { headers: authHeader() });
+        return this.getDeleteGestion(promise);
     }
 
     get(id) {
-        return http.get(`${this.path}/${id}`, { headers: authHeader() });
+        const promise = http.get(`${this.path}/${id}`, { headers: authHeader() });
+        return this.getDeleteGestion(promise);
     }
 
     getByUser(userId) {
-        return http.get(`${this.path}/users/${userId}`, { headers: authHeader() });
+        const promise = http.get(`${this.path}/users/${userId}`, { headers: authHeader() });
+        return this.getDeleteGestion(promise);
     }
 
     create(data) {
-        return http.post(`${this.path}`, data, { headers: authHeader() });
+        const promise = http.post(`${this.path}`, data, { headers: authHeader() });
+        return this.postGestion(promise);
     }
 
     update(id, data) {
-        return http.put(`${this.path}/${id}`, data, { headers: authHeader() });
+        const promise = http.put(`${this.path}/${id}`, data, { headers: authHeader() });
+        return this.putGestion(promise);
     }
 
     delete(id) {
-        return http.delete(`${this.path}/${id}`, { headers: authHeader() });
+        const promise = http.delete(`${this.path}/${id}`, { headers: authHeader() });
+        return this.getDeleteGestion(promise);
     }
     
 }
