@@ -1,15 +1,15 @@
 import React from 'react';
 import './App.css';
-import Nav from './components/Nav/Nav';
-import CreateClient from './components/Clients/CreateClient';
-import ReadClient from './components/Clients/ReadClient';
+import Navbar from './components/navigation/Navbar';
+import CreateClient from './components/clients/CreateClient';
+import ReadClient from './components/clients/ReadClient';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 function App() {
     return (
         <Router>
           <div className="App">
-            <Nav />
+            <Navbar />
             <Route patch="/" component={Home}/>
             <Route patch="/CreateClient" component={CreateClient}/>
             <Route patch="/ReadClient" component={ReadClient}/>

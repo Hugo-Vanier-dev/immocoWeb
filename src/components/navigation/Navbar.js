@@ -1,17 +1,16 @@
 import React from 'react';
-import './Nav.css'
 
-function Nav() {
+function Navbar() {
 
     return (
-    <nav>
+    <div>
         <h3>Logo</h3>
-         <ul className="nav-links">
+         <ul className="navbarLinks">
               <li>CreateClient</li>
               <li>Shop</li>
           </ul>
-    </nav>
+    </div>
     );
     
 }
-export default Nav;
+export default Navbar;
