@@ -1,0 +1,55 @@
+.SideMenuContainer{
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.ProfileIconicCharacter{
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    background-color: rgb(231, 232, 235);
+    background-repeat: no-repeat;
+    background-size: contain;
+    border: 4px solid white;
+    transform: translate(60% , 20%);
+    -webkit-transform: translate(60% , 20%);
+    -moz-transform: translate(60% , 20%);
+    -ms-transform: translate(60% , 20%);
+    -o-transform: translate(60% , 20%);
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+}
+.ProfileIconicCharacterPicture{
+    height: 140px;
+    transform: translate(30%, 10%);
+    -webkit-transform: translate(30%, 10%);
+    -moz-transform: translate(30%, 10%);
+    -ms-transform: translate(30%, 10%);
+    -o-transform: translate(30%, 10%);
+}
+
+.LogoIco{
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: rgb(243, 244, 246);
+    background-repeat: no-repeat;
+    background-size: contain;
+    border: 3px solid white;
+    transform: translate(-50%, -200%);
+    -webkit-transform: translate(-50%, -200%);
+    -moz-transform: translate(-50%, -200%);
+    -ms-transform: translate(-50%, -200%);
+    -o-transform: translate(-50%, -200%);
+}
+.LogoIcoPicture{
+    height: 60px;
+    transform: translate(43.5% , 10%);
+    -webkit-transform: translate(43.5% , 10%);
+    -moz-transform: translate(43.5% , 10%);
+    -ms-transform: translate(43.5% , 10%);
+    -o-transform: translate(43.5% , 10%);
+}

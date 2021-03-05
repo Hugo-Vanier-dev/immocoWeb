@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import SideMenu from './App';
+import SideMenu from './components/sideMenu/SideMenu';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
