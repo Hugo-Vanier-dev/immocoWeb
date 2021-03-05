@@ -1,72 +1,66 @@
-import React from 'react';
-import './App.css';
-import Navbar from './components/navigation/Navbar';
+import React from "react";
+import "./App.css";
+import Navbar from "./components/navigation/Navbar";
 
-import CreateClient from './components/Clients/CreateClient';
-import ReadClient from './components/Clients/ReadClient';
-import UpdateClient from './components/Clients/UpdateClient';
-import DeleteClient from './components/Clients/DeleteClient';
+import CreateClient from "./components/clients/CreateClient";
+import ReadClient from "./components/clients/ReadClient";
+import UpdateClient from "./components/clients/UpdateClient";
+import DeleteClient from "./components/clients/DeleteClient";
 
-import CreateRdv from './components/Planning/CreateRdv';
-import ReadRdv from './components/Planning/ReadRdv';
-import UpdateRdv from './components/Planning/UpdateRdv';
-import DeleteRdv from './components/Planning/DeleteRdv';
+import CreateRdv from "./components/planning/CreateRdv";
+import ReadRdv from "./components/planning/ReadRdv";
+import UpdateRdv from "./components/planning/UpdateRdv";
+import DeleteRdv from "./components/planning/DeleteRdv";
 
-import CreateProperty from './components/Properties/CreateProperty';
-import ReadProperty from './components/Properties/ReadProperty';
-import UpdateProperty from './components/Properties/UpdateProperty';
-import DeleteProperty from './components/Properties/DeleteProperty';
+import CreateProperty from "./components/properties/CreateProperty";
+import ReadProperty from "./components/properties/ReadProperty";
+import UpdateProperty from "./components/properties/UpdateProperty";
+import DeleteProperty from "./components/properties/DeleteProperty";
 
-import CreateUser from './components/Users/CreateUser';
-import ReadUser from './components/Users/ReadUser';
-import UpdateUser from './components/Users/UpdateUser';
-import DeleteUser from './components/Users/DeleteUser';
+import CreateUser from "./components/users/CreateUser";
+import ReadUser from "./components/users/ReadUser";
+import UpdateUser from "./components/users/UpdateUser";
+import DeleteUser from "./components/users/DeleteUser";
 
-import login from './components/login/Login';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import LoginPage from "./components/login/Login";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+
+function Home() {
+  return (
+    <div>
+      <h1>Home Page</h1>
+    </div>
+  );
+}
 
 function App() {
-    return (
-        <Router>
-            <Navbar />
-          <div className="App">
-            <switch>
+  return (
+    <Router>
+      <Navbar />
+      <div className="App">
+        <Switch>
+          <Route path="/" exact component={LoginPage} />
+          <Route path="/home" component={Home} />
 
-            <Route path="/" exact component={Home}/>
+          <Route path="/createClient" component={CreateClient} />
+          <Route path="/updateClient" component={UpdateClient} />
+          <Route path="/ReadClient" component={ReadClient} />
 
-            <Route path="/CreateClient" component={CreateClient}/>
-            <Route path="/UpdateClient" component={UpdateClient}/>
-            <Route path="/ReadClient" component={ReadClient}/>
-            
+          <Route path="/createRdv" component={CreateRdv} />
+          <Route path="/updateRdv" component={UpdateRdv} />
+          <Route path="/readRdv" component={ReadRdv} />
 
-            <Route path="/CreateRdv" component={CreateRdv}/>
-            <Route path="/UpdateRdv" component={UpdateRdv}/>
-            <Route path="/ReadRdv" component={ReadRdv}/>
-            
+          <Route path="/createProperty" component={CreateProperty} />
+          <Route path="/updateProperty" component={UpdateProperty} />
+          <Route path="/readProperty" component={ReadProperty} />
 
-            <Route path="/CreateProperty" component={CreateProperty}/>
-            <Route path="/UpdateProperty" component={UpdateProperty}/>
-            <Route path="/ReadProperty" component={ReadProperty}/>
-            
-
-            <Route path="/CreateUser" component={CreateUser}/>
-            <Route path="/UpdateUser" component={UpdateUser}/>
-            <Route path="/ReadUser" component={ReadUser}/>
-            
-
-            <Route path="/login" component={login}/>
-
-            </switch>
-          </div>
-        </Router>
-    );
-}
-function Home() {
-    return (
-        <div>
-            <h1>Home Page</h1>
-        </div>
-    );
+          <Route path="/createUser" component={CreateUser} />
+          <Route path="/updateUser" component={UpdateUser} />
+          <Route path="/readUser" component={ReadUser} />
+        </Switch>
+      </div>
+    </Router>
+  );
 }
 
 export default App;
