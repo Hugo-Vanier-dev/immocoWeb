@@ -1,11 +1,11 @@
 
 import React from 'react';
 import logo from '../../assets/img/IcoLogo.png'; 
-import './Login.css';
+import './SideMenu.css';
 
 
 
-function LoginPage() {
+function SideMenu() {
 
     
     return(
@@ -27,4 +27,4 @@ function LoginPage() {
     )
 }
 
-export default LoginPage
+export default SideMenu

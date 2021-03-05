@@ -1,11 +1,11 @@
 import React from 'react';
 
-function Createclient() {
+function CreateClient() {
 
   return(
     <div>
-      <h1>Createclient Page</h1>
+      <h1>CreateClient Page</h1>
     </div>
   );
 }
-export default Createclient;
+export default CreateClient;

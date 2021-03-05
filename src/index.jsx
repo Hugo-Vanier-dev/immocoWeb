@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import LoginPage from './App';
+import SideMenu from './App';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <LoginPage />
+    <SideMenu />
   </React.StrictMode>,
   document.getElementById('root')
 );
