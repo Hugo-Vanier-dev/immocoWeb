@@ -37,6 +37,13 @@
     -ms-transform: translate(40% , 10%);
     -o-transform: translate(40% , 10%);
 }
+.LoginMail, .LoginPassword{
+    transform: translateX(50px);
+    -webkit-transform: translateX(50px);
+    -moz-transform: translateX(50px);
+    -ms-transform: translateX(50px);
+    -o-transform: translateX(50px);
+}
 
 .LoginPageButton{
     margin: auto;
