@@ -1,4 +1,4 @@
-import logo from "../../assets/img/icoLogo.png";
+import logo from "../../assets/img/IcoLogo.png";
 import "./Login.css";
 import React from "react";
 import UserService from "../../services/user.service";
