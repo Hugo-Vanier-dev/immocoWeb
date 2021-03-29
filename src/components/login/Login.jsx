@@ -3,8 +3,6 @@ import React from 'react';
 import logo from '../../assets/img/IcoLogo.png'; 
 import './Login.css';
 
-
-
 function LoginPage() {
 
     

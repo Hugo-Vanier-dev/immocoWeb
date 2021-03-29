@@ -2,11 +2,17 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import SideMenu from './components/sideMenu/SideMenu';
+import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <SideMenu />
+      <div className="">
+        <SideMenu />
+          <div className="">
+            <App />
+          </div>
+      </div>
   </React.StrictMode>,
   document.getElementById('root')
 );
