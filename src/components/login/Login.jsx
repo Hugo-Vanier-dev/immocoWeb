@@ -1,4 +1,4 @@
-import logo from "../../assets/img/icoLogo.png";
+import logo from "../../assets/img/IcoLogo.png";
 import "./Login.css";
 import React from "react";
 import UserService from "../../services/user.service";
@@ -47,9 +47,9 @@ function LoginPage() {
         </div>
         <div className=" grid grid-rows-4">
           <form onSubmit={(e) => submitForm(e)}>
-            <a className="uppercase text-center align-middle text-blue-800 underline text-opacity-75 font-bold text-2xl font-sans">
+            <h1 className="uppercase text-center align-middle text-blue-800 text-opacity-75 font-bold text-2xl font-sans">
               immoco
-            </a>
+            </h1>
             <input
               type="email"
               onChange={(e) => setMail(e.target.value)}
