@@ -20,9 +20,8 @@ function ButtonForMenu({src, path}){
 
 function SideMenu() {
     return(
-        <div>
-            <div className=" grid grid-cols-12 mt-20">
-                <div className="SideMenuContainer border-r-2 border-white border-opacity-50 bg-gradient-to-r from-blue-100 to-indigo-200 shadow-md ">    
+            <div className="grid grid-cols-12">
+                <div className="SideMenuContainer border-r-2 border-white border-opacity-50 bg-gradient-to-t from-blue-100 to-blue-200 shadow-md ">    
                     <div className="LogoIcoSideMenu shadow-sm" />
                     <div className="flex flex-wrap justify-center">
                         <ButtonForMenu src={dashboard} path='/home' />
@@ -33,9 +32,7 @@ function SideMenu() {
                         <ButtonForMenu src={addHome} path='createProperty' />
                     </div>
                 </div>
-
             </div>
-        </div>
     )
 }
 

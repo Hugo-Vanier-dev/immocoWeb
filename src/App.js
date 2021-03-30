@@ -36,35 +36,34 @@ function Home() {
 
 function App() {
   return (
-    <div className="App">
+    <div className="App grid grid-rows-1 grid-cols-6 gap-3">
       <Router>
-          <div className= "align-component">
-          <SideMenu />
-            <Switch>
-              <Route path="/" exact component={LoginPage} />
-              <Route path="/home" component={Home} />
+          <div className="col-start-1 col-span-1"><SideMenu /></div>
+          <div className="col-start-2 col-span-6"><Switch className="">
+                                                    <Route path="/" exact component={LoginPage} />
+                                                    <Route path="/home" component={Home} />
 
-              <Route path="/createClient" component={CreateClient} />
-              <Route path="/updateClient" component={UpdateClient} />
-              <Route path="/readClient" component={ReadClient} />
-              <Route path="/deleteClient" component={DeleteClient} />
+                                                    <Route path="/createClient" component={CreateClient} />
+                                                    <Route path="/updateClient" component={UpdateClient} />
+                                                    <Route path="/readClient" component={ReadClient} />
+                                                    <Route path="/deleteClient" component={DeleteClient} />
 
-              <Route path="/createRdv" component={CreateRdv} />
-              <Route path="/updateRdv" component={UpdateRdv} />
-              <Route path="/readRdv" component={ReadRdv} />
-              <Route path="/deleteRdv" component={DeleteRdv} />
+                                                    <Route path="/createRdv" component={CreateRdv} />
+                                                    <Route path="/updateRdv" component={UpdateRdv} />
+                                                    <Route path="/readRdv" component={ReadRdv} />
+                                                    <Route path="/deleteRdv" component={DeleteRdv} />
 
-              <Route path="/createProperty" component={CreateProperty} />
-              <Route path="/updateProperty" component={UpdateProperty} />
-              <Route path="/readProperty" component={ReadProperty} />
-              <Route path="/deleteProperty" component={DeleteProperty} />
+                                                    <Route path="/createProperty" component={CreateProperty} />
+                                                    <Route path="/updateProperty" component={UpdateProperty} />
+                                                    <Route path="/readProperty" component={ReadProperty} />
+                                                    <Route path="/deleteProperty" component={DeleteProperty} />
 
-              <Route path="/createUser" component={CreateUser} />
-              <Route path="/updateUser" component={UpdateUser} />
-              <Route path="/readUser" component={ReadUser} />
-              <Route path="/deleteUser" component={DeleteUser} />
-            </Switch>
-            </div>
+                                                    <Route path="/createUser" component={CreateUser} />
+                                                    <Route path="/updateUser" component={UpdateUser} />
+                                                    <Route path="/readUser" component={ReadUser} />
+                                                    <Route path="/deleteUser" component={DeleteUser} />
+                                                  </Switch>
+          </div>
       </Router>
     </div>
   );
