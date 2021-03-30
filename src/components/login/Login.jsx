@@ -47,7 +47,7 @@ function LoginPage() {
         </div>
         <div className=" grid grid-rows-4">
           <form onSubmit={(e) => submitForm(e)}>
-            <h1 className="uppercase text-center align-middle text-blue-800 underline text-opacity-75 font-bold text-2xl font-sans">
+            <h1 className="uppercase text-center align-middle text-blue-800 text-opacity-75 font-bold text-2xl font-sans">
               immoco
             </h1>
             <input

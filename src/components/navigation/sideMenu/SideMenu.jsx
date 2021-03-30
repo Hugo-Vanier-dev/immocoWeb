@@ -1,4 +1,3 @@
-
 import React from 'react';
 import addClient from '../../../assets/img/icons/AddClientIcon.png';
 import clientList from '../../../assets/img/icons/ClientListIcon.png';
