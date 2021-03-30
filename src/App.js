@@ -29,9 +29,9 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 function App() {
     return (
-        <Router>
             <div>
                 <SideMenu />
+        <Router>
                 <switch>
                 <Route path="/CreateClient" component={CreateClient}/>
                 <Route path="/UpdateClient" component={UpdateClient}/>
@@ -56,8 +56,8 @@ function App() {
                 <Route path="/login" component={Login}/>
             
                 </switch>
-            </div>
         </Router>
+            </div>
     );
 }
 
