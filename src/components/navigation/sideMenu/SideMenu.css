@@ -1,0 +1,34 @@
+.SideMenuContainer{
+    height: 100%;
+    width: 150px;
+    margin: 0;
+    padding: 0;
+    padding-top:20px;
+    padding-bottom: 30px;
+    border-radius: 0 0 20px 0;
+    -webkit-border-radius: 0 0 20px 0;
+    -moz-border-radius: 0 0 20px 0;
+    -ms-border-radius: 0 0 20px 0;
+    -o-border-radius: 0 0 20px 0;
+}
+.buttonForMenuConfig{
+    width: 70px;
+    height: 70px;
+}
+.LogoIcoSideMenu{
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    background-color: rgb(243, 244, 246);
+    background-image: url('../../../assets/img/IcoLogo.png');
+    background-repeat: no-repeat;
+    background-size: 55%;
+    background-position: center;
+    border: 4px solid white;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    margin: auto;
+    margin-bottom: 1vh;
+}
