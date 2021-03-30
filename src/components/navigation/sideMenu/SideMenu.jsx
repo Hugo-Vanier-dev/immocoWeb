@@ -8,7 +8,6 @@ import addHome from '../../../assets/img/icons/AddHomeIcon.png';
 import './SideMenu.css';
 import { Link } from 'react-router-dom';
 
-
 function ButtonForMenu({src, path}){
     return(
         <div className="float-left grid grid-cols-1 gap-4">
@@ -23,8 +22,8 @@ function SideMenu() {
     return(
         <div>
             <div className=" grid grid-cols-12 mt-20">
-                <div className="SideMenuContainer border-r-2 border-white border-opacity-50 bg-gradient-to-r from-blue-100 to-blue-200 shadow-md ">    
-                    <div className="LogoIcoTop shadow-sm" />
+                <div className="SideMenuContainer border-r-2 border-white border-opacity-50 bg-gradient-to-r from-blue-100 to-indigo-200 shadow-md ">    
+                    <div className="LogoIcoSideMenu shadow-sm" />
                     <div className="flex flex-wrap justify-center">
                         <ButtonForMenu src={dashboard} path='/home' />
                         <ButtonForMenu src={calendar} path='/planning' />

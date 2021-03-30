@@ -15,12 +15,12 @@
     width: 80px;
     height: 80px;
 }
-.LogoIcoTop{
+.LogoIcoSideMenu{
     width: 130px;
     height: 130px;
     border-radius: 50%;
     background-color: rgb(243, 244, 246);
-    background-image: url('../../assets/img/IcoLogo.png');
+    background-image: url('../../../assets/img/IcoLogo.png');
     background-repeat: no-repeat;
     background-size: 55%;
     background-position: center;
@@ -29,12 +29,6 @@
     -moz-border-radius: 50%;
     -ms-border-radius: 50%;
     -o-border-radius: 50%;
+    margin: auto;
+    margin-bottom: 3vh;
 }
-/*.LogoIcoPicture{
-    height: 100%;
-    transform: translate(40% , 10%);
-    -webkit-transform: translate(40% , 10%);
-    -moz-transform: translate(40% , 10%);
-    -ms-transform: translate(40% , 10%);
-    -o-transform: translate(40% , 10%);
-}*/
