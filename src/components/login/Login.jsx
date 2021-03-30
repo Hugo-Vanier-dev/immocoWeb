@@ -42,14 +42,14 @@ function LoginPage() {
   return (
     <div className="LoginPage grid grid-rows-1 place-content-center">
       <div className="LoginPageBox border-4 border-white m-auto p-4 text-center bg-gray-200 rounded-xl shadow-xl">
-        <div className="LogoIco items-center m-5 shadow-md">
+        <div className="LogoIcoTop items-center m-5 shadow-md">
           <img src={logo} alt="logo_ImmoCo" className="LogoIcoPicture" />
         </div>
         <div className=" grid grid-rows-4">
           <form onSubmit={(e) => submitForm(e)}>
-            <a className="uppercase text-center align-middle text-blue-800 underline text-opacity-75 font-bold text-2xl font-sans">
+            <h1 className="uppercase text-center align-middle text-blue-800 underline text-opacity-75 font-bold text-2xl font-sans">
               immoco
-            </a>
+            </h1>
             <input
               type="email"
               onChange={(e) => setMail(e.target.value)}

@@ -4,7 +4,7 @@ import './LogoIco.css';
 
 function LogoIco() {
     return(
-     <div className="LogoIco shadow-md">
+     <div className="LogoIco shadow-xl">
 
     </div>   
     )
