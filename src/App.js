@@ -24,6 +24,8 @@ import DeleteUser from "./components/users/DeleteUser";
 
 import LoginPage from "./components/login/Login";
 
+import DashboardPage from "./components/dashboard/Dashboard";
+
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 function Home() {
@@ -62,6 +64,8 @@ function App() {
                                                     <Route path="/updateUser" component={UpdateUser} />
                                                     <Route path="/readUser" component={ReadUser} />
                                                     <Route path="/deleteUser" component={DeleteUser} />
+
+                                                    <Route path="/dashboardPage" component={DashboardPage} />
                                                   </Switch>
           </div>
       </Router>
