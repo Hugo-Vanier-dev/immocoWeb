@@ -20,7 +20,6 @@ function ButtonForMenu({src, path}){
 
 function SideMenu() {
     return(
-        <div>
         <div className="SideMenuContainer border-r-4 border-b-4 border-white border-opacity-75 bg-gradient-to-t from-blue-100 to-blue-200 shadow-md ">    
 
             <div className="LogoIcoSideMenu shadow-md" />
@@ -31,11 +30,6 @@ function SideMenu() {
                 <ButtonForMenu src={addClient} path='/createClient' />
                 <ButtonForMenu src={homeList} path='/listeProperty' />
                 <ButtonForMenu src={addHome} path='createProperty' />
-            </div>
-        </div>
-            <div className="stickHomeMenu">
-                <div className="diagonalStickMenu bg-white"></div>
-                <div className="verticalStickMenu bg-gradient-to-t from-transparent to-white"></div>
             </div>
         </div>
     )

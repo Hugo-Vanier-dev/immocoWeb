@@ -36,10 +36,10 @@ function Home() {
 
 function App() {
   return (
-    <div className="App grid grid-rows-1 grid-cols-6 gap-3">
+    <div className="App grid grid-cols-6 gap-2">
       <Router>
-          <div className="col-start-1 col-span-1"><SideMenu /></div>
-          <div className="col-start-2 col-span-6"><Switch className="">
+          <div className="divSideMenu col-start-1 col-span-1"><SideMenu /></div>
+          <div className="divContentArea col-start-2 col-span-6"><Switch className="">
                                                     <Route path="/" exact component={LoginPage} />
                                                     <Route path="/home" component={Home} />
 
