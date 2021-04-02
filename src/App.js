@@ -24,6 +24,8 @@ import DeleteUser from "./components/users/DeleteUser";
 
 import LoginPage from "./components/login/Login";
 
+import DashboardPage from "./components/dashboard/Dashboard";
+
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 function Home() {
@@ -36,10 +38,11 @@ function Home() {
 
 function App() {
   return (
-    <div className="App grid grid-rows-1 grid-cols-6 gap-3">
+    <div className="App grid grid-cols-10">
       <Router>
-          <div className="col-start-1 col-span-1"><SideMenu /></div>
-          <div className="col-start-2 col-span-6"><Switch className="">
+          <div className="divSideMenu col-start-1 col-span-1"><SideMenu /></div>
+          <div className="divContentArea lg:col-start-2 lg:col-span-10 md:col-start-3 md:col-span-10 sm:col-start-1 sm:col-span-10">
+            <Switch>
                                                     <Route path="/" exact component={LoginPage} />
                                                     <Route path="/home" component={Home} />
 
@@ -62,6 +65,8 @@ function App() {
                                                     <Route path="/updateUser" component={UpdateUser} />
                                                     <Route path="/readUser" component={ReadUser} />
                                                     <Route path="/deleteUser" component={DeleteUser} />
+
+                                                    <Route path="/dashboardPage" component={DashboardPage} />
                                                   </Switch>
           </div>
       </Router>
