@@ -1,11 +1,9 @@
 import React from 'react';
+import ClientForm from './form/ClientForm';
 
 function CreateClient() {
-
   return(
-    <div>
-      <h1>CreateClient Page</h1>
-    </div>
+    <ClientForm clientId={null} modeEdit={true} />
   );
 }
 export default CreateClient;
