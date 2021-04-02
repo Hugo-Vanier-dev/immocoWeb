@@ -41,8 +41,8 @@ function LoginPage() {
   }
   return (
     <div className="LoginPage grid grid-rows-1 place-content-center">
-      <div className="LoginPageBox border-4 border-white m-auto p-4 text-center bg-gray-200 rounded-xl shadow-xl">
-        <div className="LogoIco items-center m-5 shadow-md">
+      <div className="LoginPageBox border-2 border-white border-opacity-50 m-auto p-4 text-center bg-gradient-to-t from-blue-100 to-blue-200 rounded-xl shadow-xl">
+        <div className="LogoIcoLogin items-center m-5 shadow-md">
           <img src={logo} alt="logo_ImmoCo" className="LogoIcoPicture" />
         </div>
         <div className=" grid grid-rows-4">

@@ -38,15 +38,17 @@ function Home() {
 
 function App() {
     return (
-      <div className="App">
+      <div className="App grid grid-rows-1 grid-cols-6 gap-3">
         <Router>
-          <div className="align-component">
             <InitializeUserContext>
 
             <PrivateRoute>
-              <SideMenu />
+      
+              <div className="col-start-1 col-span-1">
+      <SideMenu />
+      </div>
             </PrivateRoute>
-            
+            <div className="col-start-2 col-span-6">
               <Switch>
 
                 <Route path="/login" exact component={LoginPage} />
@@ -106,9 +108,8 @@ function App() {
                   <DeleteUser />
                 </PrivateRoute>
               </Switch>
-              
+              </div>
             </InitializeUserContext>
-          </div>
         </Router>
       </div>
     );
