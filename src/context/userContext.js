@@ -7,7 +7,6 @@ function InitializeUserContext({children}) {
     const [user, setUser] = React.useState(null);
     const userStorage = JSON.parse(localStorage.getItem('user'));
     React.useEffect(() => {
-        console.log(userStorage);
         if(userStorage && userStorage.token){
             UserService.getMe().then((res) => {
                 const userInfo = {
@@ -19,7 +18,7 @@ function InitializeUserContext({children}) {
         }else{
             setUser(null);
         }
-    }, [setUser, userStorage]);
+    }, [setUser]);
     return <UserContext.Provider value={user}>{children}</UserContext.Provider>
 }
 
