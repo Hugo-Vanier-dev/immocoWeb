@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 import SideMenu from "./components/navigation/sideMenu/SideMenu";
-
+import { InitializeUserContext } from "./context/userContext";
 import CreateClient from "./components/clients/CreateClient";
 import ReadClient from "./components/clients/ReadClient";
 import UpdateClient from "./components/clients/UpdateClient";
@@ -26,6 +26,8 @@ import LoginPage from "./components/login/Login";
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
+import PrivateRoute from './middleware/PrivateRoute';
+
 function Home() {
   return (
     <div>
@@ -35,38 +37,82 @@ function Home() {
 }
 
 function App() {
-  return (
-    <div className="App grid grid-rows-1 grid-cols-6 gap-3">
-      <Router>
-          <div className="col-start-1 col-span-1"><SideMenu /></div>
-          <div className="col-start-2 col-span-6"><Switch className="">
-                                                    <Route path="/" exact component={LoginPage} />
-                                                    <Route path="/home" component={Home} />
+    return (
+      <div className="App grid grid-rows-1 grid-cols-6 gap-3">
+        <Router>
+            <InitializeUserContext>
 
-                                                    <Route path="/createClient" component={CreateClient} />
-                                                    <Route path="/updateClient" component={UpdateClient} />
-                                                    <Route path="/readClient" component={ReadClient} />
-                                                    <Route path="/deleteClient" component={DeleteClient} />
+            <PrivateRoute>
+      
+              <div className="col-start-1 col-span-1">
+      <SideMenu />
+      </div>
+            </PrivateRoute>
+            <div className="col-start-2 col-span-6">
+              <Switch>
 
-                                                    <Route path="/createRdv" component={CreateRdv} />
-                                                    <Route path="/updateRdv" component={UpdateRdv} />
-                                                    <Route path="/readRdv" component={ReadRdv} />
-                                                    <Route path="/deleteRdv" component={DeleteRdv} />
+                <Route path="/login" exact component={LoginPage} />
+                <PrivateRoute path="/home">
+                  <Home />
+                </PrivateRoute>
 
-                                                    <Route path="/createProperty" component={CreateProperty} />
-                                                    <Route path="/updateProperty" component={UpdateProperty} />
-                                                    <Route path="/readProperty" component={ReadProperty} />
-                                                    <Route path="/deleteProperty" component={DeleteProperty} />
+                <PrivateRoute path="/createClient">
+                  <CreateClient />
+                </PrivateRoute>
+                <PrivateRoute path="/updateClient/:id">
+                  <UpdateClient />
+                </PrivateRoute>
+                <PrivateRoute path="/readClient/:id">
+                  <ReadClient />
+                </PrivateRoute>
+                <PrivateRoute path="/deleteClient">
+                  <DeleteClient />
+                </PrivateRoute>
 
-                                                    <Route path="/createUser" component={CreateUser} />
-                                                    <Route path="/updateUser" component={UpdateUser} />
-                                                    <Route path="/readUser" component={ReadUser} />
-                                                    <Route path="/deleteUser" component={DeleteUser} />
-                                                  </Switch>
-          </div>
-      </Router>
-    </div>
-  );
+                <PrivateRoute path="/createRdv">
+                  <CreateRdv />
+                </PrivateRoute>
+                <PrivateRoute path="/updateRdv/:id">
+                  <UpdateRdv />
+                </PrivateRoute>
+                <PrivateRoute path="/readRdv/:id">
+                  <ReadRdv />
+                </PrivateRoute>
+                <PrivateRoute path="/deleteRdv">
+                  <DeleteRdv />
+                </PrivateRoute>
+
+                <PrivateRoute path="/createProperty">
+                  <CreateProperty />
+                </PrivateRoute>
+                <PrivateRoute path="/updateProperty/:id">
+                  <UpdateProperty />
+                </PrivateRoute>
+                <PrivateRoute path="/readProperty/:id">
+                  <ReadProperty />
+                </PrivateRoute>
+                <PrivateRoute path="/deleteProperty">
+                <DeleteProperty />
+                </PrivateRoute>
+  
+                <PrivateRoute path="/createUser">
+                  <CreateUser />
+                </PrivateRoute>
+                <PrivateRoute path="/updateUser/:id">
+                  <UpdateUser />
+                </PrivateRoute>
+                <PrivateRoute path="/readUser/:id">
+                  <ReadUser />
+                </PrivateRoute>
+                <PrivateRoute path="/deleteUser">
+                  <DeleteUser />
+                </PrivateRoute>
+              </Switch>
+              </div>
+            </InitializeUserContext>
+        </Router>
+      </div>
+    );
 }
 
 export default App;
