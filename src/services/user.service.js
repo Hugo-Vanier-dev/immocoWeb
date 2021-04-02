@@ -31,6 +31,11 @@ class UserService extends GestionRetour {
         return this.getDeleteGestion(promise);
     }
 
+    getMe(){
+        const promise = http.get(`${this.path}/me`, {headers: authHeader()});
+        return this.getDeleteGestion(promise);
+    }
+
     create(data) {
         const promise = http.post(`${this.path}`, data, { headers: authHeader() });
         return this.postGestion(promise);
