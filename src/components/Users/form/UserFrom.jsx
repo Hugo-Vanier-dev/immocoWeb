@@ -1,33 +1,32 @@
 import React from "react";
-import ClientService from "../../../services/client.service";
-import ClientTypeService from "../../../services/clientType.service";
 import { Redirect, Link } from "react-router-dom";
 import { UseUserContext } from "../../../context/userContext";
 import UserService from "../../../services/user.service";
+import UserTypeService from "../../../services/userType.service"
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
 
 toast.configure();
 
-function ClientForm({ clientId = null, modeEdit = false }) {
+function UserForm({ UserId = null, modeEdit = false }) {
   const mailregex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   const telRegex = /^\d{2}(\s\d{2}){4}$/;
 
-  const [redirectClientListe, setRedirectClientListe] = React.useState(false);
-  const [redirectInfoClient, setredirectInfoClient] = React.useState(false);
+  const [redirectUserListe, setRedirectUserListe] = React.useState(false);
+  const [redirectInfoUser, setredirectInfoUser] = React.useState(false);
 
   const currentUser = UseUserContext();
   const [users, setUsers] = React.useState(null);
-  const [clientTypes, setClientTypes] = React.useState(null);
+  const [UserTypes, setUserTypes] = React.useState(null);
 
   const [formErrors, setFormErrors] = React.useState({
     firstname: null,
     lastname: null,
     phone: null,
     cellphone: null,
+    username: null,
     mail: null,
-    client_type_id: null,
-    user_id: null,
+    User_type_id: null,
   });
 
   const [formValues, setFormValues] = React.useState({
@@ -35,8 +34,9 @@ function ClientForm({ clientId = null, modeEdit = false }) {
     lastname: "",
     phone: "",
     cellphone: "",
+    username: "",
     mail: "",
-    client_type_id: 1,
+    User_type_id: 1,
     user_id: 1,
   });
 
@@ -50,10 +50,10 @@ function ClientForm({ clientId = null, modeEdit = false }) {
     }
     if (formIsValid) {
       const data = formValues;
-      if (clientId) {
-        ClientService.update(clientId, data).then((res) => {
+      if (UserId) {
+        UserService.update(UserId, data).then((res) => {
           modeEdit = false;
-          toast.info("Le client a bien été modifié.", {
+          toast.info("Le User a bien été modifié.", {
             position: "bottom-center",
             autoClose: 5000,
             closeOnClick: true,
@@ -61,11 +61,11 @@ function ClientForm({ clientId = null, modeEdit = false }) {
             draggable: true,
             hideProgressBar: false,
           });
-          setredirectInfoClient(true);
+          setredirectInfoUser(true);
         });
       } else {
-        ClientService.create(data).then((res) => {
-          toast.info("Le client a bien été créé.", {
+        UserService.create(data).then((res) => {
+          toast.info("Le User a bien été créé.", {
             position: "bottom-center",
             autoClose: 5000,
             closeOnClick: true,
@@ -73,7 +73,7 @@ function ClientForm({ clientId = null, modeEdit = false }) {
             draggable: true,
             hideProgressBar: false,
           });
-          setRedirectClientListe(true);
+          console.log(formValues)
         });
       }
     }
@@ -127,8 +127,8 @@ function ClientForm({ clientId = null, modeEdit = false }) {
   };
 
   React.useEffect(() => {
-    ClientTypeService.getAll().then((clientTypesRes) => {
-      setClientTypes(clientTypesRes.data);
+    UserTypeService.getAll().then((UserTypesRes) => {
+      setUserTypes(UserTypesRes.data);
     });
     if (currentUser) {
       if (
@@ -141,24 +141,24 @@ function ClientForm({ clientId = null, modeEdit = false }) {
         setFormValues({ user_id: currentUser.id });
       }
     }
-    if (clientId) {
-      ClientService.get(clientId).then((res) => {
+    if (UserId) {
+      UserService.get(UserId).then((res) => {
         setFormValues(res.data);
       });
     }
   }, [
     setUsers,
-    setClientTypes,
+    setUserTypes,
     setFormValues,
     currentUser,
-    clientId
+    UserId
   ]);
 
-  if (redirectClientListe) {
+  if (redirectUserListe) {
     return <Redirect to="/home" />;
   }
-  if(redirectInfoClient){
-    return <Redirect to={`/readClient/${clientId}`} />
+  if(redirectInfoUser){
+    return <Redirect to={`/readUser/${UserId}`} />
   }
   return (
     <div>
@@ -192,6 +192,15 @@ function ClientForm({ clientId = null, modeEdit = false }) {
           className="grid row-start-2 border-2 border-white bg-gray-300 m-2 p-2 rounded-md text-center"
           placeholder="@"
         />
+        <input
+          type="text"
+          name="username"
+          onChange={modeEdit ? (e) => textChange(e) : null}
+          value={formValues.username}
+          readOnly={!modeEdit}
+          className="grid row-start-2 border-2 border-white bg-gray-300 m-2 p-2 rounded-md text-center"
+          placeholder="Pseudo"
+        />
         {formErrors.mail && <p>{formErrors.mail}</p>}
         <input
           type="text"
@@ -213,43 +222,22 @@ function ClientForm({ clientId = null, modeEdit = false }) {
           placeholder="06 xx xx xx xx"
         />
         {formErrors.cellphone && <p>{formErrors.cellphone}</p>}
-        {clientTypes && (
+        {UserTypes && (
           <select
             readOnly={!modeEdit}
-            name="client_type_id"
-            value={formValues.client_type_id}
+            name="User_type_id"
+            value={formValues.User_type_id}
             onChange={modeEdit ? (e) => handleChange(e) : null}
           >
-            {clientTypes.map((clientType) => {
+            {UserTypes.map((UserType) => {
               return (
-                <option key={clientType.id} value={clientType.id}>
-                  {clientType.value}
+                <option key={UserType.id} value={UserType.id}>
+                  {UserType.value}
                 </option>
               );
             })}
           </select>
         )}
-        {formErrors.client_type_id && <p>{formErrors.client_type_id}</p>}
-        {currentUser &&
-          (currentUser.role === "admin" ||
-            currentUser.role === "secrétaire" ||
-            currentUser.role === "manager") &&
-          users && (
-            <select
-              readOnly={!modeEdit}
-              value={formValues.user_id}
-              name="user_id"
-              onChange={modeEdit ? (e) => handleChange(e) : null}
-            >
-              {users.map((user) => {
-                return (
-                  <option key={user.id} value={user.id}>
-                    {user.firstname} {user.lastname}
-                  </option>
-                );
-              })}
-            </select>
-          )}
         {formErrors.user_id && <p>{formErrors.user_id}</p>}
         {modeEdit ? (
           <input
@@ -258,7 +246,7 @@ function ClientForm({ clientId = null, modeEdit = false }) {
             className="LoginPageButton text-green-200 uppercase w-1/2 grid row-start-4 auto-cols-auto font-bold  p-2 pt-2 pb-2 rounded-2xl bg-green-400 border-2 border-green-200 shadow "
           />
         ) : (
-          <Link to={`/updateClient/${clientId}`} >
+          <Link to={`/updateUser/${UserId}`} >
             <input
               type="button"
               value="Modifier"
@@ -271,4 +259,4 @@ function ClientForm({ clientId = null, modeEdit = false }) {
   );
 }
 
-export default ClientForm;
+export default UserForm;
