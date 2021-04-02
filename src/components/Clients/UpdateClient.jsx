@@ -1,11 +1,12 @@
 import React from 'react';
+import { useParams } from 'react-router';
+import ClientForm from './form/ClientForm';
 
 function UpdateClient() {
+  const id = useParams().id;
 
   return(
-    <div>
-      <h1>UpdateClient Page</h1>
-    </div>
+    <ClientForm clientId={id} modeEdit={true} />
   );
 }
 export default UpdateClient;
