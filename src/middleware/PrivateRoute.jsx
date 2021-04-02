@@ -1,26 +1,24 @@
 import React from "react";
-import { BrowserRouter as Redirect, Route } from "react-router-dom";
+import { Redirect, Route } from "react-router-dom";
 import { UseUserContext } from "../context/userContext";
 
 function PrivateRoute({ children, ...rest }) {
-  let user = UseUserContext();
-  return (
-    <Route
-      {...rest}
-      render={({ location }) =>
-        user ? (
-          children
-        ) : (
-          <Redirect
+    const user = JSON.parse(localStorage.getItem('user'));
+  if (user) {
+    return(<Route {...rest} >{ children }</Route>);
+  } else {
+    return (
+      <Route {...rest} 
+      children={({location}) => (
+        <Redirect
             to={{
-              pathname: "/login",
-              state: { from: location },
+                pathname: "/login",
+                //state: { from: location },
             }}
-          />
-        )
-      }
-    />
-  );
+            />
+      )} />
+    );
+  }
 }
 
 export default PrivateRoute;
