@@ -4,29 +4,30 @@ import {Line} from 'react-chartjs-2';
 
 const state = {
   labels: ['Jan', 'Fév', 'Mar',
-           'Avr', 'Mai', 'Juin', 'Juil',
-            'Août', 'Sept', 'Oct',
-             'Nov', 'Déc'],
+  'Avr', 'Mai', 'Juin', 'Juil',
+   'Août', 'Sept', 'Oct',
+    'Nov', 'Déc'],
   datasets: [
     {
       label: 'Ventes',
       fill: true,
       lineTension: 0,
-      backgroundColor:'rgba(0,120,230,0.5)',
+      pointStyle: 'circle',
+      backgroundColor:'rgba(0,120,230,0.2)',
       borderColor: 'black',
       borderWidth: 1,
-      data: [10, 30, 40, 30, 30, 50, 70, 80, 60, 30, 20, 20]
+      data: [70, 73, 75, 78, 80, 82, 84, 85, 86, 85, 83, 80]
     }
   ]
 }
 
-export default function EmployeeStatsPage() {
+export default function SalesObjectivesPage() {
     return (
       <div>
         <Line
           data={state}
-          options={{  
-            showLines: false,
+          options={{    
+            showLines: false,  
             layout: {
             padding: {
                 left: 0,
@@ -37,7 +38,7 @@ export default function EmployeeStatsPage() {
             },
             title:{
               display:true,
-              text:'Ventes annuelles',
+              text:'Objectif de vente',
               position:'right',
               fontColor:'#000',
               fontSize:16
@@ -45,7 +46,7 @@ export default function EmployeeStatsPage() {
             legend:{
               display:0,
               align:'start',
-              position:'left'
+              position:'top'
             }
           }}
         />
