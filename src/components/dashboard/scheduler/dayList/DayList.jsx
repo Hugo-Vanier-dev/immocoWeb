@@ -1,23 +1,23 @@
 import React from 'react'
 import FullCalendar from '@fullcalendar/react'
-import dayGridPlugin from '@fullcalendar/daygrid'
 import interactionPlugin from '@fullcalendar/interaction'
 import listPlugin from '@fullcalendar/list'
 
-import './Scheduler.css'
 
-
-function Scheduler(){
+function DayList(){
     return(
-    <div className="schedulerContainer">
+    <div className="DayListContainer">
       <FullCalendar
-        plugins={[ listPlugin, dayGridPlugin, interactionPlugin ]}
+        plugins={[ listPlugin, interactionPlugin ]}
         headerToolbar={{
           left: 'prev,next today',
           center: 'title',
           right: 'dayGridMonth,timeGridWeek,timeGridDay'
         }}
         initialView="listWeek"
+        eventClick={function(info) {
+            alert(info.event.title);
+          }}
         events={[
           { title: 'fullcalendar test', date: '2021-04-01 08:00:00', color: 'red'},
           { title: 'Lunch', date: '2021-04-01 12:00:00', color: 'violet'},
@@ -32,4 +32,4 @@ function Scheduler(){
 }
 
 
-export default Scheduler;
+export default DayList;

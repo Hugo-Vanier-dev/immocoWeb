@@ -43,19 +43,17 @@ function App() {
       <div className="App grid grid-cols-10">
         <Router>
             <InitializeUserContext>
-
-            <PrivateRoute>
-      
-              <div className="divSideMenu col-start-1 col-span-1">
-      <SideMenu />
-      </div>
+            <PrivateRoute> 
+            <div className="divSideMenu col-start-1 col-span-1">
+              <SideMenu />
+            </div>
             </PrivateRoute>
             <div className="divContentArea lg:col-start-2 lg:col-span-10 md:col-start-3 md:col-span-10 sm:col-start-1 sm:col-span-10">
               <Switch>
 
                 <Route path="/login" exact component={LoginPage} />
-                <PrivateRoute path="/home">
-                  <Home />
+                <PrivateRoute path="/dashboard">
+                  <DashboardPage />
                 </PrivateRoute>
 
                 <PrivateRoute path="/createClient">
@@ -110,7 +108,7 @@ function App() {
                   <DeleteUser />
                 </PrivateRoute>
               </Switch>
-              </div>
+            </div>
             </InitializeUserContext>
         </Router>
       </div>
