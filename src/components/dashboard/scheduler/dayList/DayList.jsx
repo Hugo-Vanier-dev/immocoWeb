@@ -15,9 +15,7 @@ function DayList(){
           right: 'dayGridMonth,timeGridWeek,timeGridDay'
         }}
         initialView="listWeek"
-        eventClick={function(info) {
-            alert(info.event.title);
-          }}
+        eventClick={(info) => alert(info.event.title)}
         events={[
           { title: 'fullcalendar test', date: '2021-04-01 08:00:00', color: 'red'},
           { title: 'Lunch', date: '2021-04-01 12:00:00', color: 'violet'},
