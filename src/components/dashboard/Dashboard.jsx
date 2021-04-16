@@ -19,6 +19,7 @@ function DashboardPage(){
             <EmployeeStatsPage />
         </div>
         <div className="SchedulerAppointmentForm grid col-span-2 row-span-1 shadow-md bg-opacity-50 bg-white border-solid border-white border-4 rounded-xl m-0 mb-2 p-2">
+         <div></div>
          <SalesObjectivesPage />
         </div>
     </div>
