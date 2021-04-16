@@ -24,7 +24,7 @@ function SideMenu() {
 
             <div className="LogoIcoSideMenu shadow-md" />
             <div className="flex flex-wrap justify-start ml-2">
-                <ButtonForMenu src={dashboard} path='/home' />
+                <ButtonForMenu src={dashboard} path='/dashboard' />
                 <ButtonForMenu src={calendar} path='/planning' />
                 <ButtonForMenu src={clientList} path='/listeClient' />
                 <ButtonForMenu src={addClient} path='/createClient' />
