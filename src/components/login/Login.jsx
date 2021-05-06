@@ -1,7 +1,7 @@
-import logo from "../../assets/img/IcoLogo.png";
+import logo from "../../assets/img/icoLogo.png";
 import "./Login.css";
 import React from "react";
-import UserService from "../../services/user.service";
+import UserService from "../../shared/services/user.service";
 import { Redirect } from "react-router-dom";
 
 function LoginPage() {
@@ -15,7 +15,7 @@ function LoginPage() {
   function submitForm(e) {
     e.preventDefault();
     if (!mailregex.test(mail)) {
-       setMailError('L\'adresse mail que vous avez entré n\'est pas correct.');
+      setMailError('L\'adresse mail que vous avez entré n\'est pas correct.');
     } else {
       setMailError('');
     }
@@ -24,20 +24,28 @@ function LoginPage() {
       password: password,
     };
     UserService.login(data)
-      .then(() => {
-        const user = JSON.parse(localStorage.getItem('user'));
-        if (user && user.token) {
-          setRedirect(true);
-        }
-      })
-      .catch((error) => {
-        if (error.response.status === 401) {
+      .then((response) => {
+        if (response.data.token) {
+          localStorage.setItem('token', JSON.stringify(response.data));
+        } else {
           setFormError('Adresse mail ou mot de passe incorrecte.');
         }
+        UserService.getMe().then(res => {
+          if (res.data) {
+            localStorage.setItem('user', JSON.stringify(res.data));
+            setRedirect(true);
+          } else {
+            setFormError('Adresse mail ou mot de passe incorrecte.');
+          }
+        })
+      })
+      .catch((error) => {
+          console.log(error);
+          setFormError('Adresse mail ou mot de passe incorrecte.')
       });
   }
-  if(redirect){
-      return <Redirect to="/home" />;
+  if (redirect) {
+    return <Redirect to="/home" />;
   }
   return (
     <div className="LoginPage">

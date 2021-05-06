@@ -3,8 +3,8 @@ import { Redirect, Route } from "react-router-dom";
 import { UseUserContext } from "../context/userContext";
 
 function PrivateRoute({ children, ...rest }) {
-    const user = JSON.parse(localStorage.getItem('user'));
-  if (user) {
+    const token = JSON.parse(localStorage.getItem('token'));
+  if (token) {
     return(<Route {...rest} >{ children }</Route>);
   } else {
     return (

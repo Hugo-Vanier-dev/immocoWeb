@@ -1,26 +1,23 @@
 import React from "react";
 import "./App.css";
 import SideMenu from "./components/navigation/sideMenu/SideMenu";
-import { InitializeUserContext } from "./context/userContext";
-import CreateClient from "./components/clients/CreateClient";
-import ReadClient from "./components/clients/ReadClient";
-import UpdateClient from "./components/clients/UpdateClient";
-import DeleteClient from "./components/clients/DeleteClient";
+import { InitializeUserContext } from "./shared/context/userContext";
+import CreateClient from "./components/Clients/CreateClient";
+import ReadClient from "./components/Clients/ReadClient";
+import UpdateClient from "./components/Clients/UpdateClient";
+import ListClient from "./components/Clients/ListClient";
 
-import CreateRdv from "./components/planning/CreateRdv";
-import ReadRdv from "./components/planning/ReadRdv";
-import UpdateRdv from "./components/planning/UpdateRdv";
-import DeleteRdv from "./components/planning/DeleteRdv";
+import CreateRdv from "./components/Planning/CreateRdv";
+import ReadRdv from "./components/Planning/ReadRdv";
+import UpdateRdv from "./components/Planning/UpdateRdv";
 
-import CreateProperty from "./components/properties/CreateProperty";
-import ReadProperty from "./components/properties/ReadProperty";
-import UpdateProperty from "./components/properties/UpdateProperty";
-import DeleteProperty from "./components/properties/DeleteProperty";
+import CreateProperty from "./components/Properties/CreateProperty";
+import ReadProperty from "./components/Properties/ReadProperty";
+import UpdateProperty from "./components/Properties/UpdateProperty";
 
-import CreateUser from "./components/users/CreateUser";
-import ReadUser from "./components/users/ReadUser";
-import UpdateUser from "./components/users/UpdateUser";
-import DeleteUser from "./components/users/DeleteUser";
+import CreateUser from "./components/Users/CreateUser";
+import ReadUser from "./components/Users/ReadUser";
+import UpdateUser from "./components/Users/UpdateUser";
 
 import LoginPage from "./components/login/Login";
 
@@ -28,7 +25,7 @@ import DashboardPage from "./components/dashboard/Dashboard";
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-import PrivateRoute from './middleware/PrivateRoute';
+import PrivateRoute from './shared/middleware/PrivateRoute';
 
 function Home() {
   return (
@@ -65,8 +62,8 @@ function App() {
                 <PrivateRoute path="/readClient/:id">
                   <ReadClient />
                 </PrivateRoute>
-                <PrivateRoute path="/deleteClient">
-                  <DeleteClient />
+                <PrivateRoute path="/listClient">
+                  <ListClient />
                 </PrivateRoute>
 
                 <PrivateRoute path="/createRdv">
@@ -78,9 +75,6 @@ function App() {
                 <PrivateRoute path="/readRdv/:id">
                   <ReadRdv />
                 </PrivateRoute>
-                <PrivateRoute path="/deleteRdv">
-                  <DeleteRdv />
-                </PrivateRoute>
 
                 <PrivateRoute path="/createProperty">
                   <CreateProperty />
@@ -90,9 +84,6 @@ function App() {
                 </PrivateRoute>
                 <PrivateRoute path="/readProperty/:id">
                   <ReadProperty />
-                </PrivateRoute>
-                <PrivateRoute path="/deleteProperty">
-                <DeleteProperty />
                 </PrivateRoute>
   
                 <PrivateRoute path="/createUser">
@@ -104,9 +95,7 @@ function App() {
                 <PrivateRoute path="/readUser/:id">
                   <ReadUser />
                 </PrivateRoute>
-                <PrivateRoute path="/deleteUser">
-                  <DeleteUser />
-                </PrivateRoute>
+
               </Switch>
             </div>
             </InitializeUserContext>

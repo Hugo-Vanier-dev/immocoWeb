@@ -1,8 +1,8 @@
 import React from "react";
 import { Redirect, Link } from "react-router-dom";
-import { UseUserContext } from "../../../context/userContext";
-import UserService from "../../../services/user.service";
-import UserTypeService from "../../../services/userType.service"
+import { UseUserContext } from "../../../shared/context/userContext";
+import UserService from "../../../shared/services/user.service";
+import UserTypeService from "../../../shared/services/userType.service"
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
 
