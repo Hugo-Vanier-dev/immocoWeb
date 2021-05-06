@@ -161,112 +161,180 @@ function ClientForm({ clientId = null, modeEdit = false }) {
     return <Redirect to={`/readClient/${clientId}`} />
   }
   return (
-    <div>
-      <form onSubmit={(e) => submitForm(e)}>
-        <input
-          type="text"
-          name="firstname"
-          onChange={modeEdit ? (e) => textChange(e) : null}
-          value={formValues.firstname}
-          readOnly={!modeEdit}
-          className="grid row-start-2 border-2 border-white bg-gray-300 m-2 p-2 rounded-md text-center"
-          placeholder="Jean"
-        />
-        {formErrors.firstname && <p>{formErrors.firstname}</p>}
-        <input
-          type="text"
-          name="lastname"
-          onChange={modeEdit ? (e) => textChange(e) : null}
-          value={formValues.lastname}
-          readOnly={!modeEdit}
-          className="grid row-start-2 border-2 border-white bg-gray-300 m-2 p-2 rounded-md text-center"
-          placeholder="Dupont"
-        />
-        {formErrors.lastname && <p>{formErrors.lastname}</p>}
-        <input
-          type="email"
-          name="mail"
-          onChange={modeEdit ? (e) => mailChange(e) : null}
-          value={formValues.mail}
-          readOnly={!modeEdit}
-          className="grid row-start-2 border-2 border-white bg-gray-300 m-2 p-2 rounded-md text-center"
-          placeholder="@"
-        />
-        {formErrors.mail && <p>{formErrors.mail}</p>}
-        <input
-          type="text"
-          name="phone"
-          onChange={modeEdit ? (e) => telChange(e) : null}
-          value={formValues.phone}
-          readOnly={!modeEdit}
-          className="grid row-start-2 border-2 border-white bg-gray-300 m-2 p-2 rounded-md text-center"
-          placeholder="03 xx xx xx xx"
-        />
-        {formErrors.phone && <p>{formErrors.phone}</p>}
-        <input
-          type="text"
-          name="cellphone"
-          onChange={modeEdit ? (e) => telChange(e) : null}
-          value={formValues.cellphone}
-          readOnly={!modeEdit}
-          className="grid row-start-2 border-2 border-white bg-gray-300 m-2 p-2 rounded-md text-center"
-          placeholder="06 xx xx xx xx"
-        />
-        {formErrors.cellphone && <p>{formErrors.cellphone}</p>}
-        {clientTypes && (
-          <select
-            readOnly={!modeEdit}
-            name="client_type_id"
-            value={formValues.client_type_id}
-            onChange={modeEdit ? (e) => handleChange(e) : null}
-          >
-            {clientTypes.map((clientType) => {
-              return (
-                <option key={clientType.id} value={clientType.id}>
-                  {clientType.value}
-                </option>
-              );
-            })}
-          </select>
-        )}
-        {formErrors.client_type_id && <p>{formErrors.client_type_id}</p>}
-        {currentUser &&
-          (currentUser.role === "admin" ||
-            currentUser.role === "secrétaire" ||
-            currentUser.role === "manager") &&
-          users && (
-            <select
-              readOnly={!modeEdit}
-              value={formValues.user_id}
-              name="user_id"
-              onChange={modeEdit ? (e) => handleChange(e) : null}
-            >
-              {users.map((user) => {
-                return (
-                  <option key={user.id} value={user.id}>
-                    {user.firstname} {user.lastname}
-                  </option>
-                );
-              })}
-            </select>
-          )}
-        {formErrors.user_id && <p>{formErrors.user_id}</p>}
-        {modeEdit ? (
-          <input
-            type="submit"
-            value="enregistrer"
-            className="LoginPageButton text-green-200 uppercase w-1/2 grid row-start-4 auto-cols-auto font-bold  p-2 pt-2 pb-2 rounded-2xl bg-green-400 border-2 border-green-200 shadow "
-          />
-        ) : (
-          <Link to={`/updateClient/${clientId}`} >
-            <input
-              type="button"
-              value="Modifier"
-              className="LoginPageButton text-green-200 uppercase w-1/2 grid row-start-4 auto-cols-auto font-bold  p-2 pt-2 pb-2 rounded-2xl bg-green-400 border-2 border-green-200 shadow "
-            />
-          </Link>
-        )}
-      </form>
+    <div className="container grid  my-10 py-10 w-3/5 h-3/5 bg-white bg-opacity-50 rounded-xl shadow-sm">
+
+        <div className="grid grid-rows-1">
+          <form onSubmit={(e) => submitForm(e)}>
+
+            <div className="grid grid-cols-2 w-auto">
+              <input
+                type="text"
+                name="firstname"
+                onChange={modeEdit ? (e) => textChange(e) : null}
+                value={formValues.firstname}
+                readOnly={!modeEdit}
+                className="grid grid-col-1 border-2 border-white bg-green-100 m-2 p-2 rounded-md text-center"
+                placeholder="Jean"
+              />
+              {formErrors.firstname && <p>{formErrors.firstname}</p>}
+              <input
+                type="text"
+                name="lastname"
+                onChange={modeEdit ? (e) => textChange(e) : null}
+                value={formValues.lastname}
+                readOnly={!modeEdit}
+                className="grid grid-col-2 border-2 border-white bg-green-100 m-2 p-2 rounded-md text-center"
+                placeholder="Dupont"
+              />
+              {formErrors.lastname && <p>{formErrors.lastname}</p>}
+            </div>
+            
+            <div className="grid grid-rows-1 w-auto">
+              <input
+                type="email"
+                name="mail"
+                onChange={modeEdit ? (e) => mailChange(e) : null}
+                value={formValues.mail}
+                readOnly={!modeEdit}
+                className="grid row-start-2 border-2 border-white bg-green-100 m-2 p-2 rounded-md text-center"
+                placeholder="@"
+              />
+              {formErrors.mail && <p>{formErrors.mail}</p>}
+            </div>
+
+            <div className="grid grid-cols-2 w-auto">
+              <input
+                type="text"
+                name="phone"
+                onChange={modeEdit ? (e) => telChange(e) : null}
+                value={formValues.phone}
+                readOnly={!modeEdit}
+                className="grid grid-col-1 border-2 border-white bg-green-100 m-2 p-2 rounded-md text-center"
+                placeholder="03 xx xx xx xx"
+              />
+              {formErrors.phone && <p>{formErrors.phone}</p>}
+              <input
+                type="text"
+                name="cellphone"
+                onChange={modeEdit ? (e) => telChange(e) : null}
+                value={formValues.cellphone}
+                readOnly={!modeEdit}
+                className="grid grid-col-2 border-2 border-white bg-green-100 m-2 p-2 rounded-md text-center"
+                placeholder="06 xx xx xx xx"
+              />
+              {formErrors.cellphone && <p>{formErrors.cellphone}</p>}
+            </div>
+
+            <div className="grid grid-cols-1 grid-rows-3 w-auto">
+              <div className="flex flex-row">
+                <input
+                  type="text"
+                  name="address"
+                  onChange={modeEdit ? (e) => telChange(e) : null}
+                  value={formValues.address}
+                  readOnly={!modeEdit}
+                  className="grid grid-row-1 border-2 w-1/6 border-white bg-green-100 m-2 p-2 rounded-md text-left"
+                  placeholder="N°"
+                />
+                <input
+                  type="text"
+                  name="address"
+                  onChange={modeEdit ? (e) => telChange(e) : null}
+                  value={formValues.address}
+                  readOnly={!modeEdit}
+                  className="grid grid-row-1 w-5/6 border-2 border-white bg-green-100 m-2 p-2 rounded-md text-left"
+                  placeholder="rue"
+                />
+              </div>
+              <input
+                type="text"
+                name="address"
+                onChange={modeEdit ? (e) => telChange(e) : null}
+                value={formValues.address}
+                readOnly={!modeEdit}
+                className="grid grid-row-2 border-2 border-white bg-green-100 m-2 p-2 rounded-md text-left"
+                placeholder="bâtiment/lotissement"
+              />
+              <div className="flex flex-row">
+                  <input
+                    type="text"
+                    name="address"
+                    onChange={modeEdit ? (e) => telChange(e) : null}
+                    value={formValues.address}
+                    readOnly={!modeEdit}
+                    className="grid grid-row-1 border-2 w-4/6 border-white bg-green-100 m-2 p-2 rounded-md text-left"
+                    placeholder="Ville"
+                  />
+                  <input
+                    type="text"
+                    name="address"
+                    onChange={modeEdit ? (e) => telChange(e) : null}
+                    value={formValues.address}
+                    readOnly={!modeEdit}
+                    className="grid grid-row-1 w-2/6 border-2 border-white bg-green-100 m-2 p-2 rounded-md text-left"
+                    placeholder="CP"
+                  />
+                </div>
+              {formErrors.address && <p>{formErrors.address}</p>}
+            </div>
+            {clientTypes && (
+              <select
+                readOnly={!modeEdit}
+                name="client_type_id"
+                className="grid row-start-2 border-2 border-white bg-green-100 m-2 p-2 text-gray-400 rounded-md text-center"
+
+                value={formValues.client_type_id}
+                onChange={modeEdit ? (e) => handleChange(e) : null}
+              >
+                {clientTypes.map((clientType) => {
+                  return (
+                    <option key={clientType.id} value={clientType.id}>
+                      {clientType.value}
+                    </option>
+                  );
+                })}
+              </select>
+            )}
+            {formErrors.client_type_id && <p>{formErrors.client_type_id}</p>}
+            {currentUser &&
+              (currentUser.role === "admin" ||
+                currentUser.role === "secrétaire" ||
+                currentUser.role === "manager") &&
+              users && (
+                <select
+                  readOnly={!modeEdit}
+                  value={formValues.user_id}
+                  name="user_id"
+                  onChange={modeEdit ? (e) => handleChange(e) : null}
+                >
+                  {users.map((user) => {
+                    return (
+                      <option key={user.id} value={user.id}>
+                        {user.firstname} {user.lastname}
+                      </option>
+                    );
+                  })}
+                </select>
+              )}
+            {formErrors.user_id && <p>{formErrors.user_id}</p>}
+            {modeEdit ? (
+              <input
+                type="submit"
+                value="enregistrer"
+                className="LoginPageButton text-green-200 uppercase w-auto hover:border-blue-200 hover:bg-green-300 hover:text-green-700 auto-cols-auto font-bold  p-2 pt-2 pb-2 rounded-2xl bg-green-400 border-2 border-green-200 shadow "
+              />
+            ) : (
+              <Link to={`/updateClient/${clientId}`} >
+                <input
+                  type="button"
+                  value="Modifier"
+                  className="LoginPageButton text-green-100 uppercase w-auto auto-cols-auto font-bold  p-2 pt-2 pb-2 rounded-2xl hover:border-blue-200 hover:bg-green-300 hover:text-green-700 bg-green-400 border-2 border-green-200 shadow "
+                />
+              </Link>
+            )}
+          </form>
+        </div>
+        
     </div>
   );
 }
