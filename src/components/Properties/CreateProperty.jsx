@@ -1,6 +1,6 @@
 import "./Properties.css";
 import React, { useState } from "react";
-import PropertieService from "../../services/property.service";
+import PropertieService from "../../shared/services/property.service";
 
 function AddProperty() {
     const [Label, setLabel] = React.useState('');
