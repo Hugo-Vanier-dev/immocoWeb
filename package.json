@@ -52,9 +52,9 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss7-compat": "^2.0.3",
-    "autoprefixer": "^9.8.6",
+    "autoprefixer": "^10.2.5",
     "eslint-plugin-react-hooks": "^4.2.0",
     "postcss": "^7.0.35",
-    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.3"
+    "tailwindcss": "^2.1.2"
   }
 }
