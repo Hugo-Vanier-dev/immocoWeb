@@ -17,6 +17,7 @@ class ClientService {
     }
 
     create(data) {
+        console.log(data);
         return instance.post(`${this.path}`, data);
     }
 
