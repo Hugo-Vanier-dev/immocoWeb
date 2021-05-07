@@ -48,8 +48,8 @@ function LoginPage() {
     return <Redirect to="/home" />;
   }
   return (
-    <div className="LoginPage">
-      <div className="LoginPageBox border-2 border-white border-opacity-50 m-auto p-4 text-center bg-gradient-to-t from-blue-100 to-blue-200 rounded-xl shadow-xl">
+    <div className="LoginPage flex">
+      <div className="LoginPageBox justify-between border-4 border-white m-auto p-4 text-center bg-gradient-to-t from-gray-50 to-gray-300 rounded-xl shadow-xl">
         <div className="LogoIcoLogin m-5 shadow-md">
           <img src={logo} alt="logo_ImmoCo" className="LogoIcoPicture" />
         </div>
@@ -62,7 +62,7 @@ function LoginPage() {
               type="email"
               onChange={(e) => setMail(e.target.value)}
               value={mail}
-              className="LoginMail grid grid-cols-1 justify-center border-2 border-white bg-gray-300 m-2 p-2 rounded-md text-center"
+              className="LoginMail grid grid-cols-1 justify-center border-2 border-white bg-green-100 m-2 p-2 rounded-md text-center"
               placeholder="@"
             />
             <p>{mailError}</p>
@@ -70,7 +70,7 @@ function LoginPage() {
               type="password"
               onChange={(e) => setPass(e.target.value)}
               value={password}
-              className="LoginPassword  grid grid-cols-1 justify-center border-2 border-white bg-gray-300 m-2 p-2 rounded-md text-center"
+              className="LoginPassword  grid grid-cols-1 justify-center border-2 border-white bg-green-100 m-2 p-2 rounded-md text-center"
               placeholder="mot de passe"
             />
             <p>{formError}</p>
