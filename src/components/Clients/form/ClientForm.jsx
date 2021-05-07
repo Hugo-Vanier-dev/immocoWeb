@@ -294,62 +294,63 @@ function ClientForm({ clientId = null, modeEdit = false }) {
                   placeholder="Informations"
                 />
               </div>
-
-              {clientTypes && (
-                <select
-                  readOnly={!modeEdit}
-                  name="client_type_id"
-                  className="row-start-2 border-2 border-white bg-green-100 m-2 p-2 text-gray-400 rounded-md text-center"
-
-                  value={formValues.client_type_id}
-                  onChange={modeEdit ? (e) => handleChange(e) : null}
-                >
-                  {clientTypes.map((clientType) => {
-                    return (
-                      <option key={clientType.id} value={clientType.id}>
-                        {clientType.value}
-                      </option>
-                    );
-                  })}
-                </select>
-              )}
-              {formErrors.client_type_id && <p>{formErrors.client_type_id}</p>}
-              {currentUser &&
-                (currentUser.role === "admin" ||
-                  currentUser.role === "secrétaire" ||
-                  currentUser.role === "manager") &&
-                users && (
+              <div className="flex justify-between">
+                {clientTypes && (
                   <select
                     readOnly={!modeEdit}
-                    value={formValues.user_id}
-                    name="user_id"
+                    name="client_type_id"
+                    className="row-start-2 border-2 border-white bg-green-100 m-2 p-2 text-gray-400 rounded-md text-center"
+
+                    value={formValues.client_type_id}
                     onChange={modeEdit ? (e) => handleChange(e) : null}
                   >
-                    {users.map((user) => {
+                    {clientTypes.map((clientType) => {
                       return (
-                        <option key={user.id} value={user.id}>
-                          {user.firstname} {user.lastname}
+                        <option key={clientType.id} value={clientType.id}>
+                          {clientType.value}
                         </option>
                       );
                     })}
                   </select>
                 )}
-              {formErrors.user_id && <p>{formErrors.user_id}</p>}
-              {modeEdit ? (
-                <input
-                  type="submit"
-                  value="enregistrer"
-                  className="text-green-200 uppercase w-auto hover:border-blue-200 hover:bg-green-300 hover:text-green-700 auto-cols-auto font-bold  p-2 pt-2 pb-2 rounded-2xl bg-green-400 border-2 border-green-200 shadow "
-                />
-              ) : (
-                <Link to={`/updateClient/${clientId}`} >
+                {formErrors.client_type_id && <p>{formErrors.client_type_id}</p>}
+                {currentUser &&
+                  (currentUser.role === "admin" ||
+                    currentUser.role === "secrétaire" ||
+                    currentUser.role === "manager") &&
+                  users && (
+                    <select
+                      readOnly={!modeEdit}
+                      value={formValues.user_id}
+                      name="user_id"
+                      onChange={modeEdit ? (e) => handleChange(e) : null}
+                    >
+                      {users.map((user) => {
+                        return (
+                          <option key={user.id} value={user.id}>
+                            {user.firstname} {user.lastname}
+                          </option>
+                        );
+                      })}
+                    </select>
+                  )}
+                {formErrors.user_id && <p>{formErrors.user_id}</p>}
+                {modeEdit ? (
                   <input
-                    type="button"
-                    value="Modifier"
-                    className="text-green-100 uppercase w-auto auto-cols-auto font-bold  p-2 pt-2 pb-2 rounded-2xl hover:border-blue-200 hover:bg-green-300 hover:text-green-700 bg-green-400 border-2 border-green-200 shadow "
+                    type="submit"
+                    value="enregistrer"
+                    className="m-auto text-green-200 uppercase hover:border-blue-200 hover:bg-gradient-to-t hover:to-green-300 hover:to-green-500 hover:text-green-700 font-bold p-2 pt-2 pb-2 rounded-2xl bg-gradient-to-t from-green-400 to-green-300 border-2 border-green-200 shadow "
                   />
-                </Link>
-              )}
+                ) : (
+                  <Link to={`/updateClient/${clientId}`} >
+                    <input
+                      type="button"
+                      value="Modifier"
+                      className="m-auto text-green-200 uppercase hover:border-blue-200 hover:bg-gradient-to-t hover:to-green-300 hover:to-green-500 hover:text-green-700 font-bold p-2 pt-2 pb-2 rounded-2xl bg-gradient-to-t from-green-400 to-green-300 border-2 border-green-200 shadow "
+                    />
+                  </Link>
+                )}
+              </div>
             </form>
           </div>
           
