@@ -11,9 +11,9 @@ const state = {
     {
       label: 'Ventes',
       fill: true,
-      lineTension: 0,
+      lineTension: 1,
       pointStyle: 'circle',
-      backgroundColor:'rgba(0,120,230,0.2)',
+      backgroundColor:'rgba(250,250,250,0.75)',
       borderColor: 'black',
       borderWidth: 1,
       data: [70, 73, 75, 78, 80, 82, 84, 85, 86, 85, 83, 80]
@@ -39,8 +39,8 @@ export default function SalesObjectivesPage() {
             title:{
               display:true,
               text:'Objectif de vente',
-              position:'right',
-              fontColor:'#000',
+              position:'top',
+              fontColor:'rgba(250,250,250,1)',
               fontSize:16
             },
             legend:{

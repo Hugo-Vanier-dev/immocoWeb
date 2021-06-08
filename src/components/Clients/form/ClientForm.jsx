@@ -174,7 +174,7 @@ function ClientForm({ clientId = null, modeEdit = false }) {
   }
   return (
     <div className="flex justify-evenly m-4 w-auto">
-      <div className="my-10 py-10 shadow-md bg-opacity-50 bg-white border-solid border-white border-4 rounded-xl ">
+      <div className="my-10 py-10">
 
         <div className="grid grid-rows-1">
           <form onSubmit={(e) => submitForm(e)}>
@@ -186,7 +186,7 @@ function ClientForm({ clientId = null, modeEdit = false }) {
                 onChange={modeEdit ? (e) => textChange(e) : null}
                 value={formValues.firstname}
                 readOnly={!modeEdit}
-                className="col-start-1 border-2 border-white bg-green-100 m-2 p-2 rounded-md text-center"
+                className="col-start-1 bg-white m-2 p-2 rounded-md text-center"
                 placeholder="Jean"
               />
               {formErrors.firstname && <p>{formErrors.firstname}</p>}
@@ -196,7 +196,7 @@ function ClientForm({ clientId = null, modeEdit = false }) {
                 onChange={modeEdit ? (e) => textChange(e) : null}
                 value={formValues.lastname}
                 readOnly={!modeEdit}
-                className="col-start-2 border-2 border-white bg-green-100 m-2 p-2 rounded-md text-center"
+                className="col-start-2 bg-white m-2 p-2 rounded-md text-center"
                 placeholder="Dupont"
               />
               {formErrors.lastname && <p>{formErrors.lastname}</p>}
@@ -209,7 +209,7 @@ function ClientForm({ clientId = null, modeEdit = false }) {
                 onChange={modeEdit ? (e) => mailChange(e) : null}
                 value={formValues.mail}
                 readOnly={!modeEdit}
-                className="row-start-2 border-2 border-white bg-green-100 m-2 p-2 rounded-md text-center"
+                className="row-start-2 bg-white m-2 p-2 rounded-md text-center"
                 placeholder="@"
               />
               {formErrors.mail && <p>{formErrors.mail}</p>}
@@ -222,7 +222,7 @@ function ClientForm({ clientId = null, modeEdit = false }) {
                 onChange={modeEdit ? (e) => telChange(e) : null}
                 value={formValues.phone}
                 readOnly={!modeEdit}
-                className="col-start-1 border-2 border-white bg-green-100 m-2 p-2 rounded-md text-center"
+                className="col-start-1 bg-white m-2 p-2 rounded-md text-center"
                 placeholder="03 xx xx xx xx"
               />
               {formErrors.phone && <p>{formErrors.phone}</p>}
@@ -232,7 +232,7 @@ function ClientForm({ clientId = null, modeEdit = false }) {
                 onChange={modeEdit ? (e) => telChange(e) : null}
                 value={formValues.cellphone}
                 readOnly={!modeEdit}
-                className="col-start-2 border-2 border-white bg-green-100 m-2 p-2 rounded-md text-center"
+                className="col-start-2 bg-white m-2 p-2 rounded-md text-center"
                 placeholder="06 xx xx xx xx"
               />
               {formErrors.cellphone && <p>{formErrors.cellphone}</p>}
@@ -246,7 +246,7 @@ function ClientForm({ clientId = null, modeEdit = false }) {
                   onChange={modeEdit ? (e) => handleChange(e) : null}
                   value={formValues.streetNumber}
                   readOnly={!modeEdit}
-                  className="row-start-1 border-2 w-1/6 border-white bg-green-100 m-2 p-2 rounded-md text-left"
+                  className="row-start-1 w-1/6 bg-white m-2 p-2 rounded-md text-left"
                   placeholder="N°"
                 />
                 {formErrors.streetNumber && <p>{formErrors.streetNumber}</p>}
@@ -256,7 +256,7 @@ function ClientForm({ clientId = null, modeEdit = false }) {
                   onChange={modeEdit ? (e) => handleChange(e) : null}
                   value={formValues.streetName}
                   readOnly={!modeEdit}
-                  className="row-start-1 w-5/6 border-2 border-white bg-green-100 m-2 p-2 rounded-md text-left"
+                  className="row-start-1 w-5/6 bg-white m-2 p-2 rounded-md text-left"
                   placeholder="rue"
                 />
                 {formErrors.streetName && <p>{formErrors.streetName}</p>}
@@ -268,7 +268,7 @@ function ClientForm({ clientId = null, modeEdit = false }) {
                   onChange={modeEdit ? (e) => handleChange(e) : null}
                   value={formValues.city}
                   readOnly={!modeEdit}
-                  className="row-start-1 border-2 w-4/6 border-white bg-green-100 m-2 p-2 rounded-md text-left"
+                  className="row-start-1  w-4/6 bg-white m-2 p-2 rounded-md text-left"
                   placeholder="Ville"
                 />
                 {formErrors.city && <p>{formErrors.city}</p>}
@@ -278,7 +278,7 @@ function ClientForm({ clientId = null, modeEdit = false }) {
                   onChange={modeEdit ? (e) => handleChange(e) : null}
                   value={formValues.zipCode}
                   readOnly={!modeEdit}
-                  className="row-start-1 w-2/6 border-2 border-white bg-green-100 m-2 p-2 rounded-md text-left"
+                  className="row-start-1 w-2/6 bg-white m-2 p-2 rounded-md text-left"
                   placeholder="CP"
                 />
               </div>
@@ -291,7 +291,7 @@ function ClientForm({ clientId = null, modeEdit = false }) {
                 onChange={modeEdit ? (e) => handleChange(e) : null}
                 value={formValues.description}
                 readOnly={!modeEdit}
-                className="row-span-4 border-2 border-white bg-green-100 m-2 p-2 rounded-md text-start"
+                className="row-span-4 bg-white m-2 p-2 rounded-md text-start"
                 placeholder="description"
               />
             </div>
@@ -300,7 +300,7 @@ function ClientForm({ clientId = null, modeEdit = false }) {
                 <select
                   readOnly={!modeEdit}
                   name="client_type_id"
-                  className="row-start-2 border-2 border-white bg-green-100 m-2 p-2 rounded-md text-center"
+                  className="row-start-2 bg-white m-2 p-2 rounded-md text-center"
                   value={formValues.client_type_id}
                   onChange={modeEdit ? (e) => handleChange(e) : null}
                 >
@@ -322,7 +322,7 @@ function ClientForm({ clientId = null, modeEdit = false }) {
                   <select
                     readOnly={!modeEdit}
                     value={formValues.user_id}
-                    className="row-start-2 border-2 border-white bg-green-100 m-2 p-2 rounded-md text-center"
+                    className="row-start-2 bg-blue-100 m-2 p-2 text-center"
                     name="user_id"
                     onChange={modeEdit ? (e) => handleChange(e) : null}
                   >
@@ -341,14 +341,14 @@ function ClientForm({ clientId = null, modeEdit = false }) {
               <input
                 type="submit"
                 value="enregistrer"
-                className="m-auto text-green-200 uppercase hover:border-blue-200 hover:bg-gradient-to-t hover:to-green-300 hover:to-green-500 hover:text-green-700 font-bold p-2 pt-2 pb-2 rounded-2xl bg-gradient-to-t from-green-400 to-green-300 border-2 border-green-200 shadow "
+                className="m-auto mt-5 text-white uppercase bg-blue-300 hover:bg-blue-500 font-bold p-2 pt-2 pb-2 rounded-xl shadow "
               />
             ) : (
               <Link to={`/updateClient/${clientId}`} >
                 <input
                   type="button"
                   value="Modifier"
-                  className="m-auto text-green-200 uppercase hover:border-blue-200 hover:bg-gradient-to-t hover:to-green-300 hover:to-green-500 hover:text-green-700 font-bold p-2 pt-2 pb-2 rounded-2xl bg-gradient-to-t from-green-400 to-green-300 border-2 border-green-200 shadow "
+                  className="m-auto mt-5 text-white bg-blue-300 hover:bg-blue-500 uppercase font-bold p-2 pt-2 pb-2 rounded-xl shadow "
                 />
               </Link>
             )}

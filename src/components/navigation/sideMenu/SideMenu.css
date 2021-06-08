@@ -1,15 +1,10 @@
 .SideMenuContainer{
-    height: 800px;
+    height: 100%;
     width: 150px;
     margin: 0;
     padding: 0;
     padding-top: 20px;
     padding-bottom: 30px;
-    border-radius: 0 0 100% 0;
-    -webkit-border-radius: 0 0 100% 0;
-    -moz-border-radius: 0 0 100% 0;
-    -ms-border-radius: 0 0 100% 0;
-    -o-border-radius: 0 0 100% 0;
 }
 .buttonForMenuConfig{
     width: 70px;
@@ -24,7 +19,7 @@
     background-repeat: no-repeat;
     background-size: 55%;
     background-position: center;
-    border: 4px solid white;
+    /*border: 4px solid white;*/
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
     -ms-border-radius: 50%;

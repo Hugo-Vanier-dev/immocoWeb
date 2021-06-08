@@ -5,7 +5,11 @@ class ClientService {
     path = '/clients';
 
     getAll() {
-        return instance.get(`${this.path}`);
+        let limit = 100;
+        let nbPage = 0;
+        let sort = 'firstname';
+        let sortOrder = 'ASC';
+        return instance.get(`${this.path}?limit=${limit}&nbPage=${nbPage}&sort=${sort}&sortOrder=${sortOrder}`);
     }
 
     get(id) {

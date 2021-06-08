@@ -62,7 +62,7 @@ function App() {
                 <PrivateRoute path="/readClient/:id">
                   <ReadClient />
                 </PrivateRoute>
-                <PrivateRoute path="/listClient">
+                <PrivateRoute path="/listeClient">
                   <ListClient />
                 </PrivateRoute>
 

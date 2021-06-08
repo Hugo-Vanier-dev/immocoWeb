@@ -49,20 +49,20 @@ function LoginPage() {
   }
   return (
     <div className="LoginPage flex">
-      <div className="LoginPageBox justify-between border-4 border-white m-auto p-4 text-center bg-gradient-to-t from-gray-50 to-gray-300 rounded-xl shadow-xl">
-        <div className="LogoIcoLogin m-5 shadow-md">
+      <div className="LoginPageBox justify-between m-auto p-4 text-center bg-gray-500 rounded-xl shadow-sm">
+        <div className="LogoIcoLogin m-5">
           <img src={logo} alt="logo_ImmoCo" className="LogoIcoPicture" />
         </div>
         <div className="">
           <form onSubmit={(e) => submitForm(e)}>
-            <h1 className="uppercase text-center align-middle text-blue-800 text-opacity-75 font-bold text-2xl font-sans">
+            <h1 className="uppercase text-center align-middle text-blue-600 text-opacity-75 font-bold text-2xl font-sans">
               immoco
             </h1>
             <input
               type="email"
               onChange={(e) => setMail(e.target.value)}
               value={mail}
-              className="LoginMail grid grid-cols-1 justify-center border-2 border-white bg-green-100 m-2 p-2 rounded-md text-center"
+              className="LoginMail grid grid-cols-1 justify-center bg-white m-2 p-2 rounded-md text-center"
               placeholder="@"
             />
             <p>{mailError}</p>
@@ -70,14 +70,14 @@ function LoginPage() {
               type="password"
               onChange={(e) => setPass(e.target.value)}
               value={password}
-              className="LoginPassword  grid grid-cols-1 justify-center border-2 border-white bg-green-100 m-2 p-2 rounded-md text-center"
+              className="LoginPassword  grid grid-cols-1 justify-center bg-white m-2 p-2 rounded-md text-center"
               placeholder="mot de passe"
             />
             <p>{formError}</p>
             <input
               type="submit"
               value="Connexion"
-              className="LoginPageButton text-green-200 hover:text-yellow-50 uppercase w-1/2 grid grid-cols-1 font-bold pt-2 pb-2 rounded-2xl bg-gradient-to-t from-green-400 to-green-300 border-2 border-green-200 hover:bg-gradient-to-t hover:from-green-500 hover:to-green-300 hover:border-yellow-50 shadow hover:shadow-sm "
+              className="LoginPageButton text-white uppercase w-1/2 grid grid-cols-1 font-bold pt-2 pb-2 rounded-2xl bg-blue-400 hover:bg-gradient-to-t hover:bg-blue-500 shadow-md "
             />
           </form>
         </div>
