@@ -1,88 +1,57 @@
-import React from 'react';
-import ClientService from '../../shared/services/client.service';
+import React, {useState} from 'react'
+import './ListClient.css'
+import ClientService from '../../shared/services/client.service'
+import { Link } from 'react-router-dom'
+import ClientForm from './form/ClientForm'
 
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
-import { makeStyles } from '@material-ui/core/styles';
 
-/*
-const useStyles = makeStyles({
-  table: {
-    minWidth: 300,
-    maxWidth: 800
-  },
-});
-
-state{
-  id:,
-  firstname:"",
-  lastname:"",
-  mail:"",
-  cellphone:"",
-  phone:"",
-  streetNumber:"",
-  zipCode:"",
-  city:"",
-  streetName:"",
-  birthdate:"",
-  description:"",
-  archive:"",
-  client_type_id:
-}
-
-function clientName = (firstname, lastname)=> {
-  return { 'firstname, lastname' };
-}
-
-const rows = [
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-];
-
-function BasicTable() {
-  const classes = useStyles();
-  return (
-    <TableContainer component={Paper}>
-      <Table className={classes.table} aria-label="simple table">
-        <TableHead>
-          <TableRow>
-            <TableCell align="right">Lastname</TableCell>
-            <TableCell align="right">firstname</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.map((row) => (
-            <TableRow key={row.name}>
-              <TableCell component="th" scope="row">
-                {row.name}
-              </TableCell>
-              <TableCell align="right">{row.lastname}</TableCell>
-              <TableCell align="right">{row.firstname}</TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
-  );
-}
-*/
 
 function ListClient() {
+const [data, setData] = useState([])
 
-  React.useEffect(() => {
-    ClientService.getAll().then(res => {
-      console.log(res.data)
-    })
-  }, [])
+const [clientId, setClientId] = useState(null);
+const handleClientClick = (e) =>{
+  /**
+   * lors de la sélection de l'élément voulu, on récupère la valeur de son id
+   */
+  setClientId(e.target.attributes.getNamedItem('data-id').value);
+}
 
-  return(
-    <div className="m-2">
+React.useEffect(() => {
+ClientService.getAll().then(res => {
+setData(res.data);
+})
+}, [])
 
+return(
+<div className="grid grid-cols-2 gap-0">
+  <div>
+    <div>
+      <div className="py-2 mx-2 bg-gray-700 text-gray-50">Liste des clients</div>
+      <div className="grid grid-cols-2 bg-blue-400 text-gray-50 p-1 mx-2">
+        <div className="text-left">NOM</div>
+        <div className="text-center">Prénom</div>
+      </div>
     </div>
-  );
+    <div className="tableContainer mx-2">
+      <table className="">
+      <tbody>
+        {data.map(function(user, index){
+        return(
+        <tr key={user.id} id={user.id} onClick={handleClientClick} className="hover:bg-blue-200">
+          <td data-id={user.id} className="text-left">{user.lastname}</td>
+          <td data-id={user.id} className="mx-2">{user.firstname}</td>
+        </tr>
+        )
+        })}
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div>
+    <ClientForm modeEdit={true} clientId={clientId}/>
+  </div>
+</div>
+);
 }
 export default ListClient;

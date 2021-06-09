@@ -2,7 +2,6 @@ import React from 'react';
 import addClient from '../../../assets/img/icons/AddClientIcon.png';
 import clientList from '../../../assets/img/icons/ClientListIcon.png';
 import dashboard from '../../../assets/img/icons/DashboardIcon.png';
-import calendar from '../../../assets/img/icons/CalendarIcon.png';
 import homeList from '../../../assets/img/icons/HomeListIcon.png';
 import addHome from '../../../assets/img/icons/AddHomeIcon.png';
 import './SideMenu.css';
@@ -20,13 +19,12 @@ function ButtonForMenu({src, path}){
 
 function SideMenu() {
     return(
-        <div className="SideMenuContainer bg-gray-300 shadow">    
+        <div className="SideMenuContainer fixed bg-gray-700 shadow">    
 
             <div className="LogoIcoSideMenu shadow-md" />
             <div className="flex flex-wrap justify-start ml-2">
                 <ButtonForMenu src={dashboard} path='/dashboard' />
                 <ButtonForMenu src={clientList} path='/listeClient' />
-                <ButtonForMenu src={addClient} path='/createClient' />
                 <ButtonForMenu src={homeList} path='/listeProperty' />
                 <ButtonForMenu src={addHome} path='createProperty' />
             </div>

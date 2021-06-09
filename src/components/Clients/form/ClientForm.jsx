@@ -6,6 +6,7 @@ import { UseUserContext } from "../../../shared/context/userContext";
 import UserService from "../../../shared/services/user.service";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
+import './ClientForm.css';
 
 toast.configure();
 
@@ -19,6 +20,8 @@ function ClientForm({ clientId = null, modeEdit = false }) {
   const currentUser = UseUserContext();
   const [users, setUsers] = React.useState(null);
   const [clientTypes, setClientTypes] = React.useState(null);
+
+console.log(clientId);
 
   const [formErrors, setFormErrors] = React.useState({
     firstname: null,
@@ -173,8 +176,9 @@ function ClientForm({ clientId = null, modeEdit = false }) {
     return <Redirect to={`/readClient/${clientId}`} />
   }
   return (
-    <div className="flex justify-evenly m-4 w-auto">
-      <div className="my-10 py-10">
+    <div className="">
+      <div className="">
+      <div className="py-2 mx-2 bg-gray-700 text-gray-50">Informations clients</div>
 
         <div className="grid grid-rows-1">
           <form onSubmit={(e) => submitForm(e)}>
@@ -284,15 +288,15 @@ function ClientForm({ clientId = null, modeEdit = false }) {
               </div>
               {formErrors.zipCode && <p>{formErrors.zipCode}</p>}
             </div>
-            <div className="grid grid-row-4 grid-flow-col gap-4">
+            <div className="grid grid-flow-col gap-4">
               <textarea
                 type="text"
                 name="description"
                 onChange={modeEdit ? (e) => handleChange(e) : null}
                 value={formValues.description}
                 readOnly={!modeEdit}
-                className="row-span-4 bg-white m-2 p-2 rounded-md text-start"
-                placeholder="description"
+                className="bg-white m-2 p-2 rounded-md text-start"
+                placeholder="informations complémentaires"
               />
             </div>
             <div className="flex justify-between">
