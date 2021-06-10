@@ -1,7 +1,7 @@
 import React from "react";
 import PropertyService from "../../../shared/services/property.service";
 import PropertyTypeService from "../../../shared/services/propertyType.service";
-import { Redirect, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { UseUserContext } from "../../../shared/context/userContext";
 import UserService from "../../../shared/services/user.service";
 import { toast } from "react-toastify";
@@ -11,17 +11,12 @@ import './PropertyForm.css';
 toast.configure();
 
 function PropertyForm({ propertyId = null, modeEdit = false }) {
-  const mailregex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  const telRegex = /^\d{2}(\s\d{2}){4}$/;
-
-  const [redirectPropertiesList, setRedirectPropertiesList] = React.useState(false);
-  const [redirectInfoProperties, setredirectInfoProperties] = React.useState(false);
 
   const currentUser = UseUserContext();
   const [users, setUsers] = React.useState(null);
   const [propertyTypes, setPropertyTypes] = React.useState(null);
 
-console.log(clientId);
+console.log(propertyId);
 
   const [formErrors, setFormErrors] = React.useState({
     price: null,
@@ -108,7 +103,7 @@ console.log(clientId);
       if (propertyId) {
         PropertyService.update(propertyId, data).then((res) => {
           modeEdit = false;
-          toast.info("Le bien a bien été modifié.", {
+          toast.info("La fiche a bien été modifié.", {
             position: "bottom-center",
             autoClose: 5000,
             closeOnClick: true,
@@ -116,10 +111,8 @@ console.log(clientId);
             draggable: true,
             hideProgressBar: false,
           });
-          setredirectInfoClient(true);
         });
       } else {
-        console.log('coucou');
         PropertyService.create(data).then((res) => {
           toast.info("Le bien a bien été créé.", {
             position: "bottom-center",
@@ -129,7 +122,6 @@ console.log(clientId);
             draggable: true,
             hideProgressBar: false,
           });
-          setRedirectPropertyList(true);
         });
       }
     }
@@ -140,18 +132,6 @@ console.log(clientId);
     setFormValues({ ...formValues });
   };
 
-  const mailChange = (e) => {
-    handleChange(e);
-    if (e.target.value === "") {
-      setFormErrors({ mail: "Veuillez remplir une adresse mail." });
-    } else if (!mailregex.test(e.target.value)) {
-      setFormErrors({
-        mail: "L'adresse mail que vous avez rempli n'est pas au bon format.",
-      });
-    } else {
-      setFormErrors({ mail: null });
-    }
-  };
 
   const textChange = (e) => {
     handleChange(e);
@@ -163,28 +143,9 @@ console.log(clientId);
     setFormErrors({ ...formErrors });
   };
 
-  const telChange = (e) => {
-    const value = e.target.value
-      .replace(/\D+/, "")
-      .replace(/^330?/, "0")
-      .slice(0, 13)
-      .replace(/(\d{2})(?=\d)/g, "$1 ");
-    formValues[e.target.name] = value;
-    setFormValues({ ...formValues });
-    if (value === "") {
-      formErrors[e.target.name] = "Veuillez remplir ce champ.";
-    } else if (!telRegex.test(value)) {
-      formErrors[e.target.name] =
-        "Le numéro de téléphone que vous avez remplis n'est pas valide ou pas français.";
-    } else {
-      formErrors[e.target.name] = null;
-    }
-    setFormErrors({ ...formErrors });
-  };
-
   React.useEffect(() => {
-    ClientTypeService.getAll().then((clientTypesRes) => {
-      setClientTypes(clientTypesRes.data);
+    PropertyTypeService.getAll().then((propertyTypesRes) => {
+      setPropertyTypes(propertyTypesRes.data);
     });
     if (currentUser) {
       console.log(currentUser.user_type.value);
@@ -198,34 +159,26 @@ console.log(clientId);
         setFormValues({ user_id: currentUser.id });
       }
     }
-    if (clientId) {
-      ClientService.get(clientId).then((res) => {
+    if (propertyId) {
+      PropertyService.get(propertyId).then((res) => {
         setFormValues(res.data);
       });
     }
   }, [
     setUsers,
-    setClientTypes,
+    /*set0+++Types,*/
     setFormValues,
     currentUser,
-    clientId
+    propertyId
   ]);
 
-  if (redirectClientListe) {
-    return <Redirect to="/home" />;
-  }
-  if (redirectInfoClient) {
-    return <Redirect to={`/readClient/${clientId}`} />
-  }
   return (
-    <div className="">
-      <div className="">
-      <div className="py-2 mx-2 bg-gray-700 text-gray-50">Informations clients</div>
+    <div className="grid grid-cols-3 gap-2">
+        <div className="py-2 mx-2 text-gray-50">
+          Informations Biens
+        </div>
+        <form onSubmit={(e) => submitForm(e)}>
 
-        <div className="grid grid-rows-1">
-          <form onSubmit={(e) => submitForm(e)}>
-
-            <div className="grid grid-cols-2 w-auto">
               <input
                 type="text"
                 name="firstname"
@@ -235,102 +188,42 @@ console.log(clientId);
                 className="col-start-1 bg-white m-2 p-2 rounded-md text-center"
                 placeholder="Jean"
               />
-              {formErrors.firstname && <p>{formErrors.firstname}</p>}
               <input
                 type="text"
-                name="lastname"
-                onChange={modeEdit ? (e) => textChange(e) : null}
-                value={formValues.lastname}
+                name="streetNumber"
+                onChange={modeEdit ? (e) => handleChange(e) : null}
+                value={formValues.streetNumber}
                 readOnly={!modeEdit}
-                className="col-start-2 bg-white m-2 p-2 rounded-md text-center"
-                placeholder="Dupont"
+                className="row-start-1 w-1/6 bg-white m-2 p-2 rounded-md text-left"
+                placeholder="N°"
               />
-              {formErrors.lastname && <p>{formErrors.lastname}</p>}
-            </div>
-
-            <div className="grid grid-rows-1 w-auto">
-              <input
-                type="email"
-                name="mail"
-                onChange={modeEdit ? (e) => mailChange(e) : null}
-                value={formValues.mail}
-                readOnly={!modeEdit}
-                className="row-start-2 bg-white m-2 p-2 rounded-md text-center"
-                placeholder="@"
-              />
-              {formErrors.mail && <p>{formErrors.mail}</p>}
-            </div>
-
-            <div className="grid grid-cols-2 w-auto">
               <input
                 type="text"
-                name="phone"
-                onChange={modeEdit ? (e) => telChange(e) : null}
-                value={formValues.phone}
+                name="streetName"
+                onChange={modeEdit ? (e) => handleChange(e) : null}
+                value={formValues.streetName}
                 readOnly={!modeEdit}
-                className="col-start-1 bg-white m-2 p-2 rounded-md text-center"
-                placeholder="03 xx xx xx xx"
+                className="row-start-1 w-5/6 bg-white m-2 p-2 rounded-md text-left"
+                placeholder="rue"
               />
-              {formErrors.phone && <p>{formErrors.phone}</p>}
               <input
                 type="text"
-                name="cellphone"
-                onChange={modeEdit ? (e) => telChange(e) : null}
-                value={formValues.cellphone}
+                name="city"
+                onChange={modeEdit ? (e) => handleChange(e) : null}
+                value={formValues.city}
                 readOnly={!modeEdit}
-                className="col-start-2 bg-white m-2 p-2 rounded-md text-center"
-                placeholder="06 xx xx xx xx"
+                className="row-start-1  w-4/6 bg-white m-2 p-2 rounded-md text-left"
+                placeholder="Ville"
               />
-              {formErrors.cellphone && <p>{formErrors.cellphone}</p>}
-            </div>
-
-            <div className="grid grid-cols-1 grid-rows-2 w-auto">
-              <div className="flex flex-row">
-                <input
-                  type="text"
-                  name="streetNumber"
-                  onChange={modeEdit ? (e) => handleChange(e) : null}
-                  value={formValues.streetNumber}
-                  readOnly={!modeEdit}
-                  className="row-start-1 w-1/6 bg-white m-2 p-2 rounded-md text-left"
-                  placeholder="N°"
-                />
-                {formErrors.streetNumber && <p>{formErrors.streetNumber}</p>}
-                <input
-                  type="text"
-                  name="streetName"
-                  onChange={modeEdit ? (e) => handleChange(e) : null}
-                  value={formValues.streetName}
-                  readOnly={!modeEdit}
-                  className="row-start-1 w-5/6 bg-white m-2 p-2 rounded-md text-left"
-                  placeholder="rue"
-                />
-                {formErrors.streetName && <p>{formErrors.streetName}</p>}
-              </div>
-              <div className="flex flex-row">
-                <input
-                  type="text"
-                  name="city"
-                  onChange={modeEdit ? (e) => handleChange(e) : null}
-                  value={formValues.city}
-                  readOnly={!modeEdit}
-                  className="row-start-1  w-4/6 bg-white m-2 p-2 rounded-md text-left"
-                  placeholder="Ville"
-                />
-                {formErrors.city && <p>{formErrors.city}</p>}
-                <input
-                  type="text"
-                  name="zipCode"
-                  onChange={modeEdit ? (e) => handleChange(e) : null}
-                  value={formValues.zipCode}
-                  readOnly={!modeEdit}
-                  className="row-start-1 w-2/6 bg-white m-2 p-2 rounded-md text-left"
-                  placeholder="CP"
-                />
-              </div>
-              {formErrors.zipCode && <p>{formErrors.zipCode}</p>}
-            </div>
-            <div className="grid grid-flow-col gap-4">
+              <input
+                type="text"
+                name="zipCode"
+                onChange={modeEdit ? (e) => handleChange(e) : null}
+                value={formValues.zipCode}
+                readOnly={!modeEdit}
+                className="row-start-1 w-2/6 bg-white m-2 p-2 rounded-md text-left"
+                placeholder="CP"
+              />
               <textarea
                 type="text"
                 name="description"
@@ -338,52 +231,51 @@ console.log(clientId);
                 value={formValues.description}
                 readOnly={!modeEdit}
                 className="bg-white m-2 p-2 rounded-md text-start"
-                placeholder="informations complémentaires"
+                placeholder="Informations complémentaires"
               />
-            </div>
-            <div className="flex justify-between">
-              {clientTypes && (
+          <div>
+            {propertyTypes && (
+              <select
+                readOnly={!modeEdit}
+                name="property_type_id"
+                className="row-start-2 bg-white m-2 p-2 rounded-md text-center"
+                value={formValues.property_type_id}
+                onChange={modeEdit ? (e) => handleChange(e) : null}
+              >
+                {propertyTypes.map((propertyType) => {
+                  return (
+                    <option key={propertyType.id} value={propertyType.id}>
+                      {propertyType.value}
+                    </option>
+                  );
+                })}
+              </select>
+            )}
+            {formErrors.property_type_id && <p>{formErrors.property_type_id}</p>}
+            {currentUser &&
+              (currentUser.user_type.value === "admin" ||
+                currentUser.user_type.value === "secrétaire" ||
+                currentUser.user_type.value === "manager") &&
+              users && (
                 <select
                   readOnly={!modeEdit}
-                  name="client_type_id"
-                  className="row-start-2 bg-white m-2 p-2 rounded-md text-center"
-                  value={formValues.client_type_id}
+                  value={formValues.user_id}
+                  className="row-start-2 bg-blue-100 m-2 p-2 text-center"
+                  name="user_id"
                   onChange={modeEdit ? (e) => handleChange(e) : null}
                 >
-                  {clientTypes.map((clientType) => {
+                  {users.map((user) => {
                     return (
-                      <option key={clientType.id} value={clientType.id}>
-                        {clientType.value}
+                      <option key={user.id} value={user.id}>
+                        {user.firstname} {user.lastname}
                       </option>
                     );
                   })}
                 </select>
               )}
-              {formErrors.client_type_id && <p>{formErrors.client_type_id}</p>}
-              {currentUser &&
-                (currentUser.user_type.value === "admin" ||
-                  currentUser.user_type.value === "secrétaire" ||
-                  currentUser.user_type.value === "manager") &&
-                users && (
-                  <select
-                    readOnly={!modeEdit}
-                    value={formValues.user_id}
-                    className="row-start-2 bg-blue-100 m-2 p-2 text-center"
-                    name="user_id"
-                    onChange={modeEdit ? (e) => handleChange(e) : null}
-                  >
-                    {users.map((user) => {
-                      return (
-                        <option key={user.id} value={user.id}>
-                          {user.firstname} {user.lastname}
-                        </option>
-                      );
-                    })}
-                  </select>
-                )}
-              {formErrors.user_id && <p>{formErrors.user_id}</p>}
-            </div>
-            <div>
+            {formErrors.user_id && <p>{formErrors.user_id}</p>}
+          </div>
+          <div>
             <input
                 type="submit"
                 value="Créer"
@@ -396,7 +288,7 @@ console.log(clientId);
                 className="m-auto mt-5 text-white uppercase bg-blue-300 hover:bg-blue-600 font-bold p-2 pt-2 pb-2 mx-2 rounded-xl shadow "
               />
             ) : (
-              <Link to={`/updateClient/${clientId}`} >
+              <Link to={`/updateProperty/${propertyId}`} >
                 <input
                   type="button"
                   value="Modifier"
@@ -409,13 +301,10 @@ console.log(clientId);
                 value="Supprimer"
                 className="m-auto mt-5 text-white uppercase bg-red-300 hover:bg-red-600 font-bold p-2 pt-2 pb-2 mx-2 rounded-xl shadow "
               />
-            </div>
-          </form>
-        </div>
-
+          </div>
+        </form>
       </div>
-    </div>
   );
 }
 
-export default ClientForm;
+export default PropertyForm;

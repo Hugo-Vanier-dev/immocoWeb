@@ -14,6 +14,7 @@ import UpdateRdv from "./components/Planning/UpdateRdv";
 import CreateProperty from "./components/Properties/CreateProperty";
 import ReadProperty from "./components/Properties/ReadProperty";
 import UpdateProperty from "./components/Properties/UpdateProperty";
+import PropertyList from "./components/Properties/ListProperties";
 
 import CreateUser from "./components/Users/CreateUser";
 import ReadUser from "./components/Users/ReadUser";
@@ -37,15 +38,15 @@ function Home() {
 
 function App() {
     return (
-      <div className="App grid grid-cols-7 bg-gray-700">
+      <div className="App grid grid-cols-9 bg-gray-700">
         <Router>
             <InitializeUserContext>
             <PrivateRoute> 
-            <div className="divSideMenu col-start-1 col-span-1">
+            <div className="divSideMenu">
               <SideMenu />
             </div>
             </PrivateRoute>
-            <div className="divContentArea lg:col-start-2 lg:col-span-10 md:col-start-3 md:col-span-10 sm:col-start-1 sm:col-span-10">
+            <div className="divContentArea col-start-2 col-span-9">
               <Switch>
 
                 <Route path="/login" exact component={LoginPage} />
@@ -86,7 +87,7 @@ function App() {
                   <ReadProperty />
                 </PrivateRoute>
                 <PrivateRoute path="/listProperty">
-                  <CreateProperty />
+                  <PropertyList />
                 </PrivateRoute>
   
                 <PrivateRoute path="/createUser">

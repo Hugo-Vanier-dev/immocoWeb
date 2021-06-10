@@ -6,10 +6,10 @@ import PropertyForm from './form/PropertyForm'
 
 
 
-function ListProperty() {
+function PropertyList() {
 const [data, setData] = useState([])
 
-const [PropertyId, setPropertyId] = useState(null);
+const [propertyId, setPropertyId] = useState(null);
 const handlePropertyClick = (e) =>{
   /**
    * lors de la sélection de l'élément voulu, on récupère la valeur de son id
@@ -24,23 +24,27 @@ setData(res.data);
 }, [])
 
 return(
-<div className="grid grid-cols-2 gap-0">
+<div className="grid grid-cols-1">
   <div>
     <div>
       <div className="py-2 mx-2 text-gray-50">Liste des propriétés</div>
-      <div className="grid grid-cols-2 bg-blue-400 text-gray-50 p-1 mx-2">
-        <div className="text-left mx-2">Localisation</div>
-        <div className="text-left mx-2">Prix</div>
+      <div className="grid grid-cols-6 bg-blue-400 text-gray-50 p-1 mx-2">
+        <div className="text-left mx-2">Localité</div>
+        <div className="text-left mx-2">Code postal</div>
+        <div className="text-left mx-2">Type de bien</div>
+        <div className="text-left mx-2">Surface habitable</div>
+        <div className="text-right mx-2">Terrain (superficie)</div>
+        <div className="text-right mx-2">Prix</div>
       </div>
     </div>
     <div className="tableContainer mx-2">
-      <table className="">
+      <table className="bg-gray-100">
       <tbody>
         {data.map(function(property, index){
         return(
         <tr key={property.id} id={property.id} onClick={handlePropertyClick} className="bg-white hover:bg-green-300 grid grid-cols-2">
           <td data-id={property.id} className="text-left">{property.city}</td>
-          <td data-id={property.id} className="text-left">{property.price}</td>
+          <td data-id={property.id} className="text-left">{property.price} €</td>
         </tr>
         )
         })}

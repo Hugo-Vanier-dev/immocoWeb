@@ -1,10 +1,8 @@
 .SideMenuContainer{
     height: 100%;
-    width: 200px;
-    margin: 0;
-    padding: 0;
-    padding-top: 20px;
-    padding-bottom: 30px;
+    width: auto;
+    padding: 25px;
+    padding-top: 50px;
 }
 .buttonForMenuConfig{
     width: 70px;
