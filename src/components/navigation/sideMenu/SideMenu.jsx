@@ -1,9 +1,4 @@
 import React from 'react';
-import addClient from '../../../assets/img/icons/AddClientIcon.png';
-import clientList from '../../../assets/img/icons/ClientListIcon.png';
-import dashboard from '../../../assets/img/icons/DashboardIcon.png';
-import homeList from '../../../assets/img/icons/HomeListIcon.png';
-import addHome from '../../../assets/img/icons/AddHomeIcon.png';
 import './SideMenu.css';
 import { Link } from 'react-router-dom';
 
@@ -19,14 +14,22 @@ function ButtonForMenu({src, path}){
 
 function SideMenu() {
     return(
-        <div className="SideMenuContainer fixed bg-gray-700 shadow">    
+        <div className="SideMenuContainer fixed bg-gray-200 shadow">    
 
             <div className="LogoIcoSideMenu shadow-md" />
-            <div className="flex flex-wrap justify-start ml-2">
-                <ButtonForMenu src={dashboard} path='/dashboard' />
-                <ButtonForMenu src={clientList} path='/listeClient' />
-                <ButtonForMenu src={homeList} path='/listeProperty' />
-                <ButtonForMenu src={addHome} path='createProperty' />
+            <div className="mt-5">
+                <div className="mt-5">
+                    <a href="/dashboard" className="m-auto mt-5 text-blue-400 hover:text-green-500 font-bold text-lg uppercase">Tableau de bord</a> 
+                </div>       
+                <div className="mt-5">
+                    <a href="/listeClient" className="m-auto mt-5 text-blue-400 hover:text-green-500 font-bold text-lg uppercase">Clients</a>  
+                </div>      
+                <div className="mt-5">
+                    <a href="../listProperty" className="m-auto mt-5 text-blue-400 hover:text-green-500 font-bold text-lg uppercase">Propriétés</a>
+                </div>   
+                <div className="mt-5">
+                    <a href="../listUser" className="m-auto mt-5 text-blue-400 hover:text-green-500 font-bold text-lg uppercase">Employés</a>
+                </div>
             </div>
         </div>
     )

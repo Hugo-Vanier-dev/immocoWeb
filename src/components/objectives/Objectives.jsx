@@ -13,7 +13,7 @@ const state = {
       fill: true,
       lineTension: 1,
       pointStyle: 'circle',
-      backgroundColor:'rgba(250,250,250,0.75)',
+      backgroundColor:'rgba(255,40,40,0.5)',
       borderColor: 'black',
       borderWidth: 1,
       data: [70, 73, 75, 78, 80, 82, 84, 85, 86, 85, 83, 80]
@@ -23,7 +23,7 @@ const state = {
 
 export default function SalesObjectivesPage() {
     return (
-      <div>
+      <div className="bg-gray-200">
         <Line
           data={state}
           options={{    
@@ -40,7 +40,7 @@ export default function SalesObjectivesPage() {
               display:true,
               text:'Objectif de vente',
               position:'top',
-              fontColor:'rgba(250,250,250,1)',
+              fontColor:'rgba(40,40,40,1)',
               fontSize:16
             },
             legend:{

@@ -37,7 +37,7 @@ function Home() {
 
 function App() {
     return (
-      <div className="App grid grid-cols-10">
+      <div className="App grid grid-cols-7 bg-gray-700">
         <Router>
             <InitializeUserContext>
             <PrivateRoute> 
@@ -85,6 +85,9 @@ function App() {
                 <PrivateRoute path="/readProperty/:id">
                   <ReadProperty />
                 </PrivateRoute>
+                <PrivateRoute path="/listProperty">
+                  <CreateProperty />
+                </PrivateRoute>
   
                 <PrivateRoute path="/createUser">
                   <CreateUser />
@@ -94,6 +97,9 @@ function App() {
                 </PrivateRoute>
                 <PrivateRoute path="/readUser/:id">
                   <ReadUser />
+                </PrivateRoute>
+                <PrivateRoute path="/listUser">
+                  <CreateProperty />
                 </PrivateRoute>
 
               </Switch>

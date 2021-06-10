@@ -1,56 +1,98 @@
 import React from "react";
-import ClientService from "../../../shared/services/client.service";
-import ClientTypeService from "../../../shared/services/clientType.service";
+import PropertyService from "../../../shared/services/property.service";
+import PropertyTypeService from "../../../shared/services/propertyType.service";
 import { Redirect, Link } from "react-router-dom";
 import { UseUserContext } from "../../../shared/context/userContext";
 import UserService from "../../../shared/services/user.service";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
-import './ClientForm.css';
+import './PropertyForm.css';
 
 toast.configure();
 
-function ClientForm({ clientId = null, modeEdit = false }) {
+function PropertyForm({ propertyId = null, modeEdit = false }) {
   const mailregex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   const telRegex = /^\d{2}(\s\d{2}){4}$/;
 
-  const [redirectClientListe, setRedirectClientListe] = React.useState(false);
-  const [redirectInfoClient, setredirectInfoClient] = React.useState(false);
+  const [redirectPropertiesList, setRedirectPropertiesList] = React.useState(false);
+  const [redirectInfoProperties, setredirectInfoProperties] = React.useState(false);
 
   const currentUser = UseUserContext();
   const [users, setUsers] = React.useState(null);
-  const [clientTypes, setClientTypes] = React.useState(null);
+  const [propertyTypes, setPropertyTypes] = React.useState(null);
 
 console.log(clientId);
 
   const [formErrors, setFormErrors] = React.useState({
-    firstname: null,
-    lastname: null,
-    phone: null,
-    cellphone: null,
-    mail: null,
-    streetNumber: null,
-    streetName: null,
-    zipCode: null,
-    city: null,
+    price: null,
+    label: null,
     description: null,
-    client_type_id: null,
-    user_id: null,
+    longitude: null,
+    latitude: null,
+    city: null,
+    adress: null,
+    zipcode: null,
+    livingArea: null,
+    area: null,
+    gardenArea: null,
+    floorNumber: null,
+    piecesNumber: null,
+    bedroomNumber: null,
+    bathroomNumber: null,
+    wcNumber: null,
+    buildingNumber: null,
+    bearing: null,
+    doorNumber: null,
+    garden: null,
+    garage: null,
+    cellar: null,
+    atic: null,
+    parking: null,
+    opticalFiber: null,
+    swimmingPool: null,
+    balcony: null,
+    archive: null,
+    client_Id: null,
+    property_type_id: null,
+    created_at: null,
+    updated_at: null,
+    deleted_at: null,
   });
 
   const [formValues, setFormValues] = React.useState({
-    firstname: "",
-    lastname: "",
-    phone: "",
-    cellphone: "",
-    mail: "",
-    streetNumber: "",
-    streetName: "",
-    zipCode: "",
-    description: "",
-    city: "",
-    client_type_id: 1,
-    user_id: 1,
+    price: '',
+    label: '',
+    description: '',
+    longitude: '',
+    latitude: '',
+    city: '',
+    adress: '',
+    zipcode: '',
+    livingArea: '',
+    area: '',
+    gardenArea: '',
+    floorNumber: '',
+    piecesNumber: '',
+    bedroomNumber: '',
+    bathroomNumber: '',
+    wcNumber: '',
+    buildingNumber: '',
+    bearing: '',
+    doorNumber: '',
+    garden: '',
+    garage: '',
+    cellar: '',
+    atic: '',
+    parking: '',
+    opticalFiber: '',
+    swimmingPool: '',
+    balcony: '',
+    archive: '',
+    client_Id: 1,
+    property_type_id: '',
+    created_at: '',
+    updated_at: '',
+    deleted_at: '',
   });
 
   function submitForm(e) {
@@ -63,10 +105,10 @@ console.log(clientId);
     }
     if (formIsValid) {
       const data = formValues;
-      if (clientId) {
-        ClientService.update(clientId, data).then((res) => {
+      if (propertyId) {
+        PropertyService.update(propertyId, data).then((res) => {
           modeEdit = false;
-          toast.info("Le client a bien été modifié.", {
+          toast.info("Le bien a bien été modifié.", {
             position: "bottom-center",
             autoClose: 5000,
             closeOnClick: true,
@@ -78,8 +120,8 @@ console.log(clientId);
         });
       } else {
         console.log('coucou');
-        ClientService.create(data).then((res) => {
-          toast.info("Le client a bien été créé.", {
+        PropertyService.create(data).then((res) => {
+          toast.info("Le bien a bien été créé.", {
             position: "bottom-center",
             autoClose: 5000,
             closeOnClick: true,
@@ -87,7 +129,7 @@ console.log(clientId);
             draggable: true,
             hideProgressBar: false,
           });
-          setRedirectClientListe(true);
+          setRedirectPropertyList(true);
         });
       }
     }
