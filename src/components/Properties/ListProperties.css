@@ -3,7 +3,7 @@ table {
 }
 
 .tableContainer{
-    height: 90vh;
+    height: 80vh;
     overflow: auto;
 }
 

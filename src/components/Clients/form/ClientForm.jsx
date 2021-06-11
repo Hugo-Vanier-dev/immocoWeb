@@ -1,7 +1,7 @@
 import React from "react";
 import ClientService from "../../../shared/services/client.service";
 import ClientTypeService from "../../../shared/services/clientType.service";
-import { Redirect, Link } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { UseUserContext } from "../../../shared/context/userContext";
 import UserService from "../../../shared/services/user.service";
 import { toast } from "react-toastify";
@@ -10,7 +10,7 @@ import './ClientForm.css';
 
 toast.configure();
 
-function ClientForm({ clientId = null, modeEdit = false }) {
+function ClientForm({ clientId = null, edit = false }) {
   const mailregex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   const telRegex = /^\d{2}(\s\d{2}){4}$/;
 
@@ -20,6 +20,10 @@ function ClientForm({ clientId = null, modeEdit = false }) {
   const currentUser = UseUserContext();
   const [users, setUsers] = React.useState(null);
   const [clientTypes, setClientTypes] = React.useState(null);
+
+  const [modeEdit, setModeEdit] = React.useState(edit);
+
+
 
 console.log(clientId);
 
@@ -295,8 +299,8 @@ console.log(clientId);
                 onChange={modeEdit ? (e) => handleChange(e) : null}
                 value={formValues.description}
                 readOnly={!modeEdit}
-                className="bg-white m-2 p-2 rounded-md text-start"
-                placeholder="informations complémentaires"
+                className="infoArea bg-white m-2 p-2 rounded-md text-start"
+                placeholder="Informations complémentaires"
               />
             </div>
             <div className="flex justify-between">
@@ -342,30 +346,24 @@ console.log(clientId);
               {formErrors.user_id && <p>{formErrors.user_id}</p>}
             </div>
             <div>
-            <input
-                type="submit"
-                value="Créer"
-                className="m-auto mt-5 text-white uppercase bg-green-400 hover:bg-green-600 font-bold p-2 pt-2 pb-2 mx-2 rounded-xl shadow "
-              />
             {modeEdit ? (
               <input
                 type="submit"
                 value="enregistrer"
-                className="m-auto mt-5 text-white uppercase bg-blue-300 hover:bg-blue-600 font-bold p-2 pt-2 pb-2 mx-2 rounded-xl shadow "
+                className="m-auto mt-5 text-white uppercase bg-blue-300 hover:bg-blue-600 font-bold p-2 pt-2 pb-2 mx-2 rounded-xl"
               />
             ) : (
-              <Link to={`/updateClient/${clientId}`} >
                 <input
+                  onClick={() => setModeEdit(!modeEdit)}
                   type="button"
                   value="Modifier"
-                  className="m-auto mt-5 text-white bg-blue-300 hover:bg-blue-600 uppercase font-bold p-2 pt-2 pb-2 mx-2 rounded-xl shadow "
+                  className="m-auto mt-5 text-white bg-blue-300 hover:bg-blue-600 uppercase font-bold p-2 pt-2 pb-2 mx-2 rounded-xl"
                 />
-              </Link>
             )}
             <input
                 type="submit"
                 value="Supprimer"
-                className="m-auto mt-5 text-white uppercase bg-red-300 hover:bg-red-600 font-bold p-2 pt-2 pb-2 mx-2 rounded-xl shadow "
+                className="m-auto mt-5 text-white uppercase bg-red-300 hover:bg-red-600 font-bold p-2 pt-2 pb-2 mx-2 rounded-xl"
               />
             </div>
           </form>

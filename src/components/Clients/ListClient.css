@@ -2,7 +2,7 @@ table {
     width: 100%;
 }
 
-.tableContainer{
+.clientTableContainer{
     height: 90vh;
     overflow: auto;
 }

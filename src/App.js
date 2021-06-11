@@ -2,6 +2,7 @@ import React from "react";
 import "./App.css";
 import SideMenu from "./components/navigation/sideMenu/SideMenu";
 import { InitializeUserContext } from "./shared/context/userContext";
+
 import CreateClient from "./components/Clients/CreateClient";
 import ReadClient from "./components/Clients/ReadClient";
 import UpdateClient from "./components/Clients/UpdateClient";

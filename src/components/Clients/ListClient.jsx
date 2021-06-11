@@ -33,7 +33,7 @@ return(
         <div className="text-left mx-2">Prénom</div>
       </div>
     </div>
-    <div className="tableContainer mx-2">
+    <div className="clientTableContainer mx-2">
       <table className="">
       <tbody>
         {data.map(function(user, index){
@@ -49,7 +49,7 @@ return(
     </div>
   </div>
   <div>
-    <ClientForm modeEdit={true} clientId={clientId}/>
+    <ClientForm edit={false} clientId={clientId}/>
   </div>
 </div>
 );
