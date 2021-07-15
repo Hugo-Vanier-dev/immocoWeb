@@ -77,6 +77,7 @@ function LoginPage() {
             <input
               type="submit"
               value="Connexion"
+              data-cy="LoginPageButton"
               className="LoginPageButton text-white uppercase w-1/2 grid grid-cols-1 font-bold pt-2 pb-2 rounded-2xl bg-blue-400 hover:bg-gradient-to-t hover:bg-blue-500 shadow-md "
             />
           </form>

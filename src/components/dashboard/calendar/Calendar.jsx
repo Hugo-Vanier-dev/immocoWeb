@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import CalendarHeader from './CalendarHeader';
-import Day from './Day';
-import NewEventModal from './NewEventModal';
-import DeleteEventModal from './DeleteEventModal';
-import { useDate } from './hook';
+import CalendarHeader from '../calendar/calendarHeader/CalendarHearder';
+import Day from '../calendar/day/Day';
+import NewEventModal from '../calendar/newEventModal/NewEventModal';
+import DeleteEventModal from '../calendar/deleteEventModal/DeleteEventModal';
+import { UseDate } from '../calendar/hook/UseDate';
+import './Calendar.css';
 
 function Calendar(){
   const [nav, setNav] = useState(0);
@@ -20,18 +21,18 @@ function Calendar(){
     localStorage.setItem('events', JSON.stringify(events));
   }, [events]);
 
-  const { days, dateDisplay } = useDate(events, nav);
+  const { days, dateDisplay } = UseDate(events, nav);
 
   return(
     <>
-      <div id="container">
+      <div id="container" className="bg-gray-200 m-3 p-2 rounded-md">
         <CalendarHeader 
           dateDisplay={dateDisplay}
           onNext={() => setNav(nav + 1)}
           onBack={() => setNav(nav - 1)}
         />
 
-        <div id="weekdays">
+        <div id="weekdays" className="grid grid-cols-7 text-blue-400 font-black text-xs uppercase">
           <div>Sunday</div>
           <div>Monday</div>
           <div>Tuesday</div>
@@ -41,7 +42,7 @@ function Calendar(){
           <div>Saturday</div>
         </div>
 
-        <div id="calendar">
+        <div id="calendar" className="grid grid-cols-7 gap-2 py-2">
           {days.map((d, index) => (
             <Day
               key={index}

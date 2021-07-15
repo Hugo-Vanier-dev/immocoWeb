@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-function useDate(events, nav){
+export const UseDate = (events, nav) =>{
   const [dateDisplay, setDateDisplay] = useState('');
   const [days, setDays] = useState([]);
 
@@ -53,12 +53,10 @@ function useDate(events, nav){
     }
 
     setDays(daysArr);
-  }, [events, nav]);
-
+  },
+  [events, nav]);
   return {
     days,
     dateDisplay,
   };
 };
-
-export default UseDate;
