@@ -182,21 +182,21 @@ console.log(clientId);
   return (
     <div className="">
       <div className="">
-      <div className="py-2 mx-2 bg-gray-700 text-gray-50">Informations clients</div>
+      <div className="py-2 mx-2 text-blue-300 font-black">Informations clients</div>
 
         <div className="grid grid-rows-1">
           <form onSubmit={(e) => submitForm(e)}>
-
             <div className="grid grid-cols-2 w-auto">
+              
               <input
-                type="text"
-                name="firstname"
-                onChange={modeEdit ? (e) => textChange(e) : null}
-                value={formValues.firstname}
-                readOnly={!modeEdit}
-                className="col-start-1 bg-white m-2 p-2 rounded-md text-center"
-                placeholder="Jean"
-              />
+                  type="text"
+                  name="firstname"
+                  onChange={modeEdit ? (e) => textChange(e) : null}
+                  value={formValues.firstname}
+                  readOnly={!modeEdit}
+                  className="col-start-1 m-2 p-2 rounded-md text-center border-2 border-blue-300"
+                  placeholder="Jean"
+                />
               {formErrors.firstname && <p>{formErrors.firstname}</p>}
               <input
                 type="text"
@@ -204,7 +204,7 @@ console.log(clientId);
                 onChange={modeEdit ? (e) => textChange(e) : null}
                 value={formValues.lastname}
                 readOnly={!modeEdit}
-                className="col-start-2 bg-white m-2 p-2 rounded-md text-center"
+                className="col-start-2 m-2 p-2 rounded-md text-center border-2 border-blue-300"
                 placeholder="Dupont"
               />
               {formErrors.lastname && <p>{formErrors.lastname}</p>}
@@ -217,7 +217,7 @@ console.log(clientId);
                 onChange={modeEdit ? (e) => mailChange(e) : null}
                 value={formValues.mail}
                 readOnly={!modeEdit}
-                className="row-start-2 bg-white m-2 p-2 rounded-md text-center"
+                className="row-start-2 bg-white m-2 p-2 rounded-md text-center border-2 border-blue-300"
                 placeholder="@"
               />
               {formErrors.mail && <p>{formErrors.mail}</p>}
@@ -230,7 +230,7 @@ console.log(clientId);
                 onChange={modeEdit ? (e) => telChange(e) : null}
                 value={formValues.phone}
                 readOnly={!modeEdit}
-                className="col-start-1 bg-white m-2 p-2 rounded-md text-center"
+                className="col-start-1 bg-white m-2 p-2 rounded-md text-center border-2 border-blue-300"
                 placeholder="03 xx xx xx xx"
               />
               {formErrors.phone && <p>{formErrors.phone}</p>}
@@ -240,7 +240,7 @@ console.log(clientId);
                 onChange={modeEdit ? (e) => telChange(e) : null}
                 value={formValues.cellphone}
                 readOnly={!modeEdit}
-                className="col-start-2 bg-white m-2 p-2 rounded-md text-center"
+                className="col-start-2 bg-white m-2 p-2 rounded-md text-center border-2 border-blue-300"
                 placeholder="06 xx xx xx xx"
               />
               {formErrors.cellphone && <p>{formErrors.cellphone}</p>}
@@ -254,7 +254,7 @@ console.log(clientId);
                   onChange={modeEdit ? (e) => handleChange(e) : null}
                   value={formValues.streetNumber}
                   readOnly={!modeEdit}
-                  className="row-start-1 w-1/6 bg-white m-2 p-2 rounded-md text-left"
+                  className="row-start-1 w-1/6 bg-white m-2 p-2 rounded-md text-left border-2 border-blue-300"
                   placeholder="N°"
                 />
                 {formErrors.streetNumber && <p>{formErrors.streetNumber}</p>}
@@ -264,7 +264,7 @@ console.log(clientId);
                   onChange={modeEdit ? (e) => handleChange(e) : null}
                   value={formValues.streetName}
                   readOnly={!modeEdit}
-                  className="row-start-1 w-5/6 bg-white m-2 p-2 rounded-md text-left"
+                  className="row-start-1 w-5/6 bg-white m-2 p-2 rounded-md text-left border-2 border-blue-300"
                   placeholder="rue"
                 />
                 {formErrors.streetName && <p>{formErrors.streetName}</p>}
@@ -276,7 +276,7 @@ console.log(clientId);
                   onChange={modeEdit ? (e) => handleChange(e) : null}
                   value={formValues.city}
                   readOnly={!modeEdit}
-                  className="row-start-1  w-4/6 bg-white m-2 p-2 rounded-md text-left"
+                  className="row-start-1  w-4/6 bg-white m-2 p-2 rounded-md text-left border-2 border-blue-300"
                   placeholder="Ville"
                 />
                 {formErrors.city && <p>{formErrors.city}</p>}
@@ -286,7 +286,7 @@ console.log(clientId);
                   onChange={modeEdit ? (e) => handleChange(e) : null}
                   value={formValues.zipCode}
                   readOnly={!modeEdit}
-                  className="row-start-1 w-2/6 bg-white m-2 p-2 rounded-md text-left"
+                  className="row-start-1 w-2/6 bg-white m-2 p-2 rounded-md text-left border-2 border-blue-300"
                   placeholder="CP"
                 />
               </div>
@@ -299,7 +299,7 @@ console.log(clientId);
                 onChange={modeEdit ? (e) => handleChange(e) : null}
                 value={formValues.description}
                 readOnly={!modeEdit}
-                className="infoArea bg-white m-2 p-2 rounded-md text-start"
+                className="infoArea bg-white m-2 p-2 rounded-md text-start border-2 border-blue-300"
                 placeholder="Informations complémentaires"
               />
             </div>
@@ -308,7 +308,7 @@ console.log(clientId);
                 <select
                   readOnly={!modeEdit}
                   name="client_type_id"
-                  className="row-start-2 bg-white m-2 p-2 rounded-md text-center"
+                  className="row-start-2 bg-white m-2 p-2 rounded-md text-center border-2 border-blue-300"
                   value={formValues.client_type_id}
                   onChange={modeEdit ? (e) => handleChange(e) : null}
                 >
@@ -330,7 +330,7 @@ console.log(clientId);
                   <select
                     readOnly={!modeEdit}
                     value={formValues.user_id}
-                    className="row-start-2 bg-blue-100 m-2 p-2 text-center"
+                    className="row-start-2 bg-blue-100 m-2 p-2 text-center border-2 border-blue-300"
                     name="user_id"
                     onChange={modeEdit ? (e) => handleChange(e) : null}
                   >

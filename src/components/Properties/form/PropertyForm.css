@@ -1,0 +1,9 @@
+.porpertyFormContainer{
+    width: 38.5vw;
+}
+
+.propertyInfoArea{
+    min-width: 20vw;
+    max-width: 36.5vw;
+    height: 20vh;
+}

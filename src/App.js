@@ -39,7 +39,7 @@ function Home() {
 
 function App() {
     return (
-      <div className="App grid grid-cols-9 bg-gray-700">
+      <div className="App flex bg-white">
         <Router>
             <InitializeUserContext>
             <PrivateRoute> 
@@ -47,7 +47,7 @@ function App() {
               <SideMenu />
             </div>
             </PrivateRoute>
-            <div className="divContentArea col-start-2 col-span-9">
+            <div className="divContentArea flex-grow-1 w-5/6">
               <Switch>
 
                 <Route path="/login" exact component={LoginPage} />
