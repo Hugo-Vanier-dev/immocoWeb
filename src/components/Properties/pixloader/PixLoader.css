@@ -1,0 +1,25 @@
+#pixGallery{
+    background: rgba(204, 204, 204, 0.667);
+    height: 80vh;
+    padding: 5px;
+}
+
+#pixGallery img{
+    width: 25%;
+    height: 25%;
+    opacity: 0.5;
+    justify-content: center;
+    align-items: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    cursor: pointer;
+}
+#pixGallery img:hover{
+    opacity: 1;
+    background-image: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    border: 5px solid #93c5fd;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
