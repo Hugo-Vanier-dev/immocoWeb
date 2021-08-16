@@ -1,25 +1,43 @@
 #pixGallery{
     background: rgba(204, 204, 204, 0.667);
     height: 80vh;
+    width: 80%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 5px;
     padding: 5px;
 }
-
 #pixGallery img{
-    width: 25%;
-    height: 25%;
-    opacity: 0.5;
-    justify-content: center;
-    align-items: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
+    opacity: 0.75;
     cursor: pointer;
 }
 #pixGallery img:hover{
     opacity: 1;
-    background-image: rgba(0, 0, 0, 0.7);
-    color: #fff;
-    border: 5px solid #93c5fd;
-    text-decoration: none;
     transition: all 0.2s ease;
+}
+.picture_1{
+    border: 5px solid red;
+    height: 20vh;
+    width: 20vh;
+}
+.picture_2{
+    border: 5px solid limegreen;
+    height: 20vh;
+    transform: translateX(-27%);
+    width: 137%;
+}
+.picture_3{
+    border: 5px solid lightcoral;
+    height: 200px;
+    width: 200px;
+}
+.picture_4{
+    border: 5px solid yellowgreen;
+    height: 200px;
+    width: 200px;
+}
+.picture_5{
+    border: 5px solid green;
+    height: 200px;
+    width: 200px;
 }
