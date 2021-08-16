@@ -16,28 +16,24 @@
     transition: all 0.2s ease;
 }
 .picture_1{
-    border: 5px solid red;
     height: 20vh;
     width: 20vh;
 }
 .picture_2{
-    border: 5px solid limegreen;
     height: 20vh;
     transform: translateX(-27%);
     width: 137%;
 }
 .picture_3{
-    border: 5px solid lightcoral;
-    height: 200px;
-    width: 200px;
+    height: 75%;
+    width: 100%;
 }
 .picture_4{
-    border: 5px solid yellowgreen;
-    height: 200px;
-    width: 200px;
+    height: 75%;
+    width: 100%;
 }
 .picture_5{
-    border: 5px solid green;
-    height: 200px;
-    width: 200px;
+    transform: translateY(-52%);
+    height: 53%;
+    width: 201.5%;
 }
