@@ -11,6 +11,16 @@
     width: 20px;
     transform: translateY(5px);
 }
+#checkboxLeft {
+    height: 20px;
+    width: 20px;
+    transform: translateY(5px);
+}
+#checkboxRight {
+    height: 20px;
+    width: 20px;
+    transform: translateY(5px);
+}
 #lineSize{
     width: 82%;
 }
