@@ -9,7 +9,7 @@ function ReadProperty() {
   return(
     <div className="grid grid-cols-2">
       <div className="grid col-start-1 col-span-1">        
-        <PropertyForm propertyId={id} modeEdit={false} />
+        <PropertyForm propertyId={id} modeEdit={true} />
       </div>
       <div className="col-start-2">
         <PixLoader />
