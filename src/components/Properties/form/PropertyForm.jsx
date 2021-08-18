@@ -226,7 +226,7 @@ function PropertyForm({ propertyId = null, modeEdit = false }) {
                 )}
               </p>
             </div>
-            <div id="lineSize" className="mx-auto">
+            <div id="priceOfPropertyId" className="">
               <p className="font-semibold text-gray-500">
                 <input
                   type="text"
@@ -234,44 +234,42 @@ function PropertyForm({ propertyId = null, modeEdit = false }) {
                   onChange={modeEdit ? (e) => textChange(e) : null}
                   value={formValues.firstname}
                   readOnly={!modeEdit}
-                  className=" m-1 mx-2 p-2 w-11/12 rounded-md text-center"
+                  className="m-2 p-2 w-2/12 rounded-md text-center"
                   placeholder="Prix"
                 />
                 €
               </p>
             </div>
-            <div>
-              <h3>Coordonnées GPS</h3>
-              <div id="lineSize" className="mx-auto">
-                <p className="font-semibold text-gray-500">
-                  <div>
+            <div id="gpsCoordId" className="grid grid-cols-3 font-semibold text-gray-500 bg-blue-200 rounded-md w-9/12 m-2 mx-auto">
+              <div className="col-span-1 col-start-1 w-full p-2 mx-auto my-auto">Coordonnées GPS</div>
+              <div className="col-span-2 col-start-2">
+                <p>
+                    Long.
                     <input
                       type="text"
                       name="longitude"
                       onChange={modeEdit ? (e) => textChange(e) : null}
                       value={formValues.firstname}
                       readOnly={!modeEdit}
-                      className=" m-1 p-2 rounded-md text-center"
+                      className="m-2 p-2 rounded-md text-center"
                       placeholder="Longitude"
                     />
                     °
-                  </div>
-                  <div>
+                    Lat.
                     <input
                       type="text"
                       name="latitude"
                       onChange={modeEdit ? (e) => textChange(e) : null}
                       value={formValues.firstname}
                       readOnly={!modeEdit}
-                      className=" m-1 p-2 rounded-md text-center"
+                      className="m-2 ml-5 p-2 rounded-md text-center"
                       placeholder="Latitude"
                     />
                     °
-                  </div>
                 </p>
               </div>
             </div>
-            <div id="lineSize" className="mx-auto">
+            <div id="addressOfPropertyId" className="mx-auto">
               <p className="font-semibold text-gray-500">
                 Adresse
                 <input
@@ -280,12 +278,12 @@ function PropertyForm({ propertyId = null, modeEdit = false }) {
                   onChange={modeEdit ? (e) => handleChange(e) : null}
                   value={formValues.streetName}
                   readOnly={!modeEdit}
-                  className=" m-1 p-2 w-full rounded-md text-center"
+                  className=" m-2 p-2 w-10/12 rounded-md text-center"
                   placeholder="Adresse"
                 />
               </p>
             </div>
-            <div id="lineSize" className="mx-auto">
+            <div id="cityOfPropertyId" className="mx-auto">
               <p className="font-semibold text-gray-500">
                 Ville
                 <input
@@ -294,12 +292,12 @@ function PropertyForm({ propertyId = null, modeEdit = false }) {
                   onChange={modeEdit ? (e) => handleChange(e) : null}
                   value={formValues.city}
                   readOnly={!modeEdit}
-                  className=" m-1 p-2 rounded-md text-center"
+                  className=" m-2 p-2 w-5/12 rounded-md text-center"
                   placeholder="Ville"
                 />
               </p>
             </div>
-            <div id="lineSize" className="mx-auto">
+            <div id="zipcodeId" className="mx-auto">
               <p className="font-semibold text-gray-500">
                 Code postale
                 <input
@@ -308,45 +306,44 @@ function PropertyForm({ propertyId = null, modeEdit = false }) {
                   onChange={modeEdit ? (e) => handleChange(e) : null}
                   value={formValues.zipcode}
                   readOnly={!modeEdit}
-                  className=" m-1 p-2 rounded-md text-center"
+                  className="m-2 p-2 w-1/12 rounded-md text-center"
                   placeholder="Code postal"
                 />
               </p>
             </div>
-            <div id="lineSize" className="mx-auto">
+            <div id="totalAreaId" className="mx-auto">
               <p className="font-semibold text-gray-500">
-                Superficie au sol
+                Taille du terrain
                 <input
                   type="text"
                   name="area"
                   onChange={modeEdit ? (e) => handleChange(e) : null}
                   value={formValues.area}
                   readOnly={!modeEdit}
-                  className="m-1 mx-4 p-2 rounded-md text-center"
+                  className="m-2 w-2/12 p-2 rounded-md text-center"
                   placeholder="Superficie totale"
                 />
                 m²
               </p>
             </div>
-            <div id="lineSize" className="mx-auto">
+            <div id="livingAreaId" className="mx-auto">
               <p className="font-semibold text-gray-500">
-                Superficie habitable
+                Surface habitable
                 <input
                   type="text"
                   name="livingArea"
                   onChange={modeEdit ? (e) => handleChange(e) : null}
                   value={formValues.livingArea}
                   readOnly={!modeEdit}
-                  className="m-1 mx-4 p-2 rounded-md text-center"
+                  className="m-2 w-1/12 p-2 rounded-md text-center"
                   placeholder="Surface habitable"
                 />
                 m²
               </p>
             </div>
-            <div id="lineSize" className="mx-auto">
+            <div id="gardenSelectorId" className="mx-auto">
               <div className="mx-auto text-center">
                 <p className="font-semibold text-gray-500">
-                  Jardin
                   <input
                     type="checkbox"
                     name="garden"
@@ -354,22 +351,23 @@ function PropertyForm({ propertyId = null, modeEdit = false }) {
                     onChange={modeEdit ? (e) => handleChange(e) : null}
                     value={formValues.garden}
                     readOnly={!modeEdit}
-                    className="mx-5"
+                    className="mx-2"
                   />
+                  Jardin
                   <input
                     type="text"
                     name="gardenArea"
                     onChange={modeEdit ? (e) => handleChange(e) : null}
                     value={formValues.gardenArea}
                     readOnly={!modeEdit}
-                    className="m-1 mx-4 p-2 rounded-md text-center"
+                    className="m-2 p-2 w-2/12 rounded-md text-center"
                     placeholder="Superficie du jardin"
                   />
                   m²
                 </p>
               </div>
             </div>
-            <div id="lineSize" className="mx-auto">
+            <div id="nbOfFloors" className="mx-auto">
               <p className="font-semibold text-gray-500">
                 <input
                   type="text"
@@ -377,14 +375,13 @@ function PropertyForm({ propertyId = null, modeEdit = false }) {
                   onChange={modeEdit ? (e) => handleChange(e) : null}
                   value={formValues.floorNumber}
                   readOnly={!modeEdit}
-                  className="m-1 mx-4 p-2 rounded-md text-center"
+                  className="m-2 p-2 w-1/12 rounded-md text-center"
                   placeholder="Nombre d'étages"
                 />
                 étage(s)
               </p>
             </div>
-
-            <div>
+            <div className="apptNumber">
               <p className="font-semibold text-gray-500">
                 Appartement n°
                 <input
@@ -393,12 +390,12 @@ function PropertyForm({ propertyId = null, modeEdit = false }) {
                   onChange={modeEdit ? (e) => handleChange(e) : null}
                   value={formValues.doorNumber}
                   readOnly={!modeEdit}
-                  className="m-1 mx-4 p-2 rounded-md text-center"
+                  className="m-2 p-2 w-1/12 rounded-md text-center"
                   placeholder="Numéro d'appartement"
                 />
               </p>
             </div>
-            <div id="lineSize" className="mx-auto rounded-md">
+            <div id="nbOfBedroom" className="mx-auto rounded-md">
               <p className="font-semibold text-gray-500">
                 <input
                   type="text"
@@ -412,33 +409,40 @@ function PropertyForm({ propertyId = null, modeEdit = false }) {
                 chambre(s)
               </p>
             </div>
-            <input
-              type="text"
-              name="buildingNumber"
-              onChange={modeEdit ? (e) => handleChange(e) : null}
-              value={formValues.buildingNumber}
-              readOnly={!modeEdit}
-              className=" m-1 p-2 rounded-md text-center"
-              placeholder="N° de bâtiment"
-            />
-            <input
-              type="text"
-              name="level"
-              onChange={modeEdit ? (e) => handleChange(e) : null}
-              value={formValues.level}
-              readOnly={!modeEdit}
-              className=" m-1 p-2 rounded-md text-center"
-              placeholder="Palier"
-            />
-
-            <div id="lineSize" className="mx-auto">
+            <div className="buildingNumberId">
+              <p>Bât.
+                <input
+                  type="text"
+                  name="buildingNumber"
+                  onChange={modeEdit ? (e) => handleChange(e) : null}
+                  value={formValues.buildingNumber}
+                  readOnly={!modeEdit}
+                  className=" m-1 p-2 rounded-md text-center"
+                  placeholder="N° de bâtiment"
+                />
+              </p>
+            </div>
+            <div className="levelNumberId">
+              <p>Palier
+                <input
+                  type="text"
+                  name="level"
+                  onChange={modeEdit ? (e) => handleChange(e) : null}
+                  value={formValues.level}
+                  readOnly={!modeEdit}
+                  className=" m-1 p-2 rounded-md text-center"
+                  placeholder="Palier"
+                />
+              </p>
+            </div>
+            <div id="heaterSelectId" className="">
               <p className="font-semibold text-gray-500">
                 Type de chauffage
                 {heaterTypes && (
                   <select
                     readOnly={!modeEdit}
                     name="heater_type_id"
-                    className="m-1 p-2 w-full rounded-md text-center"
+                    className="m-2 p-2 rounded-md text-center"
                     value={formValues.heater_type_id}
                     onChange={modeEdit ? (e) => handleChange(e) : null}
                   >
@@ -457,14 +461,14 @@ function PropertyForm({ propertyId = null, modeEdit = false }) {
               </p>
             </div>
 
-            <div id="lineSize" className="mx-auto">
+            <div id="shutterSelectId" className="">
               <p className="font-semibold text-gray-500">
                 Type de volets
                 {shutterTypes && (
                   <select
                     readOnly={!modeEdit}
                     name="shutter_type_id"
-                    className="m-1 p-2 w-full rounded-md text-center"
+                    className="m-2 p-2 rounded-md text-center"
                     value={formValues.shutter_type_id}
                     onChange={modeEdit ? (e) => handleChange(e) : null}
                   >
@@ -483,62 +487,57 @@ function PropertyForm({ propertyId = null, modeEdit = false }) {
               </p>
             </div>
 
-            <div className="grid grid-rows-1 grid-cols-2 gap-4 w-full my-3">
-            <div className="col-span-1 col-start-1">
-            <div id="lineSize" className="mx-auto">
-              <div className="mx-auto text-center">
-                <p className="font-semibold text-gray-500">
-                  Cave
-                  <input
-                    type="checkbox"
-                    name="cellar"
-                    id="checkboxLeft"
-                    onChange={modeEdit ? (e) => handleChange(e) : null}
-                    value={formValues.cellar}
-                    readOnly={!modeEdit}
-                    className="mx-5"
-                  />
-                </p>
-              </div>
-            </div>
-            <div id="lineSize" className="mx-auto">
-              <div className="mx-auto text-center">
-                <p className="font-semibold text-gray-500">
-                  Grenier
-                  <input
-                    type="checkbox"
-                    name="attic"
-                    id="checkboxLeft"
-                    onChange={modeEdit ? (e) => handleChange(e) : null}
-                    value={formValues.attic}
-                    readOnly={!modeEdit}
-                    className="mx-5"
-                  />
-                </p>
-              </div>
-            </div>
-
-            <div id="lineSize" className="mx-auto">
-              <div className="mx-auto text-center">
-                <p className="font-semibold text-gray-500">
-                  Parking
-                  <input
-                    type="checkbox"
-                    name="parking"
-                    id="checkboxLeft"
-                    onChange={modeEdit ? (e) => handleChange(e) : null}
-                    value={formValues.parking}
-                    readOnly={!modeEdit}
-                    className="mx-5"
-                  />
-                </p>
-              </div>
-            </div>
-            </div>
-            <div className="col-span-1 col-start-2 items-start">
-              <div id="lineSize" className="mx-auto">
+            <div id="checkboxesSelectorsId" className="my-3">
+              <div className="">
+                <div id="cellarId" className="lineSize mx-auto">
+                  <p className="font-semibold text-gray-500">
+                    Cave
+                    <input
+                      type="checkbox"
+                      name="cellar"
+                      id="checkboxLeft"
+                      onChange={modeEdit ? (e) => handleChange(e) : null}
+                      value={formValues.cellar}
+                      readOnly={!modeEdit}
+                      className="mx-5"
+                    />
+                  </p>
+                </div>
+                <div id="atticId" className="lineSize mx-auto">
+                  <p className="font-semibold text-gray-500">
+                    Grenier
+                    <input
+                      type="checkbox"
+                      name="attic"
+                      id="checkboxLeft"
+                      onChange={modeEdit ? (e) => handleChange(e) : null}
+                      value={formValues.attic}
+                      readOnly={!modeEdit}
+                      className="mx-5"
+                    />
+                  </p>
+                </div>
+                <div id="parkingId" className="lineSize mx-auto">
                 <div className="mx-auto text-center">
                   <p className="font-semibold text-gray-500">
+                    Parking
+                    <input
+                      type="checkbox"
+                      name="parking"
+                      id="checkboxLeft"
+                      onChange={modeEdit ? (e) => handleChange(e) : null}
+                      value={formValues.parking}
+                      readOnly={!modeEdit}
+                      className="mx-5"
+                    />
+                  </p>
+                </div>
+              </div>
+              </div>
+              <div className="">
+                <div id="internetId" className="lineSize mx-auto">
+                  <p className="font-semibold text-gray-500">
+                    Internet la Fibre
                     <input
                       type="checkbox"
                       name="opticalFiber"
@@ -548,14 +547,11 @@ function PropertyForm({ propertyId = null, modeEdit = false }) {
                       readOnly={!modeEdit}
                       className="mx-5"
                     />
-                    Internet la Fibre
                   </p>
                 </div>
-              </div>
-
-              <div id="lineSize" className="mx-auto">
-                <div className="mx-auto text-center">
+                <div id="poolId" className="lineSize mx-auto">
                   <p className="font-semibold text-gray-500">
+                    Piscine
                     <input
                       type="checkbox"
                       name="swimmingPool"
@@ -565,14 +561,11 @@ function PropertyForm({ propertyId = null, modeEdit = false }) {
                       readOnly={!modeEdit}
                       className="mx-5"
                     />
-                    Piscine
                   </p>
                 </div>
-              </div>
-
-              <div id="lineSize" className="mx-auto">
-                <div className="mx-auto text-center">
+                <div id="balconyId" className="lineSize mx-auto">
                   <p className="font-semibold text-gray-500">
+                    Balcon
                     <input
                       type="checkbox"
                       name="balcony"
@@ -582,22 +575,22 @@ function PropertyForm({ propertyId = null, modeEdit = false }) {
                       readOnly={!modeEdit}
                       className="mx-5"
                     />
-                    Balcon
                   </p>
                 </div>
               </div>
             </div>
+            <div id="moreInformations" className="m-2 p-2">
+              <textarea
+                type="text"
+                name="description"
+                onChange={modeEdit ? (e) => handleChange(e) : null}
+                value={formValues.description}
+                readOnly={!modeEdit}
+                className="propertyInfoArea  w-full rounded-md text-center"
+                placeholder="Informations complémentaires"
+              />
             </div>
-            <textarea
-              type="text"
-              name="description"
-              onChange={modeEdit ? (e) => handleChange(e) : null}
-              value={formValues.description}
-              readOnly={!modeEdit}
-              className="propertyInfoArea m-1 p-2 rounded-md text-center"
-              placeholder="Informations complémentaires"
-            />
-            <div>
+            <div id="userSelector">
               {currentUser &&
                 (currentUser.user_type.value === "admin" ||
                   currentUser.user_type.value === "secrétaire" ||
@@ -621,7 +614,7 @@ function PropertyForm({ propertyId = null, modeEdit = false }) {
                 )}
               {formErrors.user_id && <p>{formErrors.user_id}</p>}
             </div>
-            <div>
+            <div id="validationBtns">
               {modeEdit ? (
                 <input
                   type="submit"
