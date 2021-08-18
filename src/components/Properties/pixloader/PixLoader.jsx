@@ -1,7 +1,7 @@
 import React from "react";
 import "./PixLoader.css";
 
-const pixCount = 5;
+const pixCount = 7;
 /** src: "/upload/test_00001.jpg" */
 
 function PixLoader() {

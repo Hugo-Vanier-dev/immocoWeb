@@ -166,22 +166,18 @@ function PropertyForm({ propertyId = null, modeEdit = false }) {
         setFormValues(res.data);
       });
     }
-    /**
-    if (heaterId) {
-      HeaterService.get(heaterId).then((res) => {
-        setFormValues(res.data);
-      });
-    }
-    if (shutterId) {
-      ShutterService.get(shutterId).then((res) => {
-        setFormValues(res.data);
-      });
-    }*/
-  }, [
+    HeaterTypeService.getAll().then((heaterTypesRes) => { console.log(heaterTypesRes)
+      setHeaterTypes(heaterTypesRes.data);
+    });
+    ShutterTypeService.getAll().then((shutterTypesRes) => { console.log(shutterTypesRes)
+      setShutterTypes(shutterTypesRes.data);
+    });
+  },
+  [
     setUsers,
     setFormValues,
     currentUser,
-    propertyId /**heaterId, shutterId*/,
+    propertyId,
   ]);
 
   return (
@@ -434,15 +430,6 @@ function PropertyForm({ propertyId = null, modeEdit = false }) {
               className=" m-1 p-2 rounded-md text-center"
               placeholder="Palier"
             />
-            <input
-              type="text"
-              name="garage"
-              onChange={modeEdit ? (e) => handleChange(e) : null}
-              value={formValues.garage}
-              readOnly={!modeEdit}
-              className=" m-1 p-2 rounded-md text-center"
-              placeholder="Stationnement"
-            />
 
             <div id="lineSize" className="mx-auto">
               <p className="font-semibold text-gray-500">
@@ -473,7 +460,7 @@ function PropertyForm({ propertyId = null, modeEdit = false }) {
             <div id="lineSize" className="mx-auto">
               <p className="font-semibold text-gray-500">
                 Type de volets
-                {heaterTypes && (
+                {shutterTypes && (
                   <select
                     readOnly={!modeEdit}
                     name="shutter_type_id"
