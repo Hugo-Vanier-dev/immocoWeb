@@ -3,6 +3,7 @@ import "./App.css";
 import SideMenu from "./components/navigation/sideMenu/SideMenu";
 import { InitializeUserContext } from "./shared/context/userContext";
 
+import ClientPage from "./components/Clients/ClientPage";
 import CreateClient from "./components/Clients/CreateClient";
 import ReadClient from "./components/Clients/ReadClient";
 import UpdateClient from "./components/Clients/UpdateClient";
@@ -39,15 +40,15 @@ function Home() {
 
 function App() {
     return (
-      <div className="App flex bg-white">
+      <div className="App grid grid-cols-6 gap-2 grid-flow-col">
         <Router>
             <InitializeUserContext>
             <PrivateRoute> 
-            <div className="divSideMenu">
+            <div className="divSideMenu w-full col-start-1 col-span-1">
               <SideMenu />
             </div>
             </PrivateRoute>
-            <div className="divContentArea flex-grow-1 w-5/6">
+            <div className="divContentArea col-start-2 col-span-5 items-center">
               <Switch>
 
                 <Route path="/login" exact component={LoginPage} />
@@ -55,7 +56,11 @@ function App() {
                   <DashboardPage />
                 </PrivateRoute>
 
-                <PrivateRoute path="/createClient">
+                <PrivateRoute path="/clientPage">
+                  <ClientPage />
+                </PrivateRoute>
+
+                {/* <PrivateRoute path="/createClient">
                   <CreateClient />
                 </PrivateRoute>
                 <PrivateRoute path="/updateClient/:id">
@@ -66,7 +71,7 @@ function App() {
                 </PrivateRoute>
                 <PrivateRoute path="/listeClient">
                   <ListClient />
-                </PrivateRoute>
+                </PrivateRoute> */}
 
                 <PrivateRoute path="/createRdv">
                   <CreateRdv />

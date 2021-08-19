@@ -44,7 +44,7 @@ setData(res.data);
 }, [])
 
 return(
-<div>
+<div className="">
   <div>
     <div>
       <div className="py-2 mx-2 text-gray-50">Liste des propriétés</div>

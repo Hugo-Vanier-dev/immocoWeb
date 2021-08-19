@@ -181,9 +181,9 @@ function PropertyForm({ propertyId = null, modeEdit = false }) {
         <div className="text-blue-400 font-black mx-2 py-2">
           Informations sur la propriété
         </div>
-        <div>
+        <div className="bg-blue-100 p-2 m-2 flex justify-end rounded-md">
           <form onSubmit={(e) => submitForm(e)}>
-            <div id="propertyLabelId">
+            <div id="propertyLabelId" className="p-2 w-2/6">
               <p>
                 <input
                   type="text"
@@ -195,7 +195,7 @@ function PropertyForm({ propertyId = null, modeEdit = false }) {
                 />
               </p>
             </div>
-              <div id="propertyTypeId">
+              <div id="propertyTypeId" className="p-2 w-2/6">
                 <p>
                   Type de logement
                 {propertyTypes && (
@@ -219,7 +219,7 @@ function PropertyForm({ propertyId = null, modeEdit = false }) {
                 )}
               </p>
               </div>
-              <div id="priceOfPropertyId">
+              <div id="priceOfPropertyId" className="p-2 w-2/6">
                 <p>
                   Prix de vente
                   <input
@@ -233,7 +233,7 @@ function PropertyForm({ propertyId = null, modeEdit = false }) {
                   €
                 </p>
               </div>
-              <div id="addressOfPropertyId">
+              <div id="addressOfPropertyId" className="p-2 w-2/6">
                 <p>
                   Adresse
                   <input
@@ -247,7 +247,7 @@ function PropertyForm({ propertyId = null, modeEdit = false }) {
                 </p>
               </div>
               <div>
-                <div id="cityOfPropertyId">
+                <div id="cityOfPropertyId" className="p-2 w-2/6">
                   <p>
                     Ville
                     <input
@@ -260,7 +260,7 @@ function PropertyForm({ propertyId = null, modeEdit = false }) {
                     />
                   </p>
                 </div>
-                <div id="zipcodeId">
+                <div id="zipcodeId" className="p-2 w-2/6">
                   <p>
                     Code postale
                     <input
@@ -274,7 +274,7 @@ function PropertyForm({ propertyId = null, modeEdit = false }) {
                   </p>
                 </div>
               </div>
-              <div id="livingAreaId">
+              <div id="livingAreaId" className="p-2 w-2/6">
                 <p>
                   Surface habitable
                   <input
@@ -288,7 +288,7 @@ function PropertyForm({ propertyId = null, modeEdit = false }) {
                   m²
                 </p>
               </div>
-              <div id="nbOfBedroom">
+              <div id="nbOfBedroom" className="p-2 w-2/6">
                 <p>
                   <input
                     type="text"
@@ -301,7 +301,7 @@ function PropertyForm({ propertyId = null, modeEdit = false }) {
                   chambre(s)
                 </p>
               </div>
-              <div id="nbOfFloors">
+              <div id="nbOfFloors" className="p-2 w-2/6">
                 <p>
                   <input
                     type="text"
@@ -315,7 +315,7 @@ function PropertyForm({ propertyId = null, modeEdit = false }) {
                 </p>
               </div>
             
-            <div id="totalAreaId">
+            <div id="totalAreaId" className="p-2 w-2/6">
               <p>
                 Taille du terrain
                 <input
@@ -330,7 +330,7 @@ function PropertyForm({ propertyId = null, modeEdit = false }) {
               </p>
             </div>
             
-            <div id="gardenSelectorId">
+            <div id="gardenSelectorId" className="p-2 w-2/6">
               <div className="mx-auto text-center">
                 <p>
                   <input
@@ -356,7 +356,7 @@ function PropertyForm({ propertyId = null, modeEdit = false }) {
               </div>
             </div>
             
-            <div id="apptNumber">
+            <div id="apptNumber" className="p-2 w-2/6">
               <p>
                 Appartement n°
                 <input
@@ -370,7 +370,7 @@ function PropertyForm({ propertyId = null, modeEdit = false }) {
               </p>
             </div>
             
-            <div id="buildingNumberId">
+            <div id="buildingNumberId" className="p-2 w-2/6">
               <p>Bât.
                 <input
                   type="text"
@@ -383,7 +383,7 @@ function PropertyForm({ propertyId = null, modeEdit = false }) {
               </p>
             </div>
             
-            <div id="levelNumberId">
+            <div id="levelNumberId" className="p-2 w-2/6">
               <p>Palier
                 <input
                   type="text"
@@ -396,7 +396,7 @@ function PropertyForm({ propertyId = null, modeEdit = false }) {
               </p>
             </div>
             
-            <div id="heaterSelectId">
+            <div id="heaterSelectId" className="p-2 w-2/6">
               <p>
                 Type de chauffage
                 {heaterTypes && (
@@ -446,7 +446,7 @@ function PropertyForm({ propertyId = null, modeEdit = false }) {
               </p>
             </div>
             
-            <div id="checkboxesSelectorsId">
+            <div id="checkboxesSelectorsId" className="p-2 w-2/6">
               <div>
                 <div id="cellarId" className="lineSize mx-auto">
                   <p>
@@ -474,7 +474,7 @@ function PropertyForm({ propertyId = null, modeEdit = false }) {
                     />
                   </p>
                 </div>
-                <div id="parkingId">
+                <div id="parkingId" className="p-2 w-2/6">
                 <div className="mx-auto text-center">
                   <p>
                     Parking
@@ -533,7 +533,7 @@ function PropertyForm({ propertyId = null, modeEdit = false }) {
               </div>
             </div>
             
-            <div id="moreInformations">
+            <div id="moreInformations" className="p-2 w-2/6">
               <textarea
                 type="text"
                 name="description"
@@ -575,7 +575,7 @@ function PropertyForm({ propertyId = null, modeEdit = false }) {
               </div>
             </div>
 
-            <div id="userSelector">
+            <div id="userSelector" className="p-2 w-2/6">
               {currentUser &&
                 (currentUser.user_type.value === "admin" ||
                   currentUser.user_type.value === "secrétaire" ||

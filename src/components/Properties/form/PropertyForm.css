@@ -1,11 +1,14 @@
 #porpertyFormContainer {
-  width: 90%;
+  width: 100%;
   overflow: auto;
+  display: flex;
+  justify-content: center;
 }
-#porpertyFormContainer input, select, textarea{
+#porpertyFormContainer select, textarea{
   border-radius: 5px;
-  border: 1px solid #6e7179;
+  /*border: 1px solid #4a64aa;*/
   font-weight: normal;
+  padding: 3px;
   margin-top: 5px;
   margin-bottom: 5px;
 }

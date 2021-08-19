@@ -1,19 +1,14 @@
 import React, {useState} from 'react'
 import './ListClient.css'
 import ClientService from '../../shared/services/client.service'
-import { Link } from 'react-router-dom'
-import ClientForm from './form/ClientForm'
 
 
 
-function ListClient() {
+export default function ListClient({setClientId}) {
 const [data, setData] = useState([])
 
-const [clientId, setClientId] = useState(null);
 const handleClientClick = (e) =>{
-  /**
-   * lors de la sélection de l'élément voulu, on récupère la valeur de son id
-   */
+  
   setClientId(e.target.attributes.getNamedItem('data-id').value);
 }
 
@@ -24,16 +19,15 @@ setData(res.data);
 }, [])
 
 return(
-<div className="grid grid-cols-2 gap-0">
-  <div>
+<div>
     <div>
-      <div className="py-2 mx-2 text-blue-300 font-black">Liste des clients</div>
-      <div className="grid grid-cols-2 bg-blue-300 text-gray-50 p-1 mx-2">
+      <div className="py-2 text-blue-300 font-black">Liste des clients</div>
+      <div className="grid grid-cols-2 bg-blue-300 text-gray-50 p-1 rounded-md my-2">
         <div className="text-left mx-2">NOM</div>
         <div className="text-left mx-2">Prénom</div>
       </div>
     </div>
-    <div className="clientTableContainer mx-2">
+    <div className="clientTableContainer">
       <table className="">
       <tbody>
         {data.map(function(user, index){
@@ -47,11 +41,7 @@ return(
         </tbody>
       </table>
     </div>
-  </div>
-  <div>
-    <ClientForm edit={false} clientId={clientId}/>
-  </div>
 </div>
 );
 }
-export default ListClient;
+/** export default ListClient; */
