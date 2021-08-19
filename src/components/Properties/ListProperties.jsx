@@ -36,8 +36,6 @@ const handlePropertyClick = (e) =>{
   setPropertyId(e.target.attributes.getNamedItem('data-id').value);
 }
 
-console.log(checkbox);
-
 React.useEffect(() => {
 PropertyService.getAll('city','asc',100,0).then(res => {
   console.log(res.data)
@@ -46,7 +44,7 @@ setData(res.data);
 }, [])
 
 return(
-<div className="" >
+<div>
   <div>
     <div>
       <div className="py-2 mx-2 text-gray-50">Liste des propriétés</div>
@@ -70,7 +68,7 @@ return(
             {property.city}
             </td>
           <td data-id={property.id} className="text-center">{property.zipcode}</td>
-          <td data-id={property.id} className="text-center">{property.property_types}</td>
+          <td data-id={property.id} className="text-center">{property.property_type.value}</td>
           <td data-id={property.id} className="text-center">{property.livingArea} m²</td>
           <td data-id={property.id} className="text-right">{property.area} m²</td>
           <td data-id={property.id} className="text-right">{property.price} €</td>
@@ -82,34 +80,20 @@ return(
     </div>
   </div>
   <div>
-    
-    <Link to={`/createProperty/${propertyId}`} >
-    <input
-      type="submit"
-      value="Créer"
-      path={PropertyForm}
-      className="m-auto mt-5 text-gray-50 uppercase bg-green-300 hover:bg-green-600 font-bold p-2 pt-2 pb-2 mx-2 rounded-xl"
-    />
-    </Link>
-    <Link to={`/readProperty/${checkbox[0]}`} >
-    <input
-    type="submit"
-    value="Afficher"
-    className="m-auto mt-5 text-gray-50 uppercase bg-blue-300 hover:bg-blue-600 font-bold p-2 pt-2 pb-2 mx-2 rounded-xl"
-    />
-    </Link>
-    <input
-      type="submit"
-      value="Supprimer"
-      className="m-auto mt-5 text-gray-50 uppercase bg-red-300 hover:bg-red-600 font-bold p-2 pt-2 pb-2 mx-2 rounded-xl"
-    />
-    <input
-      type="button"
+    <Link to={`/createProperty/${propertyId}`}
+          className="w-1/12 p-2 mt-5 mx-2 text-gray-50 uppercase bg-green-300 hover:bg-green-600 font-bold rounded-xl"
+
+    >Créer</Link>
+    <Link to={`/readProperty/${checkbox[0]}`}
+          className="w-1/12 p-2 mt-5 mx-2 text-gray-50 uppercase bg-blue-300 hover:bg-blue-600 font-bold rounded-xl"
+    >Afficher</Link>
+    <button
       onClick={() => window.print()}
-      value="Imprimer"
-      className="m-auto mt-5 text-gray-50 uppercase bg-gray-400 hover:bg-yellow-400 font-bold p-2 pt-2 pb-2 mx-2 rounded-xl"
-    />
-   
+      className="w-1/12 p-2 mt-5 mx-2 text-gray-50 uppercase bg-gray-400 hover:bg-yellow-400 font-bold rounded-xl"
+    >Imprimer</button>
+    <Link to={`/deleteProperty/${checkbox[0]}`} 
+          className="inline-block w-1/12 p-2 mt-5 mx-2 text-gray-50 uppercase bg-red-300 hover:bg-red-600 font-bold rounded-xl" 
+    >Supprimer</Link>
   </div>
 </div>
 );

@@ -176,35 +176,34 @@ function PropertyForm({ propertyId = null, modeEdit = false }) {
   ]);
 
   return (
-    <div className="porpertyFormContainer m-auto">
-      <div className="py-2 mx-2 text-gray-50">
-        <div className="py-2 mx-2 text-blue-300 font-black">
+    <div id="porpertyFormContainer">
+      <div className="">
+        <div className="text-blue-400 font-black mx-2 py-2">
           Informations sur la propriété
         </div>
-        <div className="pt-2 pb-8 mx-2 grid  grid-flow-col auto-cols-8 auto-rows-auto text-gray-800 bg-blue-100 rounded-md">
+        <div>
           <form onSubmit={(e) => submitForm(e)}>
-            <div id="propertyLabelId" className="">
-              <p className="font-semibold text-gray-500">
+            <div id="propertyLabelId">
+              <p>
                 <input
                   type="text"
                   name="label"
-                  onChange={modeEdit ? (e) => textChange(e) : null}
+                  onChange={modeEdit ? (e) => textChange(e) : ()=> {}}
                   value={formValues.firstname}
                   readOnly={!modeEdit}
-                  className=" m-2 p-2 w-11/12 rounded-md text-center"
-                  placeholder="Intitulé du logement"
+                  placeholder="Intitulé de l'annonce"
                 />
               </p>
             </div>
-            <div id="propertyTypeId" className="">
-              <p className="font-semibold text-gray-500">
+              <div id="propertyTypeId">
+                <p>
+                  Type de logement
                 {propertyTypes && (
                   <select
                     readOnly={!modeEdit}
                     name="property_type_id"
-                    className="m-2 p-2 rounded-md text-center"
                     value={formValues.property_type_id}
-                    onChange={modeEdit ? (e) => handleChange(e) : null}
+                    onChange={modeEdit ? (e) => handleChange(e) : ()=> {}}
                   >
                     {propertyTypes.map((propertyType) => {
                       return (
@@ -219,134 +218,126 @@ function PropertyForm({ propertyId = null, modeEdit = false }) {
                   <p>{formErrors.property_type_id}</p>
                 )}
               </p>
-            </div>
-            <div id="priceOfPropertyId" className="">
-              <p className="font-semibold text-gray-500">
-                <input
-                  type="text"
-                  name="price"
-                  onChange={modeEdit ? (e) => textChange(e) : null}
-                  value={formValues.firstname}
-                  readOnly={!modeEdit}
-                  className="m-2 p-2 w-2/12 rounded-md text-center"
-                  placeholder="Prix"
-                />
-                €
-              </p>
-            </div>
-            <div id="gpsCoordId" className="grid grid-cols-3 grid-rows-2 font-semibold text-gray-500 border-2 border-blue-300 rounded-md w-9/12 m-2 mx-auto">
-              <div className="col-span-1 col-start-1 row-span-2 w-full p-2 mx-auto my-auto">Coordonnées GPS</div>
-              <div className="col-span-2 col-start-2 row-span-2">
-                <p id="gpsCoordTextId" className="grid grid-cols-1 ">
-                  <div className="cols-span-1 justify-items-end">
-                    Long.
-                    <input
-                      type="text"
-                      name="longitude"
-                      onChange={modeEdit ? (e) => textChange(e) : null}
-                      value={formValues.firstname}
-                      readOnly={!modeEdit}
-                      className="m-2 p-2 rounded-md text-center"
-                      placeholder="Longitude"
-                    />
-                    °
-                  </div>
-                  <div className="cols-span-1 ml-4 justify-items-end">
-                    Lat.
-                    <input
-                      type="text"
-                      name="latitude"
-                      onChange={modeEdit ? (e) => textChange(e) : null}
-                      value={formValues.firstname}
-                      readOnly={!modeEdit}
-                      className="m-2 p-2 rounded-md text-center"
-                      placeholder="Latitude"
-                    />
-                    °
-                  </div>
+              </div>
+              <div id="priceOfPropertyId">
+                <p>
+                  Prix de vente
+                  <input
+                    type="text"
+                    name="price"
+                    onChange={modeEdit ? (e) => textChange(e) : ()=> {}}
+                    value={formValues.firstname}
+                    readOnly={!modeEdit}
+                    placeholder="..."
+                  />
+                  €
                 </p>
               </div>
-            </div>
-            <div id="addressOfPropertyId" className="mx-auto">
-              <p className="font-semibold text-gray-500">
-                Adresse
-                <input
-                  type="text"
-                  name="address"
-                  onChange={modeEdit ? (e) => handleChange(e) : null}
-                  value={formValues.streetName}
-                  readOnly={!modeEdit}
-                  className=" m-2 p-2 w-10/12 rounded-md text-center"
-                  placeholder="Adresse"
-                />
-              </p>
-            </div>
-            <div id="cityOfPropertyId" className="mx-auto">
-              <p className="font-semibold text-gray-500">
-                Ville
-                <input
-                  type="text"
-                  name="city"
-                  onChange={modeEdit ? (e) => handleChange(e) : null}
-                  value={formValues.city}
-                  readOnly={!modeEdit}
-                  className=" m-2 p-2 w-5/12 rounded-md text-center"
-                  placeholder="Ville"
-                />
-              </p>
-            </div>
-            <div id="zipcodeId" className="mx-auto">
-              <p className="font-semibold text-gray-500">
-                Code postale
-                <input
-                  type="text"
-                  name="zipcode"
-                  onChange={modeEdit ? (e) => handleChange(e) : null}
-                  value={formValues.zipcode}
-                  readOnly={!modeEdit}
-                  className="m-2 p-2 w-1/12 rounded-md text-center"
-                  placeholder="Code postal"
-                />
-              </p>
-            </div>
-            <div id="totalAreaId" className="mx-auto">
-              <p className="font-semibold text-gray-500">
+              <div id="addressOfPropertyId">
+                <p>
+                  Adresse
+                  <input
+                    type="text"
+                    name="address"
+                    onChange={modeEdit ? (e) => handleChange(e) : ()=> {}}
+                    value={formValues.streetName}
+                    readOnly={!modeEdit}
+                    placeholder="..."
+                  />
+                </p>
+              </div>
+              <div>
+                <div id="cityOfPropertyId">
+                  <p>
+                    Ville
+                    <input
+                      type="text"
+                      name="city"
+                      onChange={modeEdit ? (e) => handleChange(e) : ()=> {}}
+                      value={formValues.city}
+                      readOnly={!modeEdit}
+                      placeholder="..."
+                    />
+                  </p>
+                </div>
+                <div id="zipcodeId">
+                  <p>
+                    Code postale
+                    <input
+                      type="text"
+                      name="zipcode"
+                      onChange={modeEdit ? (e) => handleChange(e) : ()=> {}}
+                      value={formValues.zipcode}
+                      readOnly={!modeEdit}
+                      placeholder="..."
+                    />
+                  </p>
+                </div>
+              </div>
+              <div id="livingAreaId">
+                <p>
+                  Surface habitable
+                  <input
+                    type="text"
+                    name="livingArea"
+                    onChange={modeEdit ? (e) => handleChange(e) : ()=> {}}
+                    value={formValues.livingArea}
+                    readOnly={!modeEdit}
+                    placeholder="Surface habitable"
+                  />
+                  m²
+                </p>
+              </div>
+              <div id="nbOfBedroom">
+                <p>
+                  <input
+                    type="text"
+                    name="bedroomNumber"
+                    onChange={modeEdit ? (e) => handleChange(e) : ()=> {}}
+                    value={formValues.bedroomNumber}
+                    readOnly={!modeEdit}
+                    placeholder="Nombre de chambre(s)"
+                  />
+                  chambre(s)
+                </p>
+              </div>
+              <div id="nbOfFloors">
+                <p>
+                  <input
+                    type="text"
+                    name="floorNumber"
+                    onChange={modeEdit ? (e) => handleChange(e) : ()=> {}}
+                    value={formValues.floorNumber}
+                    readOnly={!modeEdit}
+                    placeholder="Nombre d'étages"
+                  />
+                  étage(s)
+                </p>
+              </div>
+            
+            <div id="totalAreaId">
+              <p>
                 Taille du terrain
                 <input
                   type="text"
                   name="area"
-                  onChange={modeEdit ? (e) => handleChange(e) : null}
+                  onChange={modeEdit ? (e) => handleChange(e) : ()=> {}}
                   value={formValues.area}
                   readOnly={!modeEdit}
-                  className="m-2 w-2/12 p-2 rounded-md text-center"
                   placeholder="Superficie totale"
                 />
                 m²
               </p>
             </div>
-            <div id="livingAreaId" className="mx-auto">
-              <p className="font-semibold text-gray-500">
-                Surface habitable
-                <input
-                  type="text"
-                  name="livingArea"
-                  onChange={modeEdit ? (e) => handleChange(e) : null}
-                  value={formValues.livingArea}
-                  readOnly={!modeEdit}
-                  className="m-2 w-1/12 p-2 rounded-md text-center"
-                  placeholder="Surface habitable"
-                />
-                m²
-              </p>
-            </div>
-            <div id="gardenSelectorId" className="mx-auto">
+            
+            <div id="gardenSelectorId">
               <div className="mx-auto text-center">
-                <p className="font-semibold text-gray-500">
+                <p>
                   <input
                     type="checkbox"
                     name="garden"
                     id="checkboxId"
-                    onChange={modeEdit ? (e) => handleChange(e) : null}
+                    onChange={modeEdit ? (e) => handleChange(e) : ()=> {}}
                     value={formValues.garden}
                     readOnly={!modeEdit}
                     className="mx-2"
@@ -355,94 +346,65 @@ function PropertyForm({ propertyId = null, modeEdit = false }) {
                   <input
                     type="text"
                     name="gardenArea"
-                    onChange={modeEdit ? (e) => handleChange(e) : null}
+                    onChange={modeEdit ? (e) => handleChange(e) : ()=> {}}
                     value={formValues.gardenArea}
                     readOnly={!modeEdit}
-                    className="m-2 p-2 w-2/12 rounded-md text-center"
                     placeholder="Superficie du jardin"
                   />
                   m²
                 </p>
               </div>
             </div>
-            <div id="nbOfFloors" className="mx-auto">
-              <p className="font-semibold text-gray-500">
-                <input
-                  type="text"
-                  name="floorNumber"
-                  onChange={modeEdit ? (e) => handleChange(e) : null}
-                  value={formValues.floorNumber}
-                  readOnly={!modeEdit}
-                  className="m-2 p-2 w-1/12 rounded-md text-center"
-                  placeholder="Nombre d'étages"
-                />
-                étage(s)
-              </p>
-            </div>
+            
             <div id="apptNumber">
-              <p className="font-semibold text-gray-500">
+              <p>
                 Appartement n°
                 <input
                   type="text"
                   name="doorNumber"
-                  onChange={modeEdit ? (e) => handleChange(e) : null}
+                  onChange={modeEdit ? (e) => handleChange(e) : ()=> {}}
                   value={formValues.doorNumber}
                   readOnly={!modeEdit}
-                  className="m-2 p-2 w-1/12 rounded-md text-center"
-                  placeholder="Numéro d'appartement"
+                  placeholder="..."
                 />
               </p>
             </div>
-            <div id="nbOfBedroom" className="mx-auto rounded-md">
-              <p className="font-semibold text-gray-500">
-                <input
-                  type="text"
-                  name="bedroomNumber"
-                  onChange={modeEdit ? (e) => handleChange(e) : null}
-                  value={formValues.bedroomNumber}
-                  readOnly={!modeEdit}
-                  className=" m-3 p-2 rounded-md text-center"
-                  placeholder="Nombre de chambre"
-                />
-                chambre(s)
-              </p>
-            </div>
+            
             <div id="buildingNumberId">
               <p>Bât.
                 <input
                   type="text"
                   name="buildingNumber"
-                  onChange={modeEdit ? (e) => handleChange(e) : null}
+                  onChange={modeEdit ? (e) => handleChange(e) : ()=> {}}
                   value={formValues.buildingNumber}
                   readOnly={!modeEdit}
-                  className=" m-1 p-2 rounded-md text-center"
-                  placeholder="N° de bâtiment"
+                  placeholder="..."
                 />
               </p>
             </div>
+            
             <div id="levelNumberId">
               <p>Palier
                 <input
                   type="text"
                   name="level"
-                  onChange={modeEdit ? (e) => handleChange(e) : null}
+                  onChange={modeEdit ? (e) => handleChange(e) : ()=> {}}
                   value={formValues.level}
                   readOnly={!modeEdit}
-                  className=" m-1 p-2 rounded-md text-center"
-                  placeholder="Palier"
+                  placeholder="..."
                 />
               </p>
             </div>
-            <div id="heaterSelectId" className="">
-              <p className="font-semibold text-gray-500">
+            
+            <div id="heaterSelectId">
+              <p>
                 Type de chauffage
                 {heaterTypes && (
                   <select
                     readOnly={!modeEdit}
                     name="heater_type_id"
-                    className="m-2 p-2 rounded-md text-center"
                     value={formValues.heater_type_id}
-                    onChange={modeEdit ? (e) => handleChange(e) : null}
+                    onChange={modeEdit ? (e) => handleChange(e) : ()=> {}}
                   >
                     {heaterTypes.map((heaterType) => {
                       return (
@@ -458,16 +420,16 @@ function PropertyForm({ propertyId = null, modeEdit = false }) {
                 )}
               </p>
             </div>
+            
             <div id="shutterSelectId" className="">
-              <p className="font-semibold text-gray-500">
+              <p>
                 Type de volets
                 {shutterTypes && (
                   <select
                     readOnly={!modeEdit}
                     name="shutter_type_id"
-                    className="m-2 p-2 rounded-md text-center"
                     value={formValues.shutter_type_id}
-                    onChange={modeEdit ? (e) => handleChange(e) : null}
+                    onChange={modeEdit ? (e) => handleChange(e) : ()=> {}}
                   >
                     {shutterTypes.map((shutterType) => {
                       return (
@@ -483,109 +445,136 @@ function PropertyForm({ propertyId = null, modeEdit = false }) {
                 )}
               </p>
             </div>
-            <div id="checkboxesSelectorsId" className="my-3">
-              <div className="">
+            
+            <div id="checkboxesSelectorsId">
+              <div>
                 <div id="cellarId" className="lineSize mx-auto">
-                  <p className="font-semibold text-gray-500">
+                  <p>
                     Cave
                     <input
                       type="checkbox"
                       name="cellar"
                       id="checkboxLeft"
-                      onChange={modeEdit ? (e) => handleChange(e) : null}
+                      onChange={modeEdit ? (e) => handleChange(e) : ()=> {}}
                       value={formValues.cellar}
                       readOnly={!modeEdit}
-                      className="mx-5"
                     />
                   </p>
                 </div>
-                <div id="atticId" className="lineSize mx-auto">
-                  <p className="font-semibold text-gray-500">
+                <div id="atticId">
+                  <p>
                     Grenier
                     <input
                       type="checkbox"
                       name="attic"
                       id="checkboxLeft"
-                      onChange={modeEdit ? (e) => handleChange(e) : null}
+                      onChange={modeEdit ? (e) => handleChange(e) : ()=> {}}
                       value={formValues.attic}
                       readOnly={!modeEdit}
-                      className="mx-5"
                     />
                   </p>
                 </div>
-                <div id="parkingId" className="lineSize mx-auto">
+                <div id="parkingId">
                 <div className="mx-auto text-center">
-                  <p className="font-semibold text-gray-500">
+                  <p>
                     Parking
                     <input
                       type="checkbox"
                       name="parking"
                       id="checkboxLeft"
-                      onChange={modeEdit ? (e) => handleChange(e) : null}
+                      onChange={modeEdit ? (e) => handleChange(e) : ()=> {}}
                       value={formValues.parking}
                       readOnly={!modeEdit}
-                      className="mx-5"
                     />
                   </p>
                 </div>
               </div>
               </div>
               <div className="">
-                <div id="internetId" className="lineSize mx-auto">
-                  <p className="font-semibold text-gray-500">
+                <div id="internetId">
+                  <p>
                     Internet la Fibre
                     <input
                       type="checkbox"
                       name="opticalFiber"
                       id="checkboxRight"
-                      onChange={modeEdit ? (e) => handleChange(e) : null}
+                      onChange={modeEdit ? (e) => handleChange(e) : ()=> {}}
                       value={formValues.opticalFiber}
                       readOnly={!modeEdit}
-                      className="mx-5"
                     />
                   </p>
                 </div>
-                <div id="poolId" className="lineSize mx-auto">
-                  <p className="font-semibold text-gray-500">
+                <div id="poolId">
+                  <p>
                     Piscine
                     <input
-                      type="checkbox"
+                     type="checkbox"
                       name="swimmingPool"
                       id="checkboxRight"
-                      onChange={modeEdit ? (e) => handleChange(e) : null}
+                      onChange={modeEdit ? (e) => handleChange(e) : ()=> {}}
                       value={formValues.swimmingPool}
                       readOnly={!modeEdit}
-                      className="mx-5"
                     />
                   </p>
                 </div>
-                <div id="balconyId" className="lineSize mx-auto">
-                  <p className="font-semibold text-gray-500">
+                <div id="balconyId">
+                  <p>
                     Balcon
                     <input
                       type="checkbox"
                       name="balcony"
                       id="checkboxRight"
-                      onChange={modeEdit ? (e) => handleChange(e) : null}
+                      onChange={modeEdit ? (e) => handleChange(e) : ()=> {}}
                       value={formValues.balcony}
                       readOnly={!modeEdit}
-                      className="mx-5"
                     />
                   </p>
                 </div>
               </div>
             </div>
-            <div id="moreInformations" className="m-2 p-2">
+            
+            <div id="moreInformations">
               <textarea
                 type="text"
                 name="description"
-                onChange={modeEdit ? (e) => handleChange(e) : null}
+                onChange={modeEdit ? (e) => handleChange(e) : ()=> {}}
                 value={formValues.description}
                 readOnly={!modeEdit}
-                className="propertyInfoArea  w-full rounded-md text-center"
+                className="propertyInfoArea"
                 placeholder="Informations complémentaires"
               />
             </div>
+            
+            <div id="gpsCoordId">
+              <div >Coordonnées GPS</div>
+              <div>
+                <div id="gpsCoordTextId">
+                  Long.
+                    <input
+                      type="text"
+                      name="longitude"
+                      onChange={modeEdit ? (e) => textChange(e) : ()=> {}}
+                      value={formValues.firstname}
+                      readOnly={!modeEdit}
+                      placeholder="Longitude"
+                    />
+                    °
+                  </div>
+                  <div>
+                    Lat.
+                    <input
+                      type="text"
+                      name="latitude"
+                      onChange={modeEdit ? (e) => textChange(e) : ()=> {}}
+                      value={formValues.firstname}
+                      readOnly={!modeEdit}
+                      placeholder="Latitude"
+                    />
+                    °
+                  </div>
+              </div>
+            </div>
+
             <div id="userSelector">
               {currentUser &&
                 (currentUser.user_type.value === "admin" ||
@@ -595,9 +584,8 @@ function PropertyForm({ propertyId = null, modeEdit = false }) {
                   <select
                     readOnly={!modeEdit}
                     value={formValues.user_id}
-                    className="row-start-2 bg-blue-100 m-2 p-2 text-start"
                     name="user_id"
-                    onChange={modeEdit ? (e) => handleChange(e) : null}
+                    onChange={modeEdit ? (e) => handleChange(e) : ()=> {}}
                   >
                     {users.map((user) => {
                       return (

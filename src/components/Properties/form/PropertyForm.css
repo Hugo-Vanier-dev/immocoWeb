@@ -1,5 +1,18 @@
-.porpertyFormContainer {
-  width: 38.5vw;
+#porpertyFormContainer {
+  width: 90%;
+  overflow: auto;
+}
+#porpertyFormContainer input, select, textarea{
+  border-radius: 5px;
+  border: 1px solid #6e7179;
+  font-weight: normal;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+#porpertyFormContainer input, select{
+  padding: 5px;
+  margin-left: 10px;
+  margin-right:10px;
 }
 .propertyInfoArea {
   min-width: 20vw;
@@ -20,6 +33,4 @@
     height: 20px;
     width: 20px;
     transform: translateY(5px);
-}
-#gpsCoordTextId{
 }
