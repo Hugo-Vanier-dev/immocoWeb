@@ -11,13 +11,13 @@ function SideMenu() {
                     <a href="/dashboard" className="m-auto mt-5 text-blue-400 hover:text-green-500 font-bold text-lg uppercase">Tableau de bord</a> 
                 </div>       
                 <div className="mt-10">
-                    <a href="/listeClient" className="m-auto mt-5 text-blue-400 hover:text-green-500 font-bold text-lg uppercase">Clients</a>  
+                    <a href="/clientPage" className="m-auto mt-5 text-blue-400 hover:text-green-500 font-bold text-lg uppercase">Clients</a>  
                 </div>      
                 <div className="mt-10">
-                    <a href="../listProperty" className="m-auto mt-5 text-blue-400 hover:text-green-500 font-bold text-lg uppercase">Propriétés</a>
+                    <a href="/propertyPage" className="m-auto mt-5 text-blue-400 hover:text-green-500 font-bold text-lg uppercase">Propriétés</a>
                 </div>   
                 <div className="mt-10">
-                    <a href="../listUser" className="m-auto mt-5 text-blue-400 hover:text-green-500 font-bold text-lg uppercase">Employés</a>
+                    <a href="/listUser" className="m-auto mt-5 text-blue-400 hover:text-green-500 font-bold text-lg uppercase">Employés</a>
                 </div>
             </div>
         </div>

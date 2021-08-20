@@ -4,19 +4,20 @@ import SideMenu from "./components/navigation/sideMenu/SideMenu";
 import { InitializeUserContext } from "./shared/context/userContext";
 
 import ClientPage from "./components/Clients/ClientPage";
-import CreateClient from "./components/Clients/CreateClient";
-import ReadClient from "./components/Clients/ReadClient";
-import UpdateClient from "./components/Clients/UpdateClient";
-import ListClient from "./components/Clients/ListClient";
+// import CreateClient from "./components/Clients/CreateClient";
+// import ReadClient from "./components/Clients/ReadClient";
+// import UpdateClient from "./components/Clients/UpdateClient";
+// import ListClient from "./components/Clients/ListClient";
 
 import CreateRdv from "./components/Planning/CreateRdv";
 import ReadRdv from "./components/Planning/ReadRdv";
 import UpdateRdv from "./components/Planning/UpdateRdv";
 
+import PropertyPage from "./components/Properties/PropertyPage";
 import CreateProperty from "./components/Properties/CreateProperty";
-import ReadProperty from "./components/Properties/ReadProperty";
-import UpdateProperty from "./components/Properties/UpdateProperty";
-import PropertyList from "./components/Properties/ListProperties";
+// import ReadProperty from "./components/Properties/ReadProperty";
+// import UpdateProperty from "./components/Properties/UpdateProperty";
+// import PropertyList from "./components/Properties/ListProperties";
 
 import CreateUser from "./components/Users/CreateUser";
 import ReadUser from "./components/Users/ReadUser";
@@ -83,7 +84,11 @@ function App() {
                   <ReadRdv />
                 </PrivateRoute>
 
-                <PrivateRoute path="/createProperty">
+                <PrivateRoute path="/propertyPage">
+                  <PropertyPage />
+                </PrivateRoute>
+
+                {/* <PrivateRoute path="/createProperty">
                   <CreateProperty />
                 </PrivateRoute>
                 <PrivateRoute path="/updateProperty/:id">
@@ -94,7 +99,7 @@ function App() {
                 </PrivateRoute>
                 <PrivateRoute path="/listProperty">
                   <PropertyList />
-                </PrivateRoute>
+                </PrivateRoute> */}
   
                 <PrivateRoute path="/createUser">
                   <CreateUser />

@@ -178,7 +178,7 @@ function PropertyForm({ propertyId = null, modeEdit = false }) {
   return (
     <div id="porpertyFormContainer">
       <div className="">
-        <div className="text-blue-400 font-black mx-2 py-2">
+        <div className="text-blue-300 font-black mx-2 py-2">
           Informations sur la propriété
         </div>
         <div className="bg-blue-100 p-2 m-2 flex justify-end rounded-md">
