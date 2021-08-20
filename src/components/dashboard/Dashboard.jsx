@@ -1,8 +1,6 @@
 import React from 'react';
 import './Dashboard.css';
 import Calendar from '../dashboard/calendar/Calendar';
-import EmployeeStatsPage from '../statistics/Statistics';
-import SalesObjectivesPage from '../objectives/Objectives';
 
 function DashboardPage(){
     return(
