@@ -41,7 +41,7 @@ function Home() {
 
 function App() {
     return (
-      <div className="App grid grid-cols-6 gap-2 grid-flow-col">
+      <div className="App grid grid-cols-6 grid-flow-col">
         <Router>
             <InitializeUserContext>
             <PrivateRoute> 

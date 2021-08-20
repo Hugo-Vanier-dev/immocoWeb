@@ -187,15 +187,19 @@ console.log(clientId);
         <div className="grid grid-rows-1">
           <form onSubmit={(e) => submitForm(e)}>
             <div className="grid grid-cols-2 w-auto">
-              <input
-                  type="text"
-                  name="firstname"
-                  onChange={modeEdit ? (e) => textChange(e) : null}
-                  value={formValues.firstname}
-                  readOnly={!modeEdit}
-                  className="col-start-1 m-2 p-2 rounded-md text-center border-2 border-blue-300"
-                  placeholder="Prénom"
-                />
+              <fieldset>
+                <label for="firstname">Prénom
+                  <input
+                    id="firstname"
+                    type="text"
+                    name="firstname"
+                    onChange={modeEdit ? (e) => textChange(e) : null}
+                    value={formValues.firstname}
+                    readOnly={!modeEdit}
+                    className="col-start-1 m-2 p-2 rounded-md text-center border-2 border-blue-300"
+                    placeholder="Prénom"
+                    /></label>
+              </fieldset>
               {formErrors.firstname && <p>{formErrors.firstname}</p>}
               <input
                 type="text"
@@ -356,7 +360,7 @@ console.log(clientId);
                   onClick={() => setModeEdit(!modeEdit)}
                   type="button"
                   value="Modifier"
-                  className="m-auto mt-5 text-white bg-blue-300 hover:bg-blue-600 uppercase font-bold p-2 pt-2 pb-2 mx-2 rounded-xl"
+                  className="m-auto mt-5 text-white bg-yellow-200 hover:bg-yellow-400 uppercase font-bold p-2 pt-2 pb-2 mx-2 rounded-xl"
                 />
             )}
             <input
