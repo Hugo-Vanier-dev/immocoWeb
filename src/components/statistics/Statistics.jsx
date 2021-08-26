@@ -1,6 +1,6 @@
 
 import React from 'react';
-import {Doughnut} from 'react-chartjs-2';
+import {Bar} from 'react-chartjs-2';
 
 const state = {
   labels: ['Jan', 'Fév', 'Mar',
@@ -24,8 +24,8 @@ const state = {
                       'rgba(150,230,180,0.5)',
                       'rgba(120,150,180,0.5)',
                       'rgba(220,150,180,0.5)'],
-      borderColor: 'rgba(150,150,150,0.1)',
-      borderWidth: 2,
+      borderColor: 'rgba(250,250,250,1)',
+      borderWidth: 3,
       data: [10, 30, 40, 30, 30, 50, 70, 80, 60, 30, 20, 20]
     }
   ]
@@ -34,7 +34,7 @@ const state = {
 export default function EmployeeStatsPage() {
     return (
       <div>
-        <Doughnut
+        <Bar
           data={state}
           options={{  
             showLines: false,
@@ -49,14 +49,14 @@ export default function EmployeeStatsPage() {
             title:{
               display:true,
               text:'Ventes annuelles',
-              position:'right',
-              fontColor:'#000',
+              position:'top',
+              fontColor:'rgba(250,250,250,1)',
               fontSize:16
             },
             legend:{
-              display:1,
+              display:0,
               align:'start',
-              position:'bottom'
+              position:'top'
             }
           }}
         />

@@ -1,0 +1,17 @@
+table {
+    width: 100%;
+}
+
+.tableContainer{
+    height: 80vh;
+    overflow: auto;
+}
+
+th, td {
+    text-align: left;
+    padding: 16px;
+}
+
+tr:nth-child(even) {
+    background-color: rgba(200,220,230,1);
+}

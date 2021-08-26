@@ -1,6 +1,6 @@
 import instance from "./instanceAxios";
 
-class ClientService {
+class PropertyService {
 
     path = '/properties';
 
@@ -21,12 +21,12 @@ class ClientService {
         return instance.get(`${this.path}/${id}`);
     }
 
-    getByClient(clientId) {
-        return instance.get(`${this.path}/clients/${clientId}`);
+    getByProperty(propertyId) {
+        return instance.get(`${this.path}/propertys/${propertyId}`);
     }
 
-    getByClientWish(clientWishId) {
-        return instance.get(`${this.path}/clientsWishes/${clientWishId}`);
+    getByPropertyWish(propertyWishId) {
+        return instance.get(`${this.path}/propertysWishes/${propertyWishId}`);
     }
 
     create(data) {
@@ -43,4 +43,4 @@ class ClientService {
     
 }
 
-export default new ClientService();
+export default new PropertyService();
