@@ -46,11 +46,11 @@ setData(res.data);
 }, [])
 
 return(
-<div>
+<div className="" >
   <div>
     <div>
       <div className="py-2 mx-2 text-gray-50">Liste des propriétés</div>
-      <div className="grid grid-cols-6 bg-blue-400 text-gray-50 p-1 mx-2">
+      <div className="grid grid-cols-6 bg-blue-300 text-gray-50 p-1 mx-2">
         <div className="text-left mx-2">Localité</div>
         <div className="text-center mx-2">Code postal</div>
         <div className="text-center mx-2">Type de bien</div>
@@ -64,7 +64,7 @@ return(
       <tbody>
         {data.map(function(property, index){
         return(
-        <tr key={property.id} id={property.id} className="bg-white hover:bg-green-300 grid grid-cols-6">
+        <tr key={property.id} id={property.id} className="bg-white hover:bg-blue-400 hover:text-gray-100 grid grid-cols-6">
           <td data-id={property.id} className="text-left">
             <input type="checkbox" onChange={handleChange} className="mx-4" id={property.id} />
             {property.city}
