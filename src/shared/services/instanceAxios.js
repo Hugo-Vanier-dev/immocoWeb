@@ -1,10 +1,8 @@
 import axios from "axios";
 
 const instance = axios.create({
-    baseURL: `http://localhost:8000/api`,
-    headers: {
-        "Content-type": "application/json"
-    }
+    baseURL: `https://fierce-cove-97875.herokuapp.com/api`,
+    timeout: 1000
 });
 
 instance.interceptors.request.use(function (config) {
@@ -16,5 +14,11 @@ instance.interceptors.request.use(function (config) {
 }, function (error) {
     return Promise.reject(error);
 });
+
+instance.interceptors.response.use(function (config) {
+    console.log(config);
+}, function(error) {
+    console.log(error);
+})
 
 export default instance;

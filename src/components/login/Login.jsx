@@ -31,6 +31,7 @@ function LoginPage() {
           setFormError('Adresse mail ou mot de passe incorrecte.');
         }
         UserService.getMe().then(res => {
+          console.log(res.data);
           if (res.data) {
             localStorage.setItem('user', JSON.stringify(res.data));
             setRedirect(true);
