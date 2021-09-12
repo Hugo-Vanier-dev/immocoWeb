@@ -1,8 +1,9 @@
 import logo from "../../assets/img/icoLogo.png";
 import "./Login.css";
 import React from "react";
-import UserService from "../../shared/services/user.service";
 import { Redirect } from "react-router-dom";
+import authService from "../../shared/services/auth.service";
+import { setRefreshTime } from "../../shared/services/instanceAxios";
 
 function LoginPage() {
   const mailregex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -23,22 +24,23 @@ function LoginPage() {
       mail: mail,
       password: password,
     };
-    UserService.login(data)
+    authService.login(data)
       .then((response) => {
         if (response.data.token) {
           localStorage.setItem('token', JSON.stringify(response.data));
+          authService.getMe().then(res => {
+            if (res.data) {
+              localStorage.setItem('user', JSON.stringify(res.data));
+              setRedirect(true);
+              window.location.reload();
+            } else {
+              setFormError('Adresse mail ou mot de passe incorrecte.');
+            }
+          })
         } else {
           setFormError('Adresse mail ou mot de passe incorrecte.');
         }
-        UserService.getMe().then(res => {
-          console.log(res.data);
-          if (res.data) {
-            localStorage.setItem('user', JSON.stringify(res.data));
-            setRedirect(true);
-          } else {
-            setFormError('Adresse mail ou mot de passe incorrecte.');
-          }
-        })
+        
       })
       .catch((error) => {
           console.log(error);
