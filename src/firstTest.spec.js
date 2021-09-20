@@ -1,4 +1,4 @@
-/// <reference types="cypress" />
+// / <reference types='cypress' />
 
 /** DEBUGGING
  * it.only exécute le scénario uniquement
