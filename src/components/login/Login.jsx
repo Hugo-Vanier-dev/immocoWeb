@@ -49,16 +49,17 @@ function LoginPage() {
     return <Redirect to="/home" />;
   }
   return (
-    <div className="LoginPage flex">
-      <div className="LoginPageBox justify-between m-auto p-4 text-center bg-gray-500 rounded-xl shadow-sm">
-        <div className="LogoIcoLogin m-5">
+    <div className="LoginPage flex justify-center items-center">
+      <div className="LoginPageBox p-4 bg-gray-300 rounded-xl shadow-sm">
+        <div className="LogoIcoLogin">
           <img src={logo} alt="logo_ImmoCo" className="LogoIcoPicture" />
         </div>
         <div className="">
           <form onSubmit={(e) => submitForm(e)}>
             <h1 className="uppercase text-center align-middle text-blue-600 text-opacity-75 font-bold text-2xl font-sans">
               immoco
-            </h1>
+            </h1>            
+            <div>Email</div>
             <input
               type="email"
               onChange={(e) => setMail(e.target.value)}
@@ -67,6 +68,7 @@ function LoginPage() {
               placeholder="@"
             />
             <p>{mailError}</p>
+            <div>Mot de passe</div>
             <input
               type="password"
               onChange={(e) => setPass(e.target.value)}
