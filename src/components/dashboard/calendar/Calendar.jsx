@@ -25,21 +25,21 @@ function Calendar(){
 
   return(
     <>
-      <div id="container" className="bg-gray-200 m-3 p-2 rounded-md">
+      <div id="container" className="shadow m-3 p-2 rounded-md">
         <CalendarHeader 
           dateDisplay={dateDisplay}
           onNext={() => setNav(nav + 1)}
           onBack={() => setNav(nav - 1)}
         />
 
-        <div id="weekdays" className="grid grid-cols-7 text-blue-400 font-black text-xs uppercase">
-          <div>Sunday</div>
-          <div>Monday</div>
-          <div>Tuesday</div>
-          <div>Wednesday</div>
-          <div>Thursday</div>
-          <div>Friday</div>
-          <div>Saturday</div>
+        <div id="weekdays" className="grid grid-cols-7 gap-2 text-blue-400 font-bold text-xs pb-2 pt-4">
+          <div>Dimanche</div>
+          <div>Lundi</div>
+          <div>Mardi</div>
+          <div>Mercredi</div>
+          <div>Jeudi</div>
+          <div>Vendredi</div>
+          <div>Samedi</div>
         </div>
 
         <div id="calendar" className="grid grid-cols-7 gap-2 py-2">

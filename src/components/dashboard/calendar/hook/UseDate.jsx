@@ -7,7 +7,7 @@ export const UseDate = (events, nav) =>{
   const eventForDate = date => events.find(e => e.date === date);
 
   useEffect(() => {
-    const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    const weekdays = ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'];
     const dt = new Date();
 
     if (nav !== 0) {
@@ -20,14 +20,14 @@ export const UseDate = (events, nav) =>{
 
     const firstDayOfMonth = new Date(year, month, 1);
     const daysInMonth = new Date(year, month + 1, 0).getDate();
-    const dateString = firstDayOfMonth.toLocaleDateString('en-us', {
+    const dateString = firstDayOfMonth.toLocaleDateString('fr-FR', {
       weekday: 'long',
       year: 'numeric',
       month: 'numeric',
       day: 'numeric',
     });
 
-    setDateDisplay(`${dt.toLocaleDateString('en-us', { month: 'long' })} ${year}`);
+    setDateDisplay(`${dt.toLocaleDateString('fr-FR', { month: 'long' })} ${year}`);
     const paddingDays = weekdays.indexOf(dateString.split(', ')[0]);
 
     const daysArr = [];

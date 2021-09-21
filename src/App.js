@@ -3,19 +3,21 @@ import "./App.css";
 import SideMenu from "./components/navigation/sideMenu/SideMenu";
 import { InitializeUserContext } from "./shared/context/userContext";
 
-import CreateClient from "./components/Clients/CreateClient";
-import ReadClient from "./components/Clients/ReadClient";
-import UpdateClient from "./components/Clients/UpdateClient";
-import ListClient from "./components/Clients/ListClient";
+import ClientPage from "./components/Clients/ClientPage";
+// import CreateClient from "./components/Clients/CreateClient";
+// import ReadClient from "./components/Clients/ReadClient";
+// import UpdateClient from "./components/Clients/UpdateClient";
+// import ListClient from "./components/Clients/ListClient";
 
 import CreateRdv from "./components/Planning/CreateRdv";
 import ReadRdv from "./components/Planning/ReadRdv";
 import UpdateRdv from "./components/Planning/UpdateRdv";
 
+import PropertyPage from "./components/Properties/PropertyPage";
 import CreateProperty from "./components/Properties/CreateProperty";
-import ReadProperty from "./components/Properties/ReadProperty";
-import UpdateProperty from "./components/Properties/UpdateProperty";
-import PropertyList from "./components/Properties/ListProperties";
+// import ReadProperty from "./components/Properties/ReadProperty";
+// import UpdateProperty from "./components/Properties/UpdateProperty";
+// import PropertyList from "./components/Properties/ListProperties";
 
 import CreateUser from "./components/Users/CreateUser";
 import ReadUser from "./components/Users/ReadUser";
@@ -39,15 +41,15 @@ function Home() {
 
 function App() {
     return (
-      <div className="App grid grid-cols-9 bg-gray-700">
+      <div className="App grid grid-cols-6 grid-flow-col">
         <Router>
             <InitializeUserContext>
             <PrivateRoute> 
-            <div className="divSideMenu">
+            <div className="divSideMenu w-full col-start-1 col-span-1">
               <SideMenu />
             </div>
             </PrivateRoute>
-            <div className="divContentArea col-start-2 col-span-9">
+            <div className="divContentArea col-start-2 col-span-5 items-center">
               <Switch>
 
                 <Route path="/login" exact component={LoginPage} />
@@ -55,7 +57,11 @@ function App() {
                   <DashboardPage />
                 </PrivateRoute>
 
-                <PrivateRoute path="/createClient">
+                <PrivateRoute path="/clientPage">
+                  <ClientPage />
+                </PrivateRoute>
+
+                {/* <PrivateRoute path="/createClient">
                   <CreateClient />
                 </PrivateRoute>
                 <PrivateRoute path="/updateClient/:id">
@@ -66,7 +72,7 @@ function App() {
                 </PrivateRoute>
                 <PrivateRoute path="/listeClient">
                   <ListClient />
-                </PrivateRoute>
+                </PrivateRoute> */}
 
                 <PrivateRoute path="/createRdv">
                   <CreateRdv />
@@ -78,7 +84,11 @@ function App() {
                   <ReadRdv />
                 </PrivateRoute>
 
-                <PrivateRoute path="/createProperty">
+                <PrivateRoute path="/propertyPage">
+                  <PropertyPage />
+                </PrivateRoute>
+
+                {/* <PrivateRoute path="/createProperty">
                   <CreateProperty />
                 </PrivateRoute>
                 <PrivateRoute path="/updateProperty/:id">
@@ -89,7 +99,7 @@ function App() {
                 </PrivateRoute>
                 <PrivateRoute path="/listProperty">
                   <PropertyList />
-                </PrivateRoute>
+                </PrivateRoute> */}
   
                 <PrivateRoute path="/createUser">
                   <CreateUser />

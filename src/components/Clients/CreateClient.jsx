@@ -1,9 +1,9 @@
 import React from 'react';
-import ClientForm from './form/ClientForm';
+import NewClientForm from './form/NewClientForm';
 
 function CreateClient() {
   return(
-    <ClientForm clientId={null} modeEdit={true} />
+    <NewClientForm clientId={null} modeEdit={true} />
   );
 }
 export default CreateClient;

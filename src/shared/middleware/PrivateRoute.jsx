@@ -1,6 +1,5 @@
 import React from "react";
 import { Redirect, Route } from "react-router-dom";
-import { UseUserContext } from "../context/userContext";
 
 function PrivateRoute({ children, ...rest }) {
     const token = JSON.parse(localStorage.getItem('token'));

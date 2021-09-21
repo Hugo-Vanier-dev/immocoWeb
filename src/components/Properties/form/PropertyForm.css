@@ -1,0 +1,39 @@
+#porpertyFormContainer {
+  width: 100%;
+  overflow: auto;
+  display: flex;
+  justify-content: center;
+}
+#porpertyFormContainer select, textarea{
+  border-radius: 5px;
+  /*border: 1px solid #4a64aa;*/
+  font-weight: normal;
+  padding: 3px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+#porpertyFormContainer input, select{
+  padding: 5px;
+  margin-left: 10px;
+  margin-right:10px;
+}
+.propertyInfoArea {
+  min-width: 20vw;
+  max-width: 36.5vw;
+  height: 20vh;
+}
+#checkboxId {
+    height: 20px;
+    width: 20px;
+    transform: translateY(5px);
+}
+#checkboxLeft {
+    height: 20px;
+    width: 20px;
+    transform: translateY(5px);
+}
+#checkboxRight {
+    height: 20px;
+    width: 20px;
+    transform: translateY(5px);
+}
