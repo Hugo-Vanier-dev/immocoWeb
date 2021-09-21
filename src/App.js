@@ -31,13 +31,6 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import PrivateRoute from './shared/middleware/PrivateRoute';
 
-function Home() {
-  return (
-    <div>
-      <h1>Home Page</h1>
-    </div>
-  );
-}
 
 function App() {
     return (
