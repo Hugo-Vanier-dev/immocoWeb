@@ -3,7 +3,7 @@ import PropertyService from "../../../shared/services/property.service";
 import PropertyTypeService from "../../../shared/services/propertyType.service";
 import HeaterTypeService from "../../../shared/services/heaterType.service";
 import ShutterTypeService from "../../../shared/services/shutterType.service";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import { UseUserContext } from "../../../shared/context/userContext";
 import UserService from "../../../shared/services/user.service";
 import { toast } from "react-toastify";
@@ -180,8 +180,9 @@ function PropertyForm({ propertyId = null, edit = false }) {
           Informations sur la propriété
         </div>
         <div id="propertyInputContainer" className="bg-blue-100 p-2 my-2 rounded-md">
-          <form className="grid grid-cols-4"
+          <form className="flex flex-auto"
                 onSubmit={(e) => submitForm(e)}>
+            <div className="grid grid-cols-8 justify-center">
               <input
                 id="propertyLabelId"
                 type="text"
@@ -190,400 +191,420 @@ function PropertyForm({ propertyId = null, edit = false }) {
                 value={formValues.firstname}
                 readOnly={!modeEdit}
                 placeholder="Intitulé de l'annonce"
-                className="col-span-4 p-2 mb-5 rounded-md text-center"
+                className="col-span-8 p-2 mb-5 rounded-md text-center"
               />
-            <div id="propertyTypeId" className="grid col-span-4 justify-items-stretch">
-              Type de logement
-              {propertyTypes && (
-                <select
-                  readOnly={!modeEdit}
-                  name="property_type_id"
-                  value={formValues.property_type_id}
-                  onChange={modeEdit ? (e) => handleChange(e) : () => {}}
-                >
-                  {propertyTypes.map((propertyType) => {
-                    return (
-                      <option key={propertyType.id} value={propertyType.id}>
-                        {propertyType.value}
-                      </option>
-                    );
-                  })}
-                </select>
-              )}
-              {formErrors.property_type_id && (
-                <p>{formErrors.property_type_id}</p>
-              )}
-            </div>
-            <div id="priceOfPropertyId" className="my-1 flex justify-end col-start-3 col-span-2">
-              {/* Prix de vente */}
-              <div className="my-auto">€</div>
-              <input
-                type="text"
-                name="price"
-                onChange={modeEdit ? (e) => textChange(e) : () => {}}
-                value={formValues.firstname}
-                readOnly={!modeEdit}
-                placeholder="..."
-                className="rounded-md text-right"
-              />
-            </div>
-            <div id="addressOfPropertyId" className="my-1 flex justify-end col-start-3 col-span-2">
-              Voie
-              <input
-                type="text"
-                name="address"
-                onChange={modeEdit ? (e) => handleChange(e) : () => {}}
-                value={formValues.streetName}
-                readOnly={!modeEdit}
-                placeholder="Voie"
-                className="rounded-md text-right"
-              />
-            </div>
-            <div>
-              <div id="cityOfPropertyId" className="my-1 flex justify-end col-start-3 col-span-2 rounded">
-                Ville
-                <input
-                  type="text"
-                  name="city"
-                  onChange={modeEdit ? (e) => handleChange(e) : () => {}}
-                  value={formValues.city}
-                  readOnly={!modeEdit}
-                  placeholder="..."
-                  className="rounded-md text-right"
-                />
-              </div>
-              <div id="zipcodeId" className="p-2 w-auto">
-                Code postale
-                <input
-                  type="text"
-                  name="zipcode"
-                  onChange={modeEdit ? (e) => handleChange(e) : () => {}}
-                  value={formValues.zipcode}
-                  readOnly={!modeEdit}
-                  placeholder="..."
-                  className="rounded-md text-right"
-                />
-              </div>
-            </div>
-            <div id="livingAreaId" className="p-2 w-auto">
-              Surface habitable
-              <input
-                type="text"
-                name="livingArea"
-                onChange={modeEdit ? (e) => handleChange(e) : () => {}}
-                value={formValues.livingArea}
-                readOnly={!modeEdit}
-                placeholder="Surface habitable"
-                className="rounded-md text-right"
-              />
-              m²
-            </div>
-            <div id="nbOfBedroom" className="p-2 w-auto">
-              <input
-                type="text"
-                name="bedroomNumber"
-                onChange={modeEdit ? (e) => handleChange(e) : () => {}}
-                value={formValues.bedroomNumber}
-                readOnly={!modeEdit}
-                placeholder="Nombre de chambre(s)"
-                className="rounded-md text-right"
-              />
-              chambre(s)
-            </div>
-            <div id="nbOfFloors" className="p-2 w-auto">
-              <input
-                type="text"
-                name="floorNumber"
-                onChange={modeEdit ? (e) => handleChange(e) : () => {}}
-                value={formValues.floorNumber}
-                readOnly={!modeEdit}
-                placeholder="Nombre d'étages"
-                className="rounded-md text-right"
-              />
-              étage(s)
-            </div>
-
-            <div id="totalAreaId" className="p-2 w-auto">
-              Taille du terrain
-              <input
-                type="text"
-                name="area"
-                onChange={modeEdit ? (e) => handleChange(e) : () => {}}
-                value={formValues.area}
-                readOnly={!modeEdit}
-                placeholder="Superficie totale"
-                className="rounded-md text-right"
-              />
-              m²
-            </div>
-
-            <div id="gardenSelectorId" className="p-2 w-auto">
-              <div className="mx-auto text-center">
-                <input
-                  type="checkbox"
-                  name="garden"
-                  id="checkboxId"
-                  onChange={modeEdit ? (e) => handleChange(e) : () => {}}
-                  value={formValues.garden}
-                  readOnly={!modeEdit}
-                  className="mx-2"
-                />
-                Jardin
-                <input
-                  type="text"
-                  name="gardenArea"
-                  onChange={modeEdit ? (e) => handleChange(e) : () => {}}
-                  value={formValues.gardenArea}
-                  readOnly={!modeEdit}
-                  placeholder="Superficie du jardin"
-                />
-                m²
-              </div>
-            </div>
-
-            <div id="apptNumber" className="p-2 w-auto">
-              Appartement n°
-              <input
-                type="text"
-                name="doorNumber"
-                onChange={modeEdit ? (e) => handleChange(e) : () => {}}
-                value={formValues.doorNumber}
-                readOnly={!modeEdit}
-                placeholder="..."
-                className="rounded-md text-right"
-              />
-            </div>
-
-            <div id="buildingNumberId" className="p-2 w-auto">
-              Bât.
-              <input
-                type="text"
-                name="buildingNumber"
-                onChange={modeEdit ? (e) => handleChange(e) : () => {}}
-                value={formValues.buildingNumber}
-                readOnly={!modeEdit}
-                placeholder="..."
-                className="rounded-md text-right"
-              />
-            </div>
-
-            <div id="levelNumberId" className="p-2 w-auto">
-              Palier
-              <input
-                type="text"
-                name="level"
-                onChange={modeEdit ? (e) => handleChange(e) : () => {}}
-                value={formValues.level}
-                readOnly={!modeEdit}
-                placeholder="..."
-                className="rounded-md text-right"
-              />
-            </div>
-
-            <div id="heaterSelectId" className="p-2 w-auto">
-              Type de chauffage
-              {heaterTypes && (
-                <select
-                  readOnly={!modeEdit}
-                  name="heater_type_id"
-                  value={formValues.heater_type_id}
-                  onChange={modeEdit ? (e) => handleChange(e) : () => {}}
-                >
-                  {heaterTypes.map((heaterType) => {
-                    return (
-                      <option key={heaterType.id} value={heaterType.id}>
-                        {heaterType.value}
-                      </option>
-                    );
-                  })}
-                </select>
-              )}
-              {formErrors.heater_type_id && <p>{formErrors.heater_type_id}</p>}
-            </div>
-
-            <div id="shutterSelectId">
-              Type de volets
-              {shutterTypes && (
-                <select
-                  readOnly={!modeEdit}
-                  name="shutter_type_id"
-                  value={formValues.shutter_type_id}
-                  onChange={modeEdit ? (e) => handleChange(e) : () => {}}
-                  className="p-2 w-auto"
-                >
-                  {shutterTypes.map((shutterType) => {
-                    return (
-                      <option key={shutterType.id} value={shutterType.id}>
-                        {shutterType.value}
-                      </option>
-                    );
-                  })}
-                </select>
-              )}
-              {formErrors.shutter_type_id && (
-                <p>{formErrors.shutter_type_id}</p>
-              )}
-            </div>
-
-            <div id="checkboxesSelectorsId" className="flex">
-              <div id="cellarId">
-                <input
-                  type="checkbox"
-                  name="cellar"
-                  id="checkboxLeft"
-                  onChange={modeEdit ? (e) => handleChange(e) : () => {}}
-                  value={formValues.cellar}
-                  readOnly={!modeEdit}
-                />
-                Cave
-              </div>
-              <div id="atticId">
-                <input
-                  type="checkbox"
-                  name="attic"
-                  id="checkboxLeft"
-                  onChange={modeEdit ? (e) => handleChange(e) : () => {}}
-                  value={formValues.attic}
-                  readOnly={!modeEdit}
-                />
-                Grenier
-              </div>
-              <div id="parkingId">
-                <input
-                  type="checkbox"
-                  name="parking"
-                  id="checkboxLeft"
-                  onChange={modeEdit ? (e) => handleChange(e) : () => {}}
-                  value={formValues.parking}
-                  readOnly={!modeEdit}
-                />
-                Parking
-              </div>
-              <div id="internetId">
-                <input
-                  type="checkbox"
-                  name="opticalFiber"
-                  id="checkboxRight"
-                  onChange={modeEdit ? (e) => handleChange(e) : () => {}}
-                  value={formValues.opticalFiber}
-                  readOnly={!modeEdit}
-                />
-                Internet (Haut Débit)
-              </div>
-              <div id="poolId">
-                <input
-                  type="checkbox"
-                  name="swimmingPool"
-                  id="checkboxRight"
-                  onChange={modeEdit ? (e) => handleChange(e) : () => {}}
-                  value={formValues.swimmingPool}
-                  readOnly={!modeEdit}
-                />
-                Piscine
-              </div>
-              <div id="balconyId">
-                <input
-                  type="checkbox"
-                  name="balcony"
-                  id="checkboxRight"
-                  onChange={modeEdit ? (e) => handleChange(e) : () => {}}
-                  value={formValues.balcony}
-                  readOnly={!modeEdit}
-                />
-                Balcon
-              </div>
-            </div>
-
-            <div id="moreInformations" className="p-2 w-auto">
-              <textarea
-                type="text"
-                name="description"
-                onChange={modeEdit ? (e) => handleChange(e) : () => {}}
-                value={formValues.description}
-                readOnly={!modeEdit}
-                className="propertyInfoArea"
-                placeholder="Informations complémentaires"
-              />
-            </div>
-
-            <div id="gpsCoordId">
-              <div>Coordonnées GPS</div>
-              <div>
-                <div id="gpsCoordTextId">
-                  Long.
-                  <input
-                    type="text"
-                    name="longitude"
-                    onChange={modeEdit ? (e) => textChange(e) : () => {}}
-                    value={formValues.firstname}
-                    readOnly={!modeEdit}
-                    placeholder="Longitude"
-                    className="rounded-md text-right"
-                  />
-                  °
+              
+              {/* Element principal de la Propriété */}
+              <div className="col-span-8">   
+                <div id="propertyTypeId" className="flex justify-end">
+                  Type de logement
+                  {propertyTypes && (
+                    <select
+                      readOnly={!modeEdit}
+                      name="property_type_id"
+                      value={formValues.property_type_id}
+                      onChange={modeEdit ? (e) => handleChange(e) : () => {}}
+                    >
+                      {propertyTypes.map((propertyType) => {
+                        return (
+                          <option key={propertyType.id} value={propertyType.id}>
+                            {propertyType.value}
+                          </option>
+                        );
+                      })}
+                    </select>
+                  )}
+                  {formErrors.property_type_id && (
+                    <p>{formErrors.property_type_id}</p>
+                  )}
                 </div>
-                <div>
-                  Lat.
-                  <input
-                    type="text"
-                    name="latitude"
-                    onChange={modeEdit ? (e) => textChange(e) : () => {}}
-                    value={formValues.firstname}
-                    readOnly={!modeEdit}
-                    placeholder="Latitude"
-                    className="rounded-md text-right"
-                  />
-                  °
+                <div id="priceOfPropertyId" className="flex justify-end">
+                  {/* Prix de vente */}
+                  Prix du logement (€)
+                    <input
+                      type="text"
+                      name="price"
+                      onChange={modeEdit ? (e) => textChange(e) : () => {}}
+                      value={formValues.firstname}
+                      readOnly={!modeEdit}
+                      placeholder="..."
+                      className="rounded-md text-right"
+                    /> 
                 </div>
               </div>
-            </div>
 
-            <div id="userSelector" className="p-2 w-auto">
-              {currentUser &&
-                (currentUser.user_type.value === "admin" ||
-                  currentUser.user_type.value === "secrétaire" ||
-                  currentUser.user_type.value === "manager") &&
-                users && (
-                  <select
-                    readOnly={!modeEdit}
-                    value={formValues.user_id}
-                    name="user_id"
+              {/* Elements concernant les Coordonnées du bien
+                  selectionné ou en cours de création */}
+              <div className="col-span-8 grid grid-cols-1"> 
+                <div id="addressOfPropertyId" className="my-1">
+                  Voie
+                  <input
+                    type="text"
+                    name="address"
                     onChange={modeEdit ? (e) => handleChange(e) : () => {}}
-                  >
-                    {users.map((user) => {
-                      return (
-                        <option key={user.id} value={user.id}>
-                          {user.firstname} {user.lastname}
-                        </option>
-                      );
-                    })}
-                  </select>
+                    value={formValues.streetName}
+                    readOnly={!modeEdit}
+                    placeholder="Voie"
+                    className=" w-5/6 rounded-md text-right"
+                  />
+                </div>
+                <div className="col-span-4">
+                  <div id="cityOfPropertyId" className="mb-1">
+                      Ville
+                      <input
+                        type="text"
+                        name="city"
+                        onChange={modeEdit ? (e) => handleChange(e) : () => {}}
+                        value={formValues.city}
+                        readOnly={!modeEdit}
+                        placeholder="..."
+                        className="rounded-md text-right"
+                      />
+                  </div>
+                  <div id="zipcodeId">
+                      Code postale
+                      <input
+                        type="text"
+                        name="zipcode"
+                        onChange={modeEdit ? (e) => handleChange(e) : () => {}}
+                        value={formValues.zipcode}
+                        readOnly={!modeEdit}
+                        placeholder="..."
+                        className="rounded-md text-right"
+                      />
+                  </div>
+
+              {/* Coordonnées GPS */}
+                </div>
+                <div id="gpsCoordId" className="grid grid-cols-1 my-2">
+                  <div className="col-span-3 my-1">Coordonnées GPS</div>
+                  <div id="gpsCoordTextId" className="col-span-1 grid grid-cols-3 ">
+                    <div className="col-span-3 mb-1">
+                    Longitude
+                      <input
+                        type="text"
+                        name="longitude"
+                        onChange={modeEdit ? (e) => textChange(e) : () => {}}
+                        value={formValues.firstname}
+                        readOnly={!modeEdit}
+                        placeholder="Longitude"
+                        className="rounded-md text-right"
+                      />
+                      °
+                    </div>
+                    <div className="col-span-3 mb-1">
+                      Latitude
+                      <input
+                        type="text"
+                        name="latitude"
+                        onChange={modeEdit ? (e) => textChange(e) : () => {}}
+                        value={formValues.firstname}
+                        readOnly={!modeEdit}
+                        placeholder="Latitude"
+                        className="rounded-md text-right"
+                      />
+                      °
+                    </div>
+                  </div>
+                </div>
+                </div>
+
+              {/* Informations concernant
+                  les détails de l'habitation */}
+              <div className="col-span-8 grid"> 
+                <div id="livingAreaId" className="p-2 w-auto">
+                  Surface habitable
+                  <input
+                    type="text"
+                    name="livingArea"
+                    onChange={modeEdit ? (e) => handleChange(e) : () => {}}
+                    value={formValues.livingArea}
+                    readOnly={!modeEdit}
+                    placeholder="Surface habitable"
+                    className="rounded-md text-right"
+                  />
+                  m²
+                </div>
+                <div id="nbOfBedroom" className="p-2 w-auto">
+                  <input
+                    type="text"
+                    name="bedroomNumber"
+                    onChange={modeEdit ? (e) => handleChange(e) : () => {}}
+                    value={formValues.bedroomNumber}
+                    readOnly={!modeEdit}
+                    placeholder="Nombre de chambre(s)"
+                    className="rounded-md text-right"
+                  />
+                  chambre(s)
+                </div>
+                <div id="nbOfFloors" className="p-2 w-auto">
+                  <input
+                    type="text"
+                    name="floorNumber"
+                    onChange={modeEdit ? (e) => handleChange(e) : () => {}}
+                    value={formValues.floorNumber}
+                    readOnly={!modeEdit}
+                    placeholder="Nombre d'étages"
+                    className="rounded-md text-right"
+                  />
+                  étage(s)
+                </div>
+
+                <div id="totalAreaId" className="p-2 w-auto">
+                  Taille du terrain
+                  <input
+                    type="text"
+                    name="area"
+                    onChange={modeEdit ? (e) => handleChange(e) : () => {}}
+                    value={formValues.area}
+                    readOnly={!modeEdit}
+                    placeholder="Superficie totale"
+                    className="rounded-md text-right"
+                  />
+                  m²
+                </div>
+
+                <div id="gardenSelectorId" className="p-2 w-auto">
+                  <div className="mx-auto text-center">
+                    <input
+                      type="checkbox"
+                      name="garden"
+                      id="checkboxId"
+                      onChange={modeEdit ? (e) => handleChange(e) : () => {}}
+                      value={formValues.garden}
+                      readOnly={!modeEdit}
+                      className="mx-2"
+                    />
+                    Jardin
+                    <input
+                      type="text"
+                      name="gardenArea"
+                      onChange={modeEdit ? (e) => handleChange(e) : () => {}}
+                      value={formValues.gardenArea}
+                      readOnly={!modeEdit}
+                      placeholder="Superficie du jardin"
+                    />
+                    m²
+                  </div>
+                </div>
+
+                <div id="apptNumber" className="p-2 w-auto">
+                  Appartement n°
+                  <input
+                    type="text"
+                    name="doorNumber"
+                    onChange={modeEdit ? (e) => handleChange(e) : () => {}}
+                    value={formValues.doorNumber}
+                    readOnly={!modeEdit}
+                    placeholder="..."
+                    className="rounded-md text-right"
+                  />
+                </div>
+
+                <div id="buildingNumberId" className="p-2 w-auto">
+                  Bât.
+                  <input
+                    type="text"
+                    name="buildingNumber"
+                    onChange={modeEdit ? (e) => handleChange(e) : () => {}}
+                    value={formValues.buildingNumber}
+                    readOnly={!modeEdit}
+                    placeholder="..."
+                    className="rounded-md text-right"
+                  />
+                </div>
+
+                <div id="levelNumberId" className="p-2 w-auto">
+                  Palier
+                  <input
+                    type="text"
+                    name="level"
+                    onChange={modeEdit ? (e) => handleChange(e) : () => {}}
+                    value={formValues.level}
+                    readOnly={!modeEdit}
+                    placeholder="..."
+                    className="rounded-md text-right"
+                  />
+                </div>
+
+                <div id="heaterSelectId" className="p-2 w-auto">
+                  Type de chauffage
+                  {heaterTypes && (
+                    <select
+                      readOnly={!modeEdit}
+                      name="heater_type_id"
+                      value={formValues.heater_type_id}
+                      onChange={modeEdit ? (e) => handleChange(e) : () => {}}
+                    >
+                      {heaterTypes.map((heaterType) => {
+                        return (
+                          <option key={heaterType.id} value={heaterType.id}>
+                            {heaterType.value}
+                          </option>
+                        );
+                      })}
+                    </select>
+                  )}
+                  {formErrors.heater_type_id && <p>{formErrors.heater_type_id}</p>}
+                </div>
+
+                <div id="shutterSelectId">
+                  Type de volets
+                  {shutterTypes && (
+                    <select
+                      readOnly={!modeEdit}
+                      name="shutter_type_id"
+                      value={formValues.shutter_type_id}
+                      onChange={modeEdit ? (e) => handleChange(e) : () => {}}
+                      className="p-2 w-3/5"
+                    >
+                      {shutterTypes.map((shutterType) => {
+                        return (
+                          <option key={shutterType.id} value={shutterType.id}>
+                            {shutterType.value}
+                          </option>
+                        );
+                      })}
+                    </select>
+                  )}
+                  {formErrors.shutter_type_id && (
+                    <p>{formErrors.shutter_type_id}</p>
+                  )}
+                </div>
+
+                <div id="checkboxesSelectorsId" className="grid grid-cols-2 justify-items-start">
+                  <div id="cellarId">
+                    <input
+                      type="checkbox"
+                      name="cellar"
+                      id="checkboxLeft"
+                      onChange={modeEdit ? (e) => handleChange(e) : () => {}}
+                      value={formValues.cellar}
+                      readOnly={!modeEdit}
+                    />
+                    Cave
+                  </div>
+                  <div id="atticId">
+                    <input
+                      type="checkbox"
+                      name="attic"
+                      id="checkboxLeft"
+                      onChange={modeEdit ? (e) => handleChange(e) : () => {}}
+                      value={formValues.attic}
+                      readOnly={!modeEdit}
+                    />
+                    Grenier
+                  </div>
+                  <div id="parkingId">
+                    <input
+                      type="checkbox"
+                      name="parking"
+                      id="checkboxLeft"
+                      onChange={modeEdit ? (e) => handleChange(e) : () => {}}
+                      value={formValues.parking}
+                      readOnly={!modeEdit}
+                    />
+                    Parking
+                  </div>
+                  <div id="internetId">
+                    <input
+                      type="checkbox"
+                      name="opticalFiber"
+                      id="checkboxRight"
+                      onChange={modeEdit ? (e) => handleChange(e) : () => {}}
+                      value={formValues.opticalFiber}
+                      readOnly={!modeEdit}
+                    />
+                    Internet (Haut Débit)
+                  </div>
+                  <div id="poolId">
+                    <input
+                      type="checkbox"
+                      name="swimmingPool"
+                      id="checkboxRight"
+                      onChange={modeEdit ? (e) => handleChange(e) : () => {}}
+                      value={formValues.swimmingPool}
+                      readOnly={!modeEdit}
+                    />
+                    Piscine
+                  </div>
+                  <div id="balconyId">
+                    <input
+                      type="checkbox"
+                      name="balcony"
+                      id="checkboxRight"
+                      onChange={modeEdit ? (e) => handleChange(e) : () => {}}
+                      value={formValues.balcony}
+                      readOnly={!modeEdit}
+                    />
+                    Balcon
+                  </div>
+                </div>
+
+                <div id="moreInformations" className="p-2 w-auto">
+                  <textarea
+                    type="text"
+                    name="description"
+                    onChange={modeEdit ? (e) => handleChange(e) : () => {}}
+                    value={formValues.description}
+                    readOnly={!modeEdit}
+                    className="propertyInfoArea"
+                    placeholder="Informations complémentaires"
+                  />
+                </div>
+              </div>
+
+              {/* Selection de l'utilisateur sur le profil */}
+              <div id="userSelector" className="p-2 w-auto">
+                {currentUser &&
+                  (currentUser.user_type.value === "admin" ||
+                    currentUser.user_type.value === "secrétaire" ||
+                    currentUser.user_type.value === "manager") &&
+                  users && (
+                    <select
+                      readOnly={!modeEdit}
+                      value={formValues.user_id}
+                      name="user_id"
+                      onChange={modeEdit ? (e) => handleChange(e) : () => {}}
+                    >
+                      {users.map((user) => {
+                        return (
+                          <option key={user.id} value={user.id}>
+                            {user.firstname} {user.lastname}
+                          </option>
+                        );
+                      })}
+                    </select>
+                  )}
+                {formErrors.user_id && <p>{formErrors.user_id}</p>}
+              </div>
+
+              {/* Boutons de fin de formulaire */}
+              <div id="validationBtns" className="flex mb-3">
+                {modeEdit ? (
+                  <input
+                    type="submit"
+                    value="enregistrer"
+                    className="m-auto mt-3 text-white uppercase bg-blue-300 hover:bg-blue-600 font-bold p-2 pt-2 pb-2 mx-2 rounded-xl shadow "
+                  />
+                ) : (
+                  
+                    <input
+                    onClick={()=>{setModeEdit(!modeEdit)}}
+                      type="button"
+                      value="Modifier"
+                      className="m-auto mt-3 text-white bg-blue-300 hover:bg-blue-600 uppercase font-bold p-2 pt-2 pb-2 mx-2 rounded-xl shadow "
+                    />
+                  
                 )}
-              {formErrors.user_id && <p>{formErrors.user_id}</p>}
-            </div>
-            <div id="validationBtns">
-              {modeEdit ? (
                 <input
                   type="submit"
-                  value="enregistrer"
-                  className="m-auto mt-3 text-white uppercase bg-blue-300 hover:bg-blue-600 font-bold p-2 pt-2 pb-2 mx-2 rounded-xl shadow "
+                  /*onClick={#.goBack}*/
+                  value="Annuler"
+                  className="m-auto mt-3 text-white uppercase bg-red-300 hover:bg-red-600 font-bold p-2 pt-2 pb-2 mx-2 rounded-xl shadow "
                 />
-              ) : (
-                
-                  <input
-                  onClick={()=>{setModeEdit(!modeEdit)}}
-                    type="button"
-                    value="Modifier"
-                    className="m-auto mt-3 text-white bg-blue-300 hover:bg-blue-600 uppercase font-bold p-2 pt-2 pb-2 mx-2 rounded-xl shadow "
-                  />
-                
-              )}
-              <input
-                type="submit"
-                /*onClick={#.goBack}*/
-                value="Annuler"
-                className="m-auto mt-3 text-white uppercase bg-red-300 hover:bg-red-600 font-bold p-2 pt-2 pb-2 mx-2 rounded-xl shadow "
-              />
+              </div>
+            
             </div>
           </form>
         </div>

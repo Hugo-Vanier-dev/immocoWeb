@@ -24,7 +24,7 @@ function PixLoader() {
           .map((value, index) => (
             <div key={index} id="pixContainer" className={`picture_${index+1} ${index+1 == pixCount ? 'flex-grow' : ''}`}>
               <a href="#">
-                <img className={`h-full w-full object-cover`} src={`/upload/test_0000${index + 1}.jpg`} alt="" />{" "}
+                <img className={`h-40 w-full my-1 object-cover`} src={`/upload/test_0000${index + 1}.jpg`} alt="" />{" "}
               </a>
             </div>
           ))}
