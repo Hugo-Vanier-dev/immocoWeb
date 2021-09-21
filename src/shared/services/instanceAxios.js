@@ -7,10 +7,14 @@ const instance = axios.create({
 });
 
 let refreshTime;
+let expiresTime;
 
 function setRefreshTime(tokenLifeTimeMinutes) {
-    console.log(new Date(Date.now() + tokenLifeTimeMinutes / 2 * 60 * 1000));
     refreshTime = new Date(Date.now() + tokenLifeTimeMinutes / 2 * 60 * 1000);
+}
+
+function setExpiresTime(tokenLifeTimeMinutes){
+    expiresTime = new Date(Date.now() + tokenLifeTimeMinutes * 60 * 1000);
 }
 
 instance.interceptors.request.use(function (config) {
@@ -18,6 +22,9 @@ instance.interceptors.request.use(function (config) {
     if (token !== null) {
         if (!refreshTime) {
             setRefreshTime(parseInt(JSON.parse(localStorage.getItem('token')).expires_in));
+        }
+        if(!expiresTime){
+            setExpiresTime(parseInt(JSON.parse(localStorage.getItem('token')).expires_in))
         }
         config.headers = { Authorization: 'Bearer ' + token.token };
     }
@@ -28,25 +35,25 @@ instance.interceptors.request.use(function (config) {
 
 
 instance.interceptors.response.use(function (config) {
-    if (new Date() > refreshTime) {
-        authService.refresh().then(res => {
-            console.log(res)
-            localStorage.setItem('token', res.data)
-            const refreshedToken = res.data;
-            if (refreshedToken) {
-                console.log('bien joué bg');
-                setRefreshTime(refreshedToken.expires_in);
-            }
-        });
-
+    if(refreshTime && expiresTime){
+        if (new Date() > refreshTime && new Date() < expiresTime) {
+            authService.refresh().then(res => {
+                localStorage.setItem('token', JSON.stringify(res.data))
+                const refreshedToken = res.data;
+                if (refreshedToken) {
+                    setRefreshTime(refreshedToken.expires_in);
+                    setExpiresTime(refreshedToken.expires_in);
+                }
+            });
+        }else if (new Date() > expiresTime){
+            localStorage.removeItem('user');
+            localStorage.removeItem('token');
+            window.location.reload();
+        }
     }
+    
     return config;
 }, function (error) {
-    /*if (error && error.response.status === 401) {
-        localStorage.removeItem('user');
-        localStorage.removeItem('token');
-        window.location.reload();
-    }*/
     return Promise.reject(error);
 })
 

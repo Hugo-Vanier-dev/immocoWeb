@@ -25,8 +25,6 @@ function ClientForm({ clientId = null, edit = false }) {
 
 
 
-console.log(clientId);
-
   const [formErrors, setFormErrors] = React.useState({
     firstname: null,
     lastname: null,
@@ -149,7 +147,6 @@ console.log(clientId);
       setClientTypes(clientTypesRes.data);
     });
     if (currentUser) {
-      console.log(currentUser.user_type.value);
       if (
         currentUser.user_type.value === "admin" ||
         currentUser.user_type.value === "secrétaire" ||
