@@ -4,7 +4,7 @@ import Calendar from '../dashboard/calendar/Calendar';
 
 function DashboardPage(){
     return(
-    <div className="dashboardContainer grid gap-2 grid-rows-4 grid-cols-3">
+    <div className="dashboardContainer flex justify-end">
         <div className="">
             <Calendar />
         </div>

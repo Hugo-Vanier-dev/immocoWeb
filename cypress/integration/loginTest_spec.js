@@ -1,13 +1,13 @@
-// / <reference types='cypress' />
+{/* <reference types='cypress' /> */}
 
 /** DEBUGGING
  * it.only exécute le scénario uniquement
  * it.skip permet de sauter le scénario
  */
 
-describe('Nom de la Suite de Tests', ()=>{
+ describe('Nom de la Suite de Tests', ()=>{
     it('Visite du site', ()=>{
-        cy.visit('http://localhost:3000/dashboard')
+        cy.visit('localhost:3000/login')
     })
     it('Test du Login', ()=>{
         cy.get('.LoginMail').type('suzie.romanov@immoco.fr')

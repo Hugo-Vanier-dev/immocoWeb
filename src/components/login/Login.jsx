@@ -48,7 +48,7 @@ function LoginPage() {
       });
   }
   if (redirect) {
-    return <Redirect to="/home" />;
+    return <Redirect to="/dashboard" />;
   }
   return (
     <div className="LoginPage flex justify-center items-center">

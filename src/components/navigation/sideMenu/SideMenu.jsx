@@ -13,13 +13,13 @@ function SideMenu() {
                     <Link to="/dashboard" className="m-auto mt-5 text-blue-400 hover:text-green-500 font-bold text-lg uppercase">Tableau de bord</Link> 
                 </div>       
                 <div className="mt-10">
-                    <Link to="/listeClient" className="m-auto mt-5 text-blue-400 hover:text-green-500 font-bold text-lg uppercase">Clients</Link>  
+                    <Link to="/clientPage" className="m-auto mt-5 text-blue-400 hover:text-green-500 font-bold text-lg uppercase">Clients</Link>  
                 </div>      
                 <div className="mt-10">
-                    <Link to="../listProperty" className="m-auto mt-5 text-blue-400 hover:text-green-500 font-bold text-lg uppercase">Propriétés</Link>
+                    <Link to="/propertyPage" className="m-auto mt-5 text-blue-400 hover:text-green-500 font-bold text-lg uppercase">Propriétés</Link>
                 </div>   
                 <div className="mt-10">
-                    <Link to="../listUser" className="m-auto mt-5 text-blue-400 hover:text-green-500 font-bold text-lg uppercase">Employés</Link>
+                    <Link to="/clientPage" className="m-auto mt-5 text-blue-400 hover:text-green-500 font-bold text-lg uppercase">Employés</Link>
                 </div>
                 <div className="mt-10">
                     <p className="m-auto mt-5 text-blue-400 hover:text-green-500 font-bold text-lg uppercase" onClick={() => authService.logout()}>Déconnexion</p>
