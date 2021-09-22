@@ -36,8 +36,6 @@ const handlePropertyClick = (e) =>{
   setPropertyId(e.target.attributes.getNamedItem('data-id').value);
 }
 
-console.log(checkbox);
-
 React.useEffect(() => {
 PropertyService.getAll('city','asc',100,0).then(res => {
   console.log(res.data)
@@ -46,11 +44,13 @@ setData(res.data);
 }, [])
 
 return(
-<div>
-  <div>
+<div className="">
+        <div className="text-blue-300 font-black mx-2 py-2">
+          Liste des propriétés
+        </div>
+        <div className="my-2">
     <div>
-      <div className="py-2 mx-2 text-gray-50">Liste des propriétés</div>
-      <div className="grid grid-cols-6 bg-blue-400 text-gray-50 p-1 mx-2">
+      <div className="grid grid-cols-6 bg-blue-300 text-gray-50 p-1 mx-2 rounded-md">
         <div className="text-left mx-2">Localité</div>
         <div className="text-center mx-2">Code postal</div>
         <div className="text-center mx-2">Type de bien</div>
@@ -64,13 +64,13 @@ return(
       <tbody>
         {data.map(function(property, index){
         return(
-        <tr key={property.id} id={property.id} className="bg-white hover:bg-green-300 grid grid-cols-6">
+        <tr key={property.id} id={property.id} className="bg-white hover:bg-blue-400 hover:text-gray-100 grid grid-cols-6">
           <td data-id={property.id} className="text-left">
             <input type="checkbox" onChange={handleChange} className="mx-4" id={property.id} />
             {property.city}
             </td>
           <td data-id={property.id} className="text-center">{property.zipcode}</td>
-          <td data-id={property.id} className="text-center">{property.property_types}</td>
+          <td data-id={property.id} className="text-center">{property.property_type.value}</td>
           <td data-id={property.id} className="text-center">{property.livingArea} m²</td>
           <td data-id={property.id} className="text-right">{property.area} m²</td>
           <td data-id={property.id} className="text-right">{property.price} €</td>
@@ -81,35 +81,17 @@ return(
       </table>
     </div>
   </div>
-  <div>
-    
-    <Link to={`/createProperty/${propertyId}`} >
-    <input
-      type="submit"
-      value="Créer"
-      path={PropertyForm}
-      className="m-auto mt-5 text-gray-50 uppercase bg-green-300 hover:bg-green-600 font-bold p-2 pt-2 pb-2 mx-2 rounded-xl"
-    />
-    </Link>
-    <Link to={`/readProperty/${checkbox[0]}`} >
-    <input
-    type="submit"
-    value="Afficher"
-    className="m-auto mt-5 text-gray-50 uppercase bg-blue-300 hover:bg-blue-600 font-bold p-2 pt-2 pb-2 mx-2 rounded-xl"
-    />
-    </Link>
-    <input
-      type="submit"
-      value="Supprimer"
-      className="m-auto mt-5 text-gray-50 uppercase bg-red-300 hover:bg-red-600 font-bold p-2 pt-2 pb-2 mx-2 rounded-xl"
-    />
-    <input
-      type="button"
+  <div className="mt-5">
+    <Link to={`/createProperty/${propertyId}`}
+          className="w-3/12 p-2 mx-2 text-gray-50 uppercase bg-green-300 hover:bg-green-600 font-bold rounded-xl"
+    >Créer</Link>
+    {/* <button
       onClick={() => window.print()}
-      value="Imprimer"
-      className="m-auto mt-5 text-gray-50 uppercase bg-gray-400 hover:bg-yellow-400 font-bold p-2 pt-2 pb-2 mx-2 rounded-xl"
-    />
-   
+      className="w-1/12 p-2 mx-2 text-gray-50 uppercase bg-gray-400 hover:bg-yellow-400 font-bold rounded-xl"
+    >Imprimer</button> */}
+    <Link to={`/deleteProperty/${checkbox[0]}`} 
+          className="w-3/12 p-2 mx-2 text-gray-50 uppercase bg-red-300 hover:bg-red-600 font-bold rounded-xl" 
+    >Supprimer</Link>
   </div>
 </div>
 );

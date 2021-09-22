@@ -5,7 +5,7 @@ import './SideMenu.css';
 
 function SideMenu() {
     return(
-        <div className="SideMenuContainer fixed bg-gray-200 shadow">    
+        <div className="SideMenuContainer bg-gray-200 shadow">    
 
             <div className="LogoIcoSideMenu shadow-md" />
             <div className="mt-20">
