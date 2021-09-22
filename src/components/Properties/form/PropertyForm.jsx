@@ -599,7 +599,7 @@ function PropertyForm({ propertyId = null, edit = false }) {
                 )}
                 <input
                   type="submit"
-                  /*onClick={#.goBack}*/
+                  //onClick={history.goBack}
                   value="Annuler"
                   className="m-auto mt-3 text-white uppercase bg-red-300 hover:bg-red-600 font-bold p-2 pt-2 pb-2 mx-2 rounded-xl shadow "
                 />

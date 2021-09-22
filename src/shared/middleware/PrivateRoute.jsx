@@ -3,6 +3,7 @@ import { Redirect, Route } from "react-router-dom";
 
 function PrivateRoute({ children, ...rest }) {
     const token = JSON.parse(localStorage.getItem('token'));
+
   if (token) {
     return(<Route {...rest} >{ children }</Route>);
   } else {

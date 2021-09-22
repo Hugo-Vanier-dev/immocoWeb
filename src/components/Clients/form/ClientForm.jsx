@@ -155,7 +155,7 @@ console.log(clientId);
         currentUser.user_type.value === "secrétaire" ||
         currentUser.user_type.value === "manager"
       ) {
-        UserService.getAll().then((usersRes) => setUsers(usersRes.data));
+        UserService.getAll().then((usersRes) => setUsers(usersRes.data)).catch(error => console.log(error));
       } else {
         setFormValues({ user_id: currentUser.id });
       }
