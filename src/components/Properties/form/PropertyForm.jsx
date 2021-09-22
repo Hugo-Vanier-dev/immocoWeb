@@ -451,7 +451,7 @@ console.log(propertyId);
                 )}
                 <input
                   type="submit"
-                  onClick={history.goBack}
+                  //onClick={history.goBack}
                   value="Annuler"
                   className="m-auto mt-5 text-white uppercase bg-red-300 hover:bg-red-600 font-bold p-2 pt-2 pb-2 mx-2 rounded-xl shadow "
                 />

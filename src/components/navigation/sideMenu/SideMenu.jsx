@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import authService from '../../../shared/services/auth.service';
 import './SideMenu.css';
 
 function SideMenu() {
@@ -8,16 +10,19 @@ function SideMenu() {
             <div className="LogoIcoSideMenu shadow-md" />
             <div className="mt-20">
                 <div className="mt-10">
-                    <a href="/dashboard" className="m-auto mt-5 text-blue-400 hover:text-green-500 font-bold text-lg uppercase">Tableau de bord</a> 
+                    <Link to="/dashboard" className="m-auto mt-5 text-blue-400 hover:text-green-500 font-bold text-lg uppercase">Tableau de bord</Link> 
                 </div>       
                 <div className="mt-10">
-                    <a href="/listeClient" className="m-auto mt-5 text-blue-400 hover:text-green-500 font-bold text-lg uppercase">Clients</a>  
+                    <Link to="/listeClient" className="m-auto mt-5 text-blue-400 hover:text-green-500 font-bold text-lg uppercase">Clients</Link>  
                 </div>      
                 <div className="mt-10">
-                    <a href="../listProperty" className="m-auto mt-5 text-blue-400 hover:text-green-500 font-bold text-lg uppercase">Propriétés</a>
+                    <Link to="../listProperty" className="m-auto mt-5 text-blue-400 hover:text-green-500 font-bold text-lg uppercase">Propriétés</Link>
                 </div>   
                 <div className="mt-10">
-                    <a href="../listUser" className="m-auto mt-5 text-blue-400 hover:text-green-500 font-bold text-lg uppercase">Employés</a>
+                    <Link to="../listUser" className="m-auto mt-5 text-blue-400 hover:text-green-500 font-bold text-lg uppercase">Employés</Link>
+                </div>
+                <div className="mt-10">
+                    <p className="m-auto mt-5 text-blue-400 hover:text-green-500 font-bold text-lg uppercase" onClick={() => authService.logout()}>Déconnexion</p>
                 </div>
             </div>
         </div>
