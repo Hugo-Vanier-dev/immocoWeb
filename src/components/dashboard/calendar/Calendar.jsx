@@ -33,13 +33,13 @@ function Calendar(){
         />
 
         <div id="weekdays" className="grid grid-cols-7 gap-2 text-blue-400 font-bold text-xs pb-2 pt-4">
-          <div>Dimanche</div>
-          <div>Lundi</div>
-          <div>Mardi</div>
-          <div>Mercredi</div>
-          <div>Jeudi</div>
-          <div>Vendredi</div>
-          <div>Samedi</div>
+          <div>Dim</div>
+          <div>Lun</div>
+          <div>Mar</div>
+          <div>Mer</div>
+          <div>Jeu</div>
+          <div>Ven</div>
+          <div>Sam</div>
         </div>
 
         <div id="calendar" className="grid grid-cols-7 gap-2 py-2">
