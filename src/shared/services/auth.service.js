@@ -17,7 +17,7 @@ class AuthService {
     }
 
     refresh() {
-        return instance.get(`${this.path}/refresh`)
+        return instance.post(`${this.path}/refresh`)
     }
 
     getMe(){

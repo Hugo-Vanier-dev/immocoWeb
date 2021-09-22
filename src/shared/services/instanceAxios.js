@@ -8,9 +8,14 @@ const instance = axios.create({
 
 let refreshTime;
 
+let tokenLifetime;
+
 function setRefreshTime(tokenLifeTimeMinutes) {
-    console.log(new Date(Date.now() + tokenLifeTimeMinutes / 2 * 60 * 1000));
     refreshTime = new Date(Date.now() + tokenLifeTimeMinutes / 2 * 60 * 1000);
+}
+
+function setExpireTime(tokenLifeTimeMinutes) {
+    tokenLifetime = new Date(Date.now() + tokenLifeTimeMinutes * 60 * 1000);
 }
 
 instance.interceptors.request.use(function (config) {
@@ -18,6 +23,9 @@ instance.interceptors.request.use(function (config) {
     if (token !== null) {
         if (!refreshTime) {
             setRefreshTime(parseInt(JSON.parse(localStorage.getItem('token')).expires_in));
+        }
+        if(!tokenLifetime){
+            setExpireTime(parseInt(JSON.parse(localStorage.getItem('token')).expires_in));
         }
         config.headers = { Authorization: 'Bearer ' + token.token };
     }
@@ -28,25 +36,22 @@ instance.interceptors.request.use(function (config) {
 
 
 instance.interceptors.response.use(function (config) {
-    if (new Date() > refreshTime) {
+    if (new Date() > refreshTime && new Date() < tokenLifetime) {
         authService.refresh().then(res => {
-            console.log(res)
-            localStorage.setItem('token', res.data)
+            localStorage.setItem('token', JSON.stringify(res.data));
             const refreshedToken = res.data;
             if (refreshedToken) {
-                console.log('bien joué bg');
                 setRefreshTime(refreshedToken.expires_in);
+                setExpireTime(refreshedToken.expires_in);
             }
         });
-
-    }
-    return config;
-}, function (error) {
-    /*if (error && error.response.status === 401) {
+    }else if(new Date() > tokenLifetime) {
         localStorage.removeItem('user');
         localStorage.removeItem('token');
         window.location.reload();
-    }*/
+    }
+    return config;
+}, function (error) {
     return Promise.reject(error);
 })
 
