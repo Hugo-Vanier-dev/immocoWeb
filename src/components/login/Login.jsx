@@ -3,7 +3,6 @@ import "./Login.css";
 import React from "react";
 import { Redirect } from "react-router-dom";
 import authService from "../../shared/services/auth.service";
-import { setRefreshTime } from "../../shared/services/instanceAxios";
 
 function LoginPage() {
   const mailregex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -28,6 +27,8 @@ function LoginPage() {
       .then((response) => {
         if (response.data.token) {
           localStorage.setItem('token', JSON.stringify(response.data));
+          localStorage.setItem('refresh', JSON.stringify(Date.now() + parseInt(response.data.token.expires_in) / 2 * 60 * 1000));
+          localStorage.setItem('tokenLifetime', JSON.stringify(Date.now() + parseInt(response.data.token.expires_in) * 60 * 1000));
           authService.getMe().then(res => {
             if (res.data) {
               localStorage.setItem('user', JSON.stringify(res.data));

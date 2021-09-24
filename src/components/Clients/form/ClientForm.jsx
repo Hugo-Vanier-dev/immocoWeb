@@ -1,7 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ClientService from "../../../shared/services/client.service";
 import ClientTypeService from "../../../shared/services/clientType.service";
-import { Redirect } from "react-router-dom";
 import { UseUserContext } from "../../../shared/context/userContext";
 import UserService from "../../../shared/services/user.service";
 import { toast } from "react-toastify";
@@ -10,18 +9,16 @@ import './ClientForm.css';
 
 toast.configure();
 
-function ClientForm({ clientId = null, edit = false }) {
+function ClientForm({ clientId = null, modeEdit, setModeEdit, setReloadList, reloadList }) {
   const mailregex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   const telRegex = /^\d{2}(\s\d{2}){4}$/;
 
   const currentUser = UseUserContext();
-  const [users, setUsers] = React.useState(null);
-  const [clientTypes, setClientTypes] = React.useState(null);
-
-  const [modeEdit, setModeEdit] = React.useState(edit);
+  const [users, setUsers] = useState(null);
+  const [clientTypes, setClientTypes] = useState(null);
 
 
-  const [formErrors, setFormErrors] = React.useState({
+  const [formErrors, setFormErrors] = useState({
     firstname: null,
     lastname: null,
     phone: null,
@@ -36,7 +33,7 @@ function ClientForm({ clientId = null, edit = false }) {
     user_id: null,
   });
 
-  const [formValues, setFormValues] = React.useState({
+  const [formValues, setFormValues] = useState({
     firstname: "",
     lastname: "",
     phone: "",
@@ -64,6 +61,7 @@ function ClientForm({ clientId = null, edit = false }) {
       if (clientId) {
         ClientService.update(clientId, data).then((res) => {
           setModeEdit(false);
+          setReloadList(!reloadList);
           toast.info("Le client a bien été modifié.", {
             position: "bottom-center",
             autoClose: 5000,
@@ -75,6 +73,7 @@ function ClientForm({ clientId = null, edit = false }) {
         });
       } else {
         ClientService.create(data).then((res) => {
+          setReloadList(!reloadList);
           toast.info("Le client a bien été créé.", {
             position: "bottom-center",
             autoClose: 5000,
@@ -135,12 +134,14 @@ function ClientForm({ clientId = null, edit = false }) {
     setFormErrors({ ...formErrors });
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     ClientTypeService.getAll().then((clientTypesRes) => {
       setClientTypes(clientTypesRes.data);
     });
+  },[]);
+
+  useEffect(() => {
     if (currentUser) {
-      console.log(currentUser.user_type.value);
       if (
         currentUser.user_type.value === "admin" ||
         currentUser.user_type.value === "secrétaire" ||
@@ -151,18 +152,30 @@ function ClientForm({ clientId = null, edit = false }) {
         setFormValues({ user_id: currentUser.id });
       }
     }
+  }, [currentUser]);
+
+  useEffect(() => {
     if (clientId) {
       ClientService.get(clientId).then((res) => {
         setFormValues(res.data);
       });
+    }else {
+      setFormValues({
+        firstname: "",
+        lastname: "",
+        phone: "",
+        cellphone: "",
+        mail: "",
+        streetNumber: "",
+        streetName: "",
+        zipCode: "",
+        description: "",
+        city: "",
+        client_type_id: 1,
+        user_id: 1,
+      })
     }
-  }, [
-    setUsers,
-    setClientTypes,
-    setFormValues,
-    currentUser,
-    clientId
-  ]);
+  }, [clientId]);
 
   return (
     <div className="">
@@ -358,11 +371,6 @@ function ClientForm({ clientId = null, edit = false }) {
                     Modifier
                   </button>
                 )}
-                <button
-                  type="button"
-                  className="m-auto mt-5 text-white uppercase bg-red-300 hover:bg-red-600 font-bold p-2 pt-2 pb-2 mx-2 rounded-xl">
-                  Supprimer
-                </button>
               </div>)
             : (
               <input

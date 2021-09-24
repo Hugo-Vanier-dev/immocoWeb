@@ -2,6 +2,7 @@ import React from "react";
 import "./App.css";
 import SideMenu from "./components/navigation/sideMenu/SideMenu";
 import { InitializeUserContext } from "./shared/context/userContext";
+import Modal from 'react-modal';
 
 import ClientPage from "./components/Clients/ClientPage";
 // import CreateClient from "./components/Clients/CreateClient";
@@ -33,6 +34,7 @@ import PrivateRoute from './shared/middleware/PrivateRoute';
 
 
 function App() {
+  Modal.setAppElement('#root');
     return (
       <div className="App grid grid-cols-6 grid-flow-col">
         <Router>

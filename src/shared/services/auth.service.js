@@ -12,6 +12,8 @@ class AuthService {
         return instance.get(`${this.path}/logout`).then(() => {
             localStorage.removeItem('user');
             localStorage.removeItem('token');
+            localStorage.removeItem('refresh');
+            localStorage.removeItem('tokenLifetime');
             window.location.reload();
         });
     }

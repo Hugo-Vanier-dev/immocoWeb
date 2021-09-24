@@ -1,33 +1,22 @@
-import React, {useState} from 'react'
-import ClientService from '../../shared/services/client.service'
-import NewClientForm from './form/NewClientForm'
+import React, { useState } from 'react';
 import ClientForm from './form/ClientForm'
 import ClientList from './ListClient'
 
 
 function ClientPage() {
-const [data, setData] = useState([])
+  const [clientId, setClientId] = useState(null);
+  const [modeEdit, setModeEdit] = useState(true);
+  const [reloadList, setReloadList] = useState(true);
 
-const [clientId, setClientId] = useState(null);
-
-React.useEffect(() => {
-ClientService.create().then(res => {
-setData(res.data);
-})
-}, [])
-
-return(
-<div className="grid grid-cols-3">
-  <div className="col-span-1 col-start-1">
-    <ClientForm edit={true}/>
-  </div>
-  <div className="col-span-1 col-start-2">
-    <ClientList edit={true} setClientId={setClientId}/>
-  </div>
-  <div className="col-span-1 col-start-3">
-    <ClientForm edit={false} clientId={clientId}/>
-  </div>
-</div>
-);
+  return (
+    <div className="grid grid-cols-2">
+      <div className="col-span-1 col-start-1">
+        <ClientList setClientId={setClientId} setModeEdit={setModeEdit} reloadList={reloadList} />
+      </div>
+      <div className="col-span-1 col-start-2">
+        <ClientForm modeEdit={modeEdit} setModeEdit={setModeEdit} clientId={clientId} setReloadList={setReloadList} reloadList={reloadList} />
+      </div>
+    </div>
+  );
 }
 export default ClientPage;

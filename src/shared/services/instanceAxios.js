@@ -3,28 +3,25 @@ import authService from "./auth.service";
 
 const instance = axios.create({
     baseURL: `https://fierce-cove-97875.herokuapp.com/api`,
-    timeout: 1000
+    timeout: 10000
 });
 
-let refreshTime;
-
-let tokenLifetime;
 
 function setRefreshTime(tokenLifeTimeMinutes) {
-    refreshTime = new Date(Date.now() + tokenLifeTimeMinutes / 2 * 60 * 1000);
+    localStorage.setItem('refresh', JSON.stringify(Date.now() + tokenLifeTimeMinutes / 2 * 60 * 1000));
 }
 
 function setExpireTime(tokenLifeTimeMinutes) {
-    tokenLifetime = new Date(Date.now() + tokenLifeTimeMinutes * 60 * 1000);
+    localStorage.setItem('tokenLifetime', JSON.stringify(Date.now() + tokenLifeTimeMinutes * 60 * 1000));
 }
 
 instance.interceptors.request.use(function (config) {
     let token = JSON.parse(localStorage.getItem('token'));
     if (token !== null) {
-        if (!refreshTime) {
+        if (!JSON.parse(localStorage.getItem('refresh'))) {
             setRefreshTime(parseInt(JSON.parse(localStorage.getItem('token')).expires_in));
         }
-        if(!tokenLifetime){
+        if(!JSON.parse(localStorage.getItem('tokenLifetime'))){
             setExpireTime(parseInt(JSON.parse(localStorage.getItem('token')).expires_in));
         }
         config.headers = { Authorization: 'Bearer ' + token.token };
@@ -36,18 +33,23 @@ instance.interceptors.request.use(function (config) {
 
 
 instance.interceptors.response.use(function (config) {
-    if (new Date() > refreshTime && new Date() < tokenLifetime) {
+    if (Date.now() > parseInt(JSON.parse(localStorage.getItem('refresh'))) && Date.now() < parseInt(JSON.parse(localStorage.getItem('tokenLifetime')))) {
         authService.refresh().then(res => {
+            console.log('refresh du token');
             localStorage.setItem('token', JSON.stringify(res.data));
             const refreshedToken = res.data;
             if (refreshedToken) {
-                setRefreshTime(refreshedToken.expires_in);
-                setExpireTime(refreshedToken.expires_in);
+                console.log('refresh des timestamp du token');
+                setRefreshTime(parseInt(refreshedToken.expires_in));
+                setExpireTime(parseInt(refreshedToken.expires_in));
             }
         });
-    }else if(new Date() > tokenLifetime) {
+    }else if(Date.now() > parseInt(JSON.parse(localStorage.getItem('tokenLifetime')))) {
+        console.log('déconnexion')
         localStorage.removeItem('user');
         localStorage.removeItem('token');
+        localStorage.removeItem('refresh');
+        localStorage.removeItem('tokenLifetime');
         window.location.reload();
     }
     return config;
