@@ -1,3 +1,10 @@
+.clientFormContainer{
+    width: 35rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+
 .infoArea{
-    height: 28vh;
+    height: 22vh;
 }
