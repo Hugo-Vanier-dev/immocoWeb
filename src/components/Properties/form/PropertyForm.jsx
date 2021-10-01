@@ -176,7 +176,7 @@ function PropertyForm({ propertyId = null, edit = false }) {
   return (
     <div id="porpertyFormContainer">
       <div id="propertySubContainer" className="w-full mr-2">
-        <div className="text-blue-300 font-black py-2">
+        <div className="text-blue-300 text-left font-black mx-2 py-2">
           Informations sur la propriété
         </div>
         <div id="propertyInputContainer" className="bg-blue-100 p-2 my-2 rounded-md">
@@ -553,9 +553,9 @@ function PropertyForm({ propertyId = null, edit = false }) {
                   />
                 </div>
               </div>
-
+            <div className="w-full">
               {/* Selection de l'utilisateur sur le profil */}
-              <div id="userSelector" className="p-2 w-auto">
+              <div id="userSelector" className="p-2 w-1/2">
                 {currentUser &&
                   (currentUser.user_type.value === "admin" ||
                     currentUser.user_type.value === "secrétaire" ||
@@ -585,7 +585,7 @@ function PropertyForm({ propertyId = null, edit = false }) {
                   <input
                     type="submit"
                     value="enregistrer"
-                    className="m-auto mt-3 text-white uppercase bg-blue-300 hover:bg-blue-600 font-bold p-2 pt-2 pb-2 mx-2 rounded-xl shadow "
+                    className="mt-3 text-white uppercase bg-blue-300 hover:bg-green-300 font-bold p-2 pt-2 pb-2 mx-2 rounded-xl shadow-sm"
                   />
                 ) : (
                   
@@ -593,7 +593,7 @@ function PropertyForm({ propertyId = null, edit = false }) {
                     onClick={()=>{setModeEdit(!modeEdit)}}
                       type="button"
                       value="Modifier"
-                      className="m-auto mt-3 text-white bg-blue-300 hover:bg-blue-600 uppercase font-bold p-2 pt-2 pb-2 mx-2 rounded-xl shadow "
+                      className="mt-3 text-white bg-blue-300 hover:bg-green-300 uppercase font-bold p-2 pt-2 pb-2 mx-2 rounded-xl shadow-sm"
                     />
                   
                 )}
@@ -601,10 +601,10 @@ function PropertyForm({ propertyId = null, edit = false }) {
                   type="submit"
                   //onClick={history.goBack}
                   value="Annuler"
-                  className="m-auto mt-3 text-white uppercase bg-red-300 hover:bg-red-600 font-bold p-2 pt-2 pb-2 mx-2 rounded-xl shadow "
+                  className="mt-3 text-white uppercase bg-red-300 hover:bg-red-600 font-bold p-2 pt-2 pb-2 mx-2 rounded-xl shadow-sm"
                 />
               </div>
-            
+              </div>
             </div>
           </form>
         </div>

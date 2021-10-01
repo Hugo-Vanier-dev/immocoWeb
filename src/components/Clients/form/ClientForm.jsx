@@ -179,8 +179,8 @@ function ClientForm({ clientId = null, modeEdit, setModeEdit, setReloadList, rel
 
   return (
       <div className="w-full pb-5">
-        <div className="py-2 mx-2 text-blue-300 text-left font-black">Informations clients</div>
-        <div className="clientFormContainer">
+        <div className="text-blue-300 text-left font-black mx-2 py-2">Informations clients</div>
+        <div className="clientFormContainer bg-blue-100 py-3 rounded-md">
         <div className="grid grid-rows-1">
           <form onSubmit={(e) => submitForm(e)} className="grid grid-cols-1">
             <div className="flex justify-center">

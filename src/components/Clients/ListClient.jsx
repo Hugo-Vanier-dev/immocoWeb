@@ -54,7 +54,7 @@ export default function
       <div className="clientTableContainer">
         <table className="table-auto">
           <thead>
-            <h1 className="py-2 text-blue-300 font-black">Liste des clients</h1>
+            <h1 className="text-blue-300 text-left font-black mx-2 py-2">Liste des clients</h1>
           </thead>
           <tbody>
             <tr className="grid grid-cols-3 bg-blue-300 text-gray-50 p-1 rounded-md my-2">

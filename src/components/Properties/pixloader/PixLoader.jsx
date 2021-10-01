@@ -7,17 +7,16 @@ const pixCount = 7;
 function PixLoader() {
   const index = 1;
   return (
-    <div className="text-gray-300">
-      <div className="text-blue-300 font-black mx-2 py-2">Galerie photo</div>
-      <div>
+    <div className="pixLoaderContainer text-gray-300">
+      <div className="text-blue-300 text-left font-black mx-2 py-2 z-50 sticky top-0">Galerie photo</div>
+     
+      <div className="z-40">
         <input
-          className="my-2 w-full mx-auto bg-blue-300 text-center text-gray-50 p-2 rounded-lg"
+          className="my-2 w-full mx-auto bg-blue-300 text-left text-gray-50 p-2 rounded-lg"
           type="file"
-          onChange=""
-          name=""
-          id=""
         />
       </div>
+
       <div id="pixGallery">
         {Array(pixCount)
           .fill(1)
