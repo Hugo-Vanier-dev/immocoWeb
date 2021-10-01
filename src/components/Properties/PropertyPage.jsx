@@ -44,7 +44,7 @@ setData(res.data);
 }, [])
 
 return(
-<div className="">
+<div className="mr-5 md:mx-3 sm:mx-2">
     <div className="grid grid-cols-3">
     <div className="col-span-1 col-start-1">
         <PropertyList edit={true} setPropertyId={setPropertyId}/>

@@ -36,15 +36,15 @@ import PrivateRoute from './shared/middleware/PrivateRoute';
 function App() {
   Modal.setAppElement('#root');
     return (
-      <div className="App grid grid-cols-6 grid-flow-col">
+      <div className="App grid grid-cols-6">
         <Router>
             <InitializeUserContext>
             <PrivateRoute> 
-            <div className="divSideMenu w-full col-start-1 col-span-1">
+            <div className="divSideMenu mr-5 z-50 col-span-1 col-start-1">
               <SideMenu />
             </div>
             </PrivateRoute>
-            <div className="divContentArea col-start-2 col-span-5 items-center">
+            <div className="divContentArea container block justify-center z-40 col-span-5 col-start-2">
               <Switch>
 
                 <Route path="/login" exact component={LoginPage} />

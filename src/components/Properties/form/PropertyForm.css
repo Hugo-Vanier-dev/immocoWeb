@@ -6,7 +6,6 @@
 }
 #porpertyFormContainer select, textarea{
   border-radius: 5px;
-  /*border: 1px solid #4a64aa;*/
   font-weight: normal;
   padding: 3px;
   margin-top: 5px;
@@ -36,4 +35,8 @@
     height: 20px;
     width: 20px;
     transform: translateY(5px);
+}
+#propertyInputContainer{
+  height:53rem;
+  overflow-y:auto
 }

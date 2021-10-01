@@ -2,7 +2,6 @@ import React, {useState} from 'react'
 import './ListProperties.css'
 import PropertyService from '../../shared/services/property.service'
 import { Link } from 'react-router-dom'
-import PropertyForm from './form/PropertyForm'
 
 
 
@@ -45,12 +44,12 @@ setData(res.data);
 
 return(
 <div className="">
-        <div className="text-blue-300 font-black mx-2 py-2">
+        <div className="text-blue-300 text-left font-black mx-2 py-2">
           Liste des propriétés
         </div>
         <div className="my-2">
     <div>
-      <div className="grid grid-cols-6 bg-blue-300 text-gray-50 p-1 mx-2 rounded-md">
+      <div className="grid grid-cols-6 bg-blue-300 text-gray-50 p-1 mx-2 rounded-md w-full">
         <div className="text-left mx-2">Localité</div>
         <div className="text-center mx-2">Code postal</div>
         <div className="text-center mx-2">Type de bien</div>
