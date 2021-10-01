@@ -1,6 +1,6 @@
-import React from "react";
-import { Redirect, Link } from "react-router-dom";
-import { UseUserContext } from "../../../shared/context/userContext";
+import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
+import Toggle from 'react-toggle'
 import UserService from "../../../shared/services/user.service";
 import UserTypeService from "../../../shared/services/userType.service"
 import { toast } from "react-toastify";
@@ -8,25 +8,20 @@ import "react-toastify/dist/ReactToastify.min.css";
 
 toast.configure();
 
-function UserForm({ UserId = null, modeEdit = false }) {
+function UserForm({ userId = null, modeEdit = false }) {
   const mailregex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   const telRegex = /^\d{2}(\s\d{2}){4}$/;
 
-  const [redirectUserListe, setRedirectUserListe] = React.useState(false);
-  const [redirectInfoUser, setredirectInfoUser] = React.useState(false);
-
-  const currentUser = UseUserContext();
-  const [users, setUsers] = React.useState(null);
-  const [UserTypes, setUserTypes] = React.useState(null);
+  const [userTypes, setUserTypes] = React.useState(null);
 
   const [formErrors, setFormErrors] = React.useState({
     firstname: null,
     lastname: null,
     phone: null,
     cellphone: null,
-    username: null,
+    sexe: null,
     mail: null,
-    User_type_id: null,
+    user_type_id: null,
   });
 
   const [formValues, setFormValues] = React.useState({
@@ -34,10 +29,9 @@ function UserForm({ UserId = null, modeEdit = false }) {
     lastname: "",
     phone: "",
     cellphone: "",
-    username: "",
     mail: "",
-    User_type_id: 1,
-    user_id: 1,
+    sexe: 1,
+    user_type_id: 1,
   });
 
   function submitForm(e) {
@@ -50,8 +44,8 @@ function UserForm({ UserId = null, modeEdit = false }) {
     }
     if (formIsValid) {
       const data = formValues;
-      if (UserId) {
-        UserService.update(UserId, data).then((res) => {
+      if (userId) {
+        UserService.update(userId, data).then((res) => {
           modeEdit = false;
           toast.info("Le User a bien été modifié.", {
             position: "bottom-center",
@@ -61,7 +55,6 @@ function UserForm({ UserId = null, modeEdit = false }) {
             draggable: true,
             hideProgressBar: false,
           });
-          setredirectInfoUser(true);
         });
       } else {
         UserService.create(data).then((res) => {
@@ -73,7 +66,6 @@ function UserForm({ UserId = null, modeEdit = false }) {
             draggable: true,
             hideProgressBar: false,
           });
-          console.log(formValues)
         });
       }
     }
@@ -84,28 +76,37 @@ function UserForm({ UserId = null, modeEdit = false }) {
     setFormValues({ ...formValues });
   };
 
-  const mailChange = (e) => {
-    handleChange(e);
-    if (e.target.value === "") {
+  const mailChangeError = (e) => {
+    if (formValues[e.target.name] === "") {
       setFormErrors({ mail: "Veuillez remplir une adresse mail." });
-    } else if (!mailregex.test(e.target.value)) {
+    } else if (!mailregex.test(formValues[e.target.name])) {
       setFormErrors({
         mail: "L'adresse mail que vous avez rempli n'est pas au bon format.",
       });
     } else {
       setFormErrors({ mail: null });
     }
-  };
+  }
 
-  const textChange = (e) => {
-    handleChange(e);
-    if (e.target.value === "") {
+  const textChangeTestError = (e) => {
+    if(formValues[e.target.name] === ""){
+      formErrors[e.target.name] = "Veuillez remplir ce champ."
+    }else{
+      formErrors[e.target.name] = null;
+    }
+    setFormErrors({ ...formErrors });
+  }
+  const telChangeError = (e) => {
+    if (formValues[e.target.name] === "") {
       formErrors[e.target.name] = "Veuillez remplir ce champ.";
+    } else if (!telRegex.test(formValues[e.target.name])) {
+      formErrors[e.target.name] =
+        "Le numéro de téléphone que vous avez remplis n'est pas valide ou pas français.";
     } else {
       formErrors[e.target.name] = null;
     }
     setFormErrors({ ...formErrors });
-  };
+  }
 
   const telChange = (e) => {
     const value = e.target.value
@@ -115,58 +116,31 @@ function UserForm({ UserId = null, modeEdit = false }) {
       .replace(/(\d{2})(?=\d)/g, "$1 ");
     formValues[e.target.name] = value;
     setFormValues({ ...formValues });
-    if (value === "") {
-      formErrors[e.target.name] = "Veuillez remplir ce champ.";
-    } else if (!telRegex.test(value)) {
-      formErrors[e.target.name] =
-        "Le numéro de téléphone que vous avez remplis n'est pas valide ou pas français.";
-    } else {
-      formErrors[e.target.name] = null;
-    }
-    setFormErrors({ ...formErrors });
   };
 
-  React.useEffect(() => {
-    UserTypeService.getAll().then((UserTypesRes) => {
-      setUserTypes(UserTypesRes.data);
+  useEffect(() => {
+    UserTypeService.getAll().then((res) => {
+      setUserTypes(res.data);
     });
-    if (currentUser) {
-      if (
-        currentUser.role === "admin" ||
-        currentUser.role === "secrétaire" ||
-        currentUser.role === "manager"
-      ) {
-        UserService.getAll().then((usersRes) => setUsers(usersRes.data));
-      } else {
-        setFormValues({ user_id: currentUser.id });
-      }
-    }
-    if (UserId) {
-      UserService.get(UserId).then((res) => {
+  }, []);
+
+
+  useEffect(() => {
+    if (userId) {
+      UserService.get(userId).then((res) => {
         setFormValues(res.data);
       });
     }
-  }, [
-    setUsers,
-    setUserTypes,
-    setFormValues,
-    currentUser,
-    UserId
-  ]);
+  }, [userId])
 
-  if (redirectUserListe) {
-    return <Redirect to="/home" />;
-  }
-  if(redirectInfoUser){
-    return <Redirect to={`/readUser/${UserId}`} />
-  }
   return (
     <div>
       <form onSubmit={(e) => submitForm(e)}>
         <input
           type="text"
           name="firstname"
-          onChange={modeEdit ? (e) => textChange(e) : null}
+          onBlur={modeEdit ? (e) => textChangeTestError(e) : null}
+          onChange={modeEdit ? (e) => handleChange(e) : null}
           value={formValues.firstname}
           readOnly={!modeEdit}
           className="grid row-start-2 border-2 border-white bg-gray-300 m-2 p-2 rounded-md text-center"
@@ -176,7 +150,8 @@ function UserForm({ UserId = null, modeEdit = false }) {
         <input
           type="text"
           name="lastname"
-          onChange={modeEdit ? (e) => textChange(e) : null}
+          onBlur={modeEdit ? (e) => textChangeTestError(e) : null}
+          onChange={modeEdit ? (e) => handleChange(e) : null}
           value={formValues.lastname}
           readOnly={!modeEdit}
           className="grid row-start-2 border-2 border-white bg-gray-300 m-2 p-2 rounded-md text-center"
@@ -186,25 +161,24 @@ function UserForm({ UserId = null, modeEdit = false }) {
         <input
           type="email"
           name="mail"
-          onChange={modeEdit ? (e) => mailChange(e) : null}
+          onBlur={modeEdit ? (e) => mailChangeError(e) : null}
+          onChange={modeEdit ? (e) => handleChange(e) : null}
           value={formValues.mail}
           readOnly={!modeEdit}
           className="grid row-start-2 border-2 border-white bg-gray-300 m-2 p-2 rounded-md text-center"
           placeholder="@"
         />
-        <input
-          type="text"
-          name="username"
-          onChange={modeEdit ? (e) => textChange(e) : null}
-          value={formValues.username}
-          readOnly={!modeEdit}
-          className="grid row-start-2 border-2 border-white bg-gray-300 m-2 p-2 rounded-md text-center"
-          placeholder="Pseudo"
-        />
-        {formErrors.mail && <p>{formErrors.mail}</p>}
+        <select name="sexe" readOnly={!modeEdit} value={formValues.sexe} onChange={modeEdit ? (e) => handleChange(e) : null}>
+          <option disabled selected={userId ? false : true}>Veuillez choisir votre sexe</option>
+          <option value={true}>Homme</option>
+          <option value={false}>Femme</option>
+          <option value={null}>Autre</option>
+        </select>
+        
         <input
           type="text"
           name="phone"
+          onBlur={modeEdit ? (e) => telChangeError(e) : null}
           onChange={modeEdit ? (e) => telChange(e) : null}
           value={formValues.phone}
           readOnly={!modeEdit}
@@ -215,6 +189,7 @@ function UserForm({ UserId = null, modeEdit = false }) {
         <input
           type="text"
           name="cellphone"
+          onBlur={modeEdit ? (e) => telChangeError(e) : null}
           onChange={modeEdit ? (e) => telChange(e) : null}
           value={formValues.cellphone}
           readOnly={!modeEdit}
@@ -222,17 +197,17 @@ function UserForm({ UserId = null, modeEdit = false }) {
           placeholder="06 xx xx xx xx"
         />
         {formErrors.cellphone && <p>{formErrors.cellphone}</p>}
-        {UserTypes && (
+        {userTypes && (
           <select
             readOnly={!modeEdit}
-            name="User_type_id"
+            name="user_type_id"
             value={formValues.User_type_id}
             onChange={modeEdit ? (e) => handleChange(e) : null}
           >
-            {UserTypes.map((UserType) => {
+            {userTypes.map((userType) => {
               return (
-                <option key={UserType.id} value={UserType.id}>
-                  {UserType.value}
+                <option key={userType.id} value={userType.id}>
+                  {userType.value}
                 </option>
               );
             })}
@@ -246,7 +221,7 @@ function UserForm({ UserId = null, modeEdit = false }) {
             className="LoginPageButton text-green-200 uppercase w-1/2 grid row-start-4 auto-cols-auto font-bold  p-2 pt-2 pb-2 rounded-2xl bg-green-400 border-2 border-green-200 shadow "
           />
         ) : (
-          <Link to={`/updateUser/${UserId}`} >
+          <Link to={`/updateUser/${userId}`} >
             <input
               type="button"
               value="Modifier"
