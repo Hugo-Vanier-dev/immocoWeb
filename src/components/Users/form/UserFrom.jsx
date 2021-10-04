@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Redirect, Link } from "react-router-dom";
 import { UseUserContext } from "../../../shared/context/userContext";
 import UserService from "../../../shared/services/user.service";
@@ -17,16 +17,16 @@ function UserForm({ UserId = null, modeEdit = false }) {
 
   const currentUser = UseUserContext();
   const [users, setUsers] = React.useState(null);
-  const [UserTypes, setUserTypes] = React.useState(null);
+  const [userTypes, setUserTypes] = React.useState(null);
 
   const [formErrors, setFormErrors] = React.useState({
     firstname: null,
     lastname: null,
     phone: null,
     cellphone: null,
-    username: null,
     mail: null,
-    User_type_id: null,
+    sexe: null,
+    user_type_id: null,
   });
 
   const [formValues, setFormValues] = React.useState({
@@ -34,10 +34,9 @@ function UserForm({ UserId = null, modeEdit = false }) {
     lastname: "",
     phone: "",
     cellphone: "",
-    username: "",
     mail: "",
-    User_type_id: 1,
-    user_id: 1,
+    sexe: true,
+    user_type_id: 1,
   });
 
   function submitForm(e) {
@@ -53,7 +52,7 @@ function UserForm({ UserId = null, modeEdit = false }) {
       if (UserId) {
         UserService.update(UserId, data).then((res) => {
           modeEdit = false;
-          toast.info("Le User a bien été modifié.", {
+          toast.info("L'utilisateur a bien été modifié.", {
             position: "bottom-center",
             autoClose: 5000,
             closeOnClick: true,
@@ -65,7 +64,7 @@ function UserForm({ UserId = null, modeEdit = false }) {
         });
       } else {
         UserService.create(data).then((res) => {
-          toast.info("Le User a bien été créé.", {
+          toast.info("L'utilisateur a bien été créé.", {
             position: "bottom-center",
             autoClose: 5000,
             closeOnClick: true,
@@ -73,7 +72,6 @@ function UserForm({ UserId = null, modeEdit = false }) {
             draggable: true,
             hideProgressBar: false,
           });
-          console.log(formValues)
         });
       }
     }
@@ -126,33 +124,33 @@ function UserForm({ UserId = null, modeEdit = false }) {
     setFormErrors({ ...formErrors });
   };
 
-  React.useEffect(() => {
-    UserTypeService.getAll().then((UserTypesRes) => {
-      setUserTypes(UserTypesRes.data);
-    });
+  useEffect(() => {
+    UserTypeService.getAll().then((res) => {
+      setUserTypes(res.data);
+    })
+  }, []);
+
+  useEffect(() => {
     if (currentUser) {
       if (
         currentUser.role === "admin" ||
         currentUser.role === "secrétaire" ||
         currentUser.role === "manager"
       ) {
-        UserService.getAll().then((usersRes) => setUsers(usersRes.data));
+        UserService.getAll().then((res) => setUsers(res.data));
       } else {
         setFormValues({ user_id: currentUser.id });
       }
     }
+  }, [currentUser]);
+
+  useEffect(() => {
     if (UserId) {
       UserService.get(UserId).then((res) => {
         setFormValues(res.data);
       });
     }
-  }, [
-    setUsers,
-    setUserTypes,
-    setFormValues,
-    currentUser,
-    UserId
-  ]);
+  }, [UserId]);
 
   if (redirectUserListe) {
     return <Redirect to="/home" />;
@@ -192,15 +190,6 @@ function UserForm({ UserId = null, modeEdit = false }) {
           className="grid row-start-2 border-2 border-white bg-gray-300 m-2 p-2 rounded-md text-center"
           placeholder="@"
         />
-        <input
-          type="text"
-          name="username"
-          onChange={modeEdit ? (e) => textChange(e) : null}
-          value={formValues.username}
-          readOnly={!modeEdit}
-          className="grid row-start-2 border-2 border-white bg-gray-300 m-2 p-2 rounded-md text-center"
-          placeholder="Pseudo"
-        />
         {formErrors.mail && <p>{formErrors.mail}</p>}
         <input
           type="text"
@@ -222,17 +211,17 @@ function UserForm({ UserId = null, modeEdit = false }) {
           placeholder="06 xx xx xx xx"
         />
         {formErrors.cellphone && <p>{formErrors.cellphone}</p>}
-        {UserTypes && (
+        {userTypes && (
           <select
             readOnly={!modeEdit}
             name="User_type_id"
             value={formValues.User_type_id}
             onChange={modeEdit ? (e) => handleChange(e) : null}
           >
-            {UserTypes.map((UserType) => {
+            {userTypes.map((userType) => {
               return (
-                <option key={UserType.id} value={UserType.id}>
-                  {UserType.value}
+                <option key={userType.id} value={userType.id}>
+                  {userType.value}
                 </option>
               );
             })}
