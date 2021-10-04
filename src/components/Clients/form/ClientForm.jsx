@@ -178,13 +178,12 @@ function ClientForm({ clientId = null, modeEdit, setModeEdit, setReloadList, rel
   }, [clientId]);
 
   return (
-    <div className="">
-      <div className="">
-        <div className="py-2 mx-2 text-blue-300 font-black">Informations clients</div>
-
+      <div className="w-full pb-5">
+        <div className="text-blue-300 text-left font-black mx-2 py-2">Informations clients</div>
+        <div className="clientFormContainer bg-blue-100 py-3 rounded-md">
         <div className="grid grid-rows-1">
           <form onSubmit={(e) => submitForm(e)} className="grid grid-cols-1">
-            <div className="flex justify-end">
+            <div className="flex justify-center">
               <div>Nom</div>
               <input
                 type="text"
@@ -192,7 +191,7 @@ function ClientForm({ clientId = null, modeEdit, setModeEdit, setReloadList, rel
                 onChange={modeEdit ? (e) => textChange(e) : null}
                 value={formValues.lastname}
                 readOnly={!modeEdit}
-                className="col-start-2 m-2 p-2 rounded-md text-center border-2 border-blue-300"
+                className="col-start-1 m-2 p-2 rounded-md text-center border-2 border-blue-300"
                 placeholder="Nom"
               />
               {formErrors.lastname && <p>{formErrors.lastname}</p>}
@@ -204,7 +203,7 @@ function ClientForm({ clientId = null, modeEdit, setModeEdit, setReloadList, rel
                 onChange={modeEdit ? (e) => textChange(e) : null}
                 value={formValues.firstname}
                 readOnly={!modeEdit}
-                className="col-start-1 m-2 p-2 rounded-md text-center border-2 border-blue-300"
+                className="col-start-2 m-2 p-2 rounded-md text-center border-2 border-blue-300"
                 placeholder="Prénom"
               />
               {formErrors.firstname && <p>{formErrors.firstname}</p>}
@@ -317,7 +316,7 @@ function ClientForm({ clientId = null, modeEdit, setModeEdit, setReloadList, rel
                 <select
                   readOnly={!modeEdit}
                   name="client_type_id"
-                  className="row-start-2 bg-white m-2 p-2 rounded-md text-center border-2 border-blue-300"
+                  className="row-start-2 bg-white m-2 p-2 rounded-md text-center border-2 border-blue-300 w-1/2"
                   value={formValues.client_type_id}
                   onChange={modeEdit ? (e) => handleChange(e) : null}
                 >
@@ -339,7 +338,7 @@ function ClientForm({ clientId = null, modeEdit, setModeEdit, setReloadList, rel
                   <select
                     readOnly={!modeEdit}
                     value={formValues.user_id}
-                    className="row-start-2 bg-blue-100 m-2 p-2 text-center border-2 border-blue-300"
+                    className="row-start-2 bg-white m-2 p-2 text-center border-2 border-blue-300 rounded-md w-1/2"
                     name="user_id"
                     onChange={modeEdit ? (e) => handleChange(e) : null}
                   >
@@ -361,13 +360,12 @@ function ClientForm({ clientId = null, modeEdit, setModeEdit, setReloadList, rel
                   <input
                     type="submit"
                     value="enregistrer"
-                    className="m-auto mt-5 text-white uppercase bg-blue-300 hover:bg-blue-600 font-bold p-2 pt-2 pb-2 mx-2 rounded-xl"
+                    className="mt-5 text-white uppercase bg-blue-300 hover:bg-green-300 font-bold p-2 pt-2 pb-2 mx-2 rounded-xl w-1/3"
                   />
                 ) : (
                   <button
                     onClick={() => setModeEdit(!modeEdit)}
-                    type="button"
-                    className="m-auto mt-5 text-white bg-yellow-200 hover:bg-yellow-400 uppercase font-bold p-2 pt-2 pb-2 mx-2 rounded-xl">
+                    className="mt-5 text-white bg-blue-300 hover:bg-green-300 uppercase font-bold p-2 pt-2 pb-2 mx-2 rounded-xl w-1/3">
                     Modifier
                   </button>
                 )}
@@ -376,14 +374,14 @@ function ClientForm({ clientId = null, modeEdit, setModeEdit, setReloadList, rel
               <input
                     type="submit"
                     value="Créer"
-                    className="m-auto mt-5 text-white uppercase bg-blue-300 hover:bg-blue-600 font-bold p-2 pt-2 pb-2 mx-2 rounded-xl"
+                    className="mt-5 text-white uppercase bg-blue-300 hover:bg-green-300 font-bold p-2 pt-2 pb-2 mx-2 rounded-xl w-1/3"
               />
             )}
           </form>
         </div>
+        </div>
 
       </div>
-    </div>
   );
 }
 

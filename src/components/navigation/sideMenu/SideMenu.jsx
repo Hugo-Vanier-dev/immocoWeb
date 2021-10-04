@@ -5,24 +5,24 @@ import './SideMenu.css';
 
 function SideMenu() {
     return(
-        <div className="SideMenuContainer bg-gray-200 shadow">    
+        <div className="SideMenuContainer bg-gray-200 shadow grid grid-cols-1 static  z-30">    
 
-            <div className="LogoIcoSideMenu shadow-md" />
-            <div className="mt-20">
-                <div className="mt-10">
-                    <Link to="/dashboard" className="m-auto mt-5 text-blue-400 hover:text-green-500 font-bold text-lg uppercase">Tableau de bord</Link> 
+            <div className="LogoIcoSideMenu shadow-md absolute mx-7 my-7 z-50" />
+            <div className="grid grid-rows-6 h-64 justify-items-start my-64 z-40">
+                <div className="btnMenu">
+                    <Link to="/dashboard" className="px-5 text-blue-400 hover:text-indigo-700 font-bold text-lg uppercase">Tableau de bord</Link> 
                 </div>       
-                <div className="mt-10">
-                    <Link to="/clientPage" className="m-auto mt-5 text-blue-400 hover:text-green-500 font-bold text-lg uppercase">Clients</Link>  
+                <div className="btnMenu">
+                    <Link to="/clientPage" className="px-5 text-blue-400 hover:text-indigo-700 font-bold text-lg uppercase">Clients</Link>  
                 </div>      
-                <div className="mt-10">
-                    <Link to="/propertyPage" className="m-auto mt-5 text-blue-400 hover:text-green-500 font-bold text-lg uppercase">Propriétés</Link>
+                <div className="btnMenu">
+                    <Link to="/propertyPage" className="px-5 text-blue-400 hover:text-indigo-700 font-bold text-lg uppercase">Propriétés</Link>
                 </div>   
-                <div className="mt-10">
-                    <Link to="/clientPage" className="m-auto mt-5 text-blue-400 hover:text-green-500 font-bold text-lg uppercase">Employés</Link>
+                <div className="btnMenu">
+                    <Link to="/clientPage" className="px-5 text-blue-400 hover:text-indigo-700 font-bold text-lg uppercase">Employés</Link>
                 </div>
-                <div className="mt-10">
-                    <p className="m-auto mt-5 text-blue-400 hover:text-green-500 font-bold text-lg uppercase" onClick={() => authService.logout()}>Déconnexion</p>
+                <div className="btnMenu">
+                    <button className="px-5 text-blue-400 hover:text-indigo-700 font-bold text-lg uppercase" onClick={() => authService.logout()}>Déconnexion</button>
                 </div>
             </div>
         </div>

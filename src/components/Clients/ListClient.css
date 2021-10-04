@@ -1,17 +1,15 @@
-table {
-    width: 100%;
-}
 
 .clientTableContainer{
-    height: 90vh;
-    overflow: auto;
+    height: 100%;
+    overflow: hidden;
 }
-
+/* table {
+    width: 100%;
+} */
 th, td {
     text-align: left;
     padding: 16px;
 }
-
 tr:nth-child(even) {
     background-color: rgba(200,220,230,1);
 }
