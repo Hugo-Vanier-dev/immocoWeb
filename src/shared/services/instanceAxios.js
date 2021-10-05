@@ -35,17 +35,14 @@ instance.interceptors.request.use(function (config) {
 instance.interceptors.response.use(function (config) {
     if (Date.now() > parseInt(JSON.parse(localStorage.getItem('refresh'))) && Date.now() < parseInt(JSON.parse(localStorage.getItem('tokenLifetime')))) {
         authService.refresh().then(res => {
-            console.log('refresh du token');
             localStorage.setItem('token', JSON.stringify(res.data));
             const refreshedToken = res.data;
             if (refreshedToken) {
-                console.log('refresh des timestamp du token');
                 setRefreshTime(parseInt(refreshedToken.expires_in));
                 setExpireTime(parseInt(refreshedToken.expires_in));
             }
         });
     }else if(Date.now() > parseInt(JSON.parse(localStorage.getItem('tokenLifetime')))) {
-        console.log('déconnexion')
         localStorage.removeItem('user');
         localStorage.removeItem('token');
         localStorage.removeItem('refresh');
@@ -54,6 +51,22 @@ instance.interceptors.response.use(function (config) {
     }
     return config;
 }, function (error) {
+    if (Date.now() > parseInt(JSON.parse(localStorage.getItem('refresh'))) && Date.now() < parseInt(JSON.parse(localStorage.getItem('tokenLifetime')))) {
+        authService.refresh().then(res => {
+            localStorage.setItem('token', JSON.stringify(res.data));
+            const refreshedToken = res.data;
+            if (refreshedToken) {
+                setRefreshTime(parseInt(refreshedToken.expires_in));
+                setExpireTime(parseInt(refreshedToken.expires_in));
+            }
+        });
+    }else if(Date.now() > parseInt(JSON.parse(localStorage.getItem('tokenLifetime')))) {
+        localStorage.removeItem('user');
+        localStorage.removeItem('token');
+        localStorage.removeItem('refresh');
+        localStorage.removeItem('tokenLifetime');
+        window.location.reload();
+    }
     return Promise.reject(error);
 })
 

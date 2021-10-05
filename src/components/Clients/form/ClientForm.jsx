@@ -147,7 +147,7 @@ function ClientForm({ clientId = null, modeEdit, setModeEdit, setReloadList, rel
         currentUser.user_type.value === "secrétaire" ||
         currentUser.user_type.value === "manager"
       ) {
-        UserService.getAll().then((usersRes) => setUsers(usersRes.data)).catch(error => console.log(error));
+        UserService.getAll().then((usersRes) => setUsers(usersRes.data));
       } else {
         setFormValues({ user_id: currentUser.id });
       }

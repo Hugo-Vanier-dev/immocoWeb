@@ -23,7 +23,6 @@ function NewClientForm({ clientId = null, edit = false }) {
 
   const [modeEdit, setModeEdit] = React.useState(edit);
 
-  console.log(clientId);
 
   const [formErrors, setFormErrors] = React.useState({
     firstname: null,
@@ -79,7 +78,6 @@ function NewClientForm({ clientId = null, edit = false }) {
           setredirectInfoClient(true);
         });
       } else {
-        console.log("coucou");
         ClientService.create(data).then((res) => {
           toast.info("Le client a été créé.", {
             position: "bottom-center",
@@ -147,7 +145,6 @@ function NewClientForm({ clientId = null, edit = false }) {
       setClientTypes(clientTypesRes.data);
     });
     if (currentUser) {
-      console.log(currentUser.user_type.value);
       if (
         currentUser.user_type.value === "admin" ||
         currentUser.user_type.value === "secrétaire" ||

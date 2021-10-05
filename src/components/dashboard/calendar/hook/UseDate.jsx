@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export const UseDate = (events, nav) =>{
   const [dateDisplay, setDateDisplay] = useState('');

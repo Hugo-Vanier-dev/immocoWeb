@@ -44,7 +44,6 @@ function LoginPage() {
         
       })
       .catch((error) => {
-          console.log(error);
           setFormError('Adresse mail ou mot de passe incorrecte.')
       });
   }

@@ -20,7 +20,6 @@ function PropertyForm({ propertyId = null, edit = false }) {
   const [heaterTypes, setHeaterTypes] = React.useState(null);
   const [shutterTypes, setShutterTypes] = React.useState(null);
 
-  console.log(propertyId);
 
   const [formErrors, setFormErrors] = React.useState({
     price: null,
@@ -104,7 +103,7 @@ function PropertyForm({ propertyId = null, edit = false }) {
       const data = formValues;
       if (propertyId) {
         PropertyService.update(propertyId, data).then((res) => {
-          modeEdit = false;
+          setModeEdit(false);
           toast.info("La fiche a bien été modifié.", {
             position: "bottom-center",
             autoClose: 5000,
@@ -129,7 +128,6 @@ function PropertyForm({ propertyId = null, edit = false }) {
     }
   }
   const handleChange = (e) => {
-    console.log("coucou gautier");
     formValues[e.target.name] = e.target.value;
     setFormValues({ ...formValues });
   };
@@ -147,7 +145,6 @@ function PropertyForm({ propertyId = null, edit = false }) {
       setPropertyTypes(propertyTypesRes.data);
     });
     if (currentUser) {
-      console.log(currentUser.user_type.value);
       if (
         currentUser.user_type.value === "admin" ||
         currentUser.user_type.value === "secrétaire" ||
@@ -164,11 +161,9 @@ function PropertyForm({ propertyId = null, edit = false }) {
       });
     }
     HeaterTypeService.getAll().then((heaterTypesRes) => {
-      console.log(heaterTypesRes);
       setHeaterTypes(heaterTypesRes.data);
     });
     ShutterTypeService.getAll().then((shutterTypesRes) => {
-      console.log(shutterTypesRes);
       setShutterTypes(shutterTypesRes.data);
     });
   }, [setUsers, setFormValues, currentUser, propertyId]);
